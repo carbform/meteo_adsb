@@ -44,8 +44,7 @@ for json_file in json_files:
 
         # Create a Pandas DataFrame
         df = pd.DataFrame(flight_details)
-        df["trk"] = (np.pi / 180) * df["track"]
-        df["hdg"] = (np.pi / 180) * df["mag_heading"]
+        
 
         # Append the Pandas DataFrame to the empty list
         df_list.append(df)

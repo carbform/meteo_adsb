@@ -10,13 +10,13 @@ import matplotlib.pyplot as plt
 import glob
 import json
 
-## Read the JSON data
+# Get a list of all the JSON files in the folder
 json_files = glob.glob('dump1090-fa/*.json')
 
-## Create an empty list to store the Pandas DataFrames
+# Create an empty list to store the Pandas DataFrames
 df_list = []
 
-## Iterate over the list of JSON files and read each file into a Pandas DataFrame
+# Iterate over the list of JSON files and read each file into a Pandas DataFrame
 for json_file in json_files:
     json_data = json.load(open(json_file))
 
@@ -49,14 +49,14 @@ for json_file in json_files:
 
         # Append the Pandas DataFrame to the empty list
         df_list.append(df)
-#%%
+
 ## Concatenate all the Pandas DataFrames in the list into a single Pandas DataFrame
 df = pd.concat(df_list)
 df["trk"] = (np.pi / 180) * df["track"]
 df["hdg"] = (np.pi / 180) * df["mag_heading"]
+print(df)
 ## Define a function to calculate wind speed and direction
-
-
+#%%
 
 def calculate_wind_speed_and_direction(df):
   """Calculates the wind speed and wind direction in meters per second and
