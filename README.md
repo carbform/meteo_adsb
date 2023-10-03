@@ -30,12 +30,16 @@ To run the code, save it as a Python file (e.g. `vertical_structure.py`) and run
 **Usage**
 * Locate the aircraft.json/history_x.json files from the dump1090-fa logs. Or else, get started with the files provided in the dump1090-fa folder in this repository. 
 
-* When using a custom location containing the .json files, edit the ```
+* When using a custom location containing the .json files, edit the 
+
+```
 json_files = glob.glob('path_to_folder/*.json')
-``` line in the vertical_structure.py file and specify the location of the folder containing those files.
+``` 
+
+line in the vertical_structure.py file and specify the location of the folder containing those files.
 
 
-* Run the file
+* To run the code, save it as a Python file (e.g. `vertical_structure.py`) and run it in the terminal using the following command:
 
 ```
 $ python vertical_structure.py
