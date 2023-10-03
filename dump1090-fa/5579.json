@@ -1,0 +1,11 @@
+{ "now" : 1696336067.4,
+  "messages" : 70338,
+  "aircraft" : [
+    {"hex":"750254","flight":"MAS158  ","alt_baro":38000,"alt_geom":40425,"gs":504.8,"ias":258,"tas":474,"mach":0.812,"track":290.8,"track_rate":0.00,"roll":0.0,"mag_heading":293.7,"baro_rate":0,"geom_rate":0,"squawk":"2134","category":"A5","nav_qnh":1013.6,"nav_altitude_mcp":38016,"nav_heading":0.0,"lat":13.535889,"lon":77.845143,"nic":8,"rc":186,"seen_pos":3.6,"version":2,"nic_baro":1,"nac_p":8,"nac_v":1,"sil":3,"sil_type":"perhour","gva":1,"sda":2,"mlat":[],"tisb":[],"messages":500,"seen":0.0,"rssi":-22.3},
+    {"hex":"8013e5","category":"A3","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":314,"seen":47.3,"rssi":-23.4},
+    {"hex":"801595","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":45,"seen":69.9,"rssi":-22.3},
+    {"hex":"8013b1","category":"A3","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":218,"seen":131.2,"rssi":-22.8},
+    {"hex":"8007ca","category":"A3","version":1,"sil_type":"unknown","mlat":[],"tisb":[],"messages":1068,"seen":179.8,"rssi":-22.9},
+    {"hex":"800db7","category":"A0","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":1670,"seen":219.9,"rssi":-23.9}
+  ]
+}

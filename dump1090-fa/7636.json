@@ -1,0 +1,14 @@
+{ "now" : 1696335797.1,
+  "messages" : 69382,
+  "aircraft" : [
+    {"hex":"801595","gs":171.3,"track":266.7,"baro_rate":-448,"version":0,"nac_v":2,"mlat":[],"tisb":[],"messages":5,"seen":14.2,"rssi":-26.1},
+    {"hex":"8013b1","flight":"VTI658  ","alt_baro":15400,"alt_geom":16025,"gs":277.2,"ias":207,"tas":270,"mach":0.416,"track":104.0,"track_rate":-1.59,"roll":-21.8,"mag_heading":97.9,"baro_rate":-896,"geom_rate":-896,"squawk":"0575","emergency":"none","category":"A3","nav_qnh":1013.6,"nav_altitude_mcp":15008,"nav_heading":90.0,"lat":13.366497,"lon":77.863625,"nic":8,"rc":186,"seen_pos":0.8,"version":2,"nic_baro":1,"nac_p":9,"nac_v":1,"sil":3,"sil_type":"perhour","gva":1,"sda":2,"mlat":[],"tisb":[],"messages":144,"seen":0.4,"rssi":-21.2},
+    {"hex":"800d8c","version":0,"sil_type":"unknown","mlat":[],"tisb":[],"messages":6,"seen":123.8,"rssi":-26.0},
+    {"hex":"8007ca","category":"A3","version":1,"sil_type":"unknown","mlat":[],"tisb":[],"messages":1056,"seen":52.3,"rssi":-23.7},
+    {"hex":"8014f2","category":"A3","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":823,"seen":108.7,"rssi":-22.6},
+    {"hex":"800db7","alt_baro":10975,"alt_geom":11200,"gs":210.0,"track":323.1,"baro_rate":512,"category":"A0","version":2,"nac_v":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":1669,"seen":4.6,"rssi":-23.7},
+    {"hex":"896397","category":"A3","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":4241,"seen":130.9,"rssi":-22.8},
+    {"hex":"80145b","category":"A3","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":4583,"seen":202.4,"rssi":-22.8},
+    {"hex":"800bb1","mlat":[],"tisb":[],"messages":1668,"seen":190.5,"rssi":-23.9}
+  ]
+}

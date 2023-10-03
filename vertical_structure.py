@@ -45,15 +45,15 @@ for json_file in json_files:
 
         # Create a Pandas DataFrame
         df = pd.DataFrame(flight_details)
-        df["trk"] = (np.pi / 180) * df["track"]
-        df["hdg"] = (np.pi / 180) * df["mag_heading"]
+        
 
         # Append the Pandas DataFrame to the empty list
         df_list.append(df)
-
+#%%
 ## Concatenate all the Pandas DataFrames in the list into a single Pandas DataFrame
 df = pd.concat(df_list)
-
+df["trk"] = (np.pi / 180) * df["track"]
+df["hdg"] = (np.pi / 180) * df["mag_heading"]
 ## Define a function to calculate wind speed and direction
 
 

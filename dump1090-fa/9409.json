@@ -1,0 +1,13 @@
+{ "now" : 1696337839.5,
+  "messages" : 102987,
+  "aircraft" : [
+    {"hex":"8014e3","flight":"VTVRV   ","alt_baro":13950,"alt_geom":14350,"gs":242.3,"ias":188,"tas":240,"mach":0.368,"track":16.8,"track_rate":-0.19,"roll":-2.3,"mag_heading":14.6,"baro_rate":2880,"squawk":"2062","emergency":"none","category":"A2","nav_qnh":1013.6,"nav_altitude_mcp":24704,"lat":13.015633,"lon":77.500594,"nic":8,"rc":186,"seen_pos":0.1,"version":2,"nic_baro":1,"nac_p":9,"nac_v":1,"sil":3,"sil_type":"perhour","gva":2,"sda":2,"mlat":[],"tisb":[],"messages":1726,"seen":0.1,"rssi":-6.9},
+    {"hex":"7105ab","category":"A5","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":327,"seen":129.1,"rssi":-24.0},
+    {"hex":"4d2131","flight":"VJT132  ","alt_baro":8000,"alt_geom":8100,"gs":234.8,"track":26.6,"geom_rate":0,"category":"A3","nav_qnh":1012.8,"nav_altitude_mcp":8000,"nav_heading":30.9,"lat":12.811455,"lon":77.771735,"nic":8,"rc":186,"seen_pos":2.1,"version":2,"nic_baro":1,"nac_p":9,"nac_v":1,"sil":3,"sil_type":"perhour","mlat":[],"tisb":[],"messages":112,"seen":0.1,"rssi":-24.2},
+    {"hex":"800d3b","flight":"LLR521  ","alt_baro":9400,"alt_geom":9875,"gs":202.1,"ias":179,"mach":0.320,"track":210.0,"mag_heading":215.7,"baro_rate":2432,"geom_rate":2528,"squawk":"7275","category":"A0","nav_qnh":1013.2,"nav_altitude_mcp":11008,"lat":13.227027,"lon":77.459877,"nic":8,"rc":186,"seen_pos":0.4,"version":0,"nac_p":8,"nac_v":0,"sil":2,"sil_type":"unknown","mlat":[],"tisb":[],"messages":1969,"seen":0.3,"rssi":-19.8},
+    {"hex":"8015b8","flight":"IGO6145 ","alt_baro":20650,"alt_geom":22000,"gs":346.7,"ias":251,"tas":350,"mach":0.552,"track":191.3,"track_rate":0.00,"roll":0.0,"mag_heading":192.8,"baro_rate":3264,"geom_rate":3328,"squawk":"7233","category":"A0","nav_qnh":1013.0,"nav_altitude_mcp":26000,"lat":12.815226,"lon":77.528060,"nic":8,"rc":186,"seen_pos":0.4,"version":0,"nac_p":8,"nac_v":0,"sil":2,"sil_type":"unknown","mlat":[],"tisb":[],"messages":2003,"seen":0.1,"rssi":-3.4},
+    {"hex":"800ce1","flight":"IGO7603 ","alt_baro":15975,"alt_geom":16850,"gs":251.7,"ias":195,"mach":0.396,"track":246.6,"mag_heading":247.9,"baro_rate":-128,"geom_rate":-128,"squawk":"0214","category":"A0","nav_qnh":1013.2,"nav_altitude_mcp":16000,"lat":12.667050,"lon":77.671268,"nic":8,"rc":186,"seen_pos":0.4,"version":0,"nac_p":8,"nac_v":0,"sil":2,"sil_type":"unknown","mlat":[],"tisb":[],"messages":1026,"seen":0.1,"rssi":-20.4},
+    {"hex":"801493","category":"A3","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":1087,"seen":99.8,"rssi":-23.4},
+    {"hex":"8013b3","category":"A2","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":2684,"seen":284.6,"rssi":-24.6}
+  ]
+}
