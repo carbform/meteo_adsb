@@ -1,40 +1,57 @@
 
 
-# %%
+
+# Read the JSON data
+import glob
 import pandas as pd
 import json
 import numpy as np
-import math
-# Read the JSON data
-json_data = json.load(open('dump1090-fa/aircraft.json'))
 
-# Create a list of flight details
-flight_details = []
-for aircraft in json_data["aircraft"]:
-  flight_details.append({
-      "hex": aircraft["hex"],
-      "flight": aircraft["flight"] if "flight" in aircraft else np.nan,
-      "alt_baro": pd.to_numeric(aircraft["alt_baro"]) if "alt_baro" in aircraft else np.nan,
-      "alt_geom": pd.to_numeric(aircraft["alt_geom"]) if "alt_geom" in aircraft else np.nan,
-      "gs": pd.to_numeric(aircraft["gs"]) if "gs" in aircraft else np.nan,
-      "tas": pd.to_numeric(aircraft["tas"]) if "tas" in aircraft else np.nan,
-      "track": pd.to_numeric(aircraft["track"]) if "track" in aircraft else np.nan,
-      "track_rate": pd.to_numeric(aircraft["track_rate"]) if "track_rate" in aircraft else np.nan,
-      "mach": pd.to_numeric(aircraft["mach"]) if "mach" in aircraft else np.nan,
-      "baro_rate": pd.to_numeric(aircraft["baro_rate"]) if "baro_rate" in aircraft else np.nan,
-      "nav_qnh": pd.to_numeric(aircraft["nav_qnh"]) if "nav_qnh" in aircraft else np.nan,
-      "mag_heading": pd.to_numeric(aircraft["mag_heading"]) if "mag_heading" in aircraft else np.nan ,
-      "nav_altitude_mcp": pd.to_numeric(aircraft["nav_altitude_mcp"]) if "nav_altitude_mcp" in aircraft else np.nan,
-      "lat": aircraft["lat"] if "lat" in aircraft else np.nan,
-      "lon": aircraft["lon"] if "lon" in aircraft else np.nan,
-  })
+# Get a list of all the JSON files in the folder
+json_files = glob.glob('dump1090-fa/*.json')
 
-# Create a Pandas DataFrame
-df = pd.DataFrame(flight_details)
-df["trk"] = (math.pi / 180) * df["track"]
-df["hdg"] = (math.pi / 180) * df["mag_heading"]
+# Create an empty list to store the Pandas DataFrames
+df_list = []
 
-# Print the DataFrame
+# Iterate over the list of JSON files and read each file into a Pandas DataFrame
+for json_file in json_files:
+    json_data = json.load(open(json_file))
+
+    # Check if the "aircraft" key exists in the JSON data
+    if "aircraft" in json_data:
+        # Create a list of flight details
+        flight_details = []
+        for aircraft in json_data["aircraft"]:
+            flight_details.append({
+                "hex": aircraft["hex"],
+                "flight": aircraft["flight"] if "flight" in aircraft else np.nan,
+                "alt_baro": pd.to_numeric(aircraft["alt_baro"]) if "alt_baro" in aircraft else np.nan,
+                "alt_geom": pd.to_numeric(aircraft["alt_geom"]) if "alt_geom" in aircraft else np.nan,
+                "gs": pd.to_numeric(aircraft["gs"]) if "gs" in aircraft else np.nan,
+                "tas": pd.to_numeric(aircraft["tas"]) if "tas" in aircraft else np.nan,
+                "track": pd.to_numeric(aircraft["track"]) if "track" in aircraft else np.nan,
+                "track_rate": pd.to_numeric(aircraft["track_rate"]) if "track_rate" in aircraft else np.nan,
+                "mach": pd.to_numeric(aircraft["mach"]) if "mach" in aircraft else np.nan,
+                "baro_rate": pd.to_numeric(aircraft["baro_rate"]) if "baro_rate" in aircraft else np.nan,
+                "nav_qnh": pd.to_numeric(aircraft["nav_qnh"]) if "nav_qnh" in aircraft else np.nan,
+                "mag_heading": pd.to_numeric(aircraft["mag_heading"]) if "mag_heading" in aircraft else np.nan ,
+                "nav_altitude_mcp": pd.to_numeric(aircraft["nav_altitude_mcp"]) if "nav_altitude_mcp" in aircraft else np.nan,
+                "lat": aircraft["lat"] if "lat" in aircraft else np.nan,
+                "lon": aircraft["lon"] if "lon" in aircraft else np.nan,
+            })
+
+        # Create a Pandas DataFrame
+        df = pd.DataFrame(flight_details)
+        df["trk"] = (np.pi / 180) * df["track"]
+        df["hdg"] = (np.pi / 180) * df["mag_heading"]
+
+        # Append the Pandas DataFrame to the empty list
+        df_list.append(df)
+
+# Concatenate all the Pandas DataFrames in the list into a single Pandas DataFrame
+df = pd.concat(df_list)
+
+# Print the Pandas DataFrame
 print(df)
 
 #%%
@@ -91,57 +108,7 @@ df = calculate_wind_speed_and_direction(df.copy())
 print(df)
 
 # %%
-import pandas as pd
-import json
-import numpy as np
-import math
 
-# Get a list of all the JSON files in the folder
-json_files = glob.glob('dump1090-fa/*.json')
-
-# Create an empty list to store the Pandas DataFrames
-df_list = []
-
-# Iterate over the list of JSON files and read each file into a Pandas DataFrame
-for json_file in json_files:
-    json_data = json.load(open(json_file))
-
-    # Check if the "aircraft" key exists in the JSON data
-    if "aircraft" in json_data:
-        # Create a list of flight details
-        flight_details = []
-        for aircraft in json_data["aircraft"]:
-            flight_details.append({
-                "hex": aircraft["hex"],
-                "flight": aircraft["flight"] if "flight" in aircraft else np.nan,
-                "alt_baro": pd.to_numeric(aircraft["alt_baro"]) if "alt_baro" in aircraft else np.nan,
-                "alt_geom": pd.to_numeric(aircraft["alt_geom"]) if "alt_geom" in aircraft else np.nan,
-                "gs": pd.to_numeric(aircraft["gs"]) if "gs" in aircraft else np.nan,
-                "tas": pd.to_numeric(aircraft["tas"]) if "tas" in aircraft else np.nan,
-                "track": pd.to_numeric(aircraft["track"]) if "track" in aircraft else np.nan,
-                "track_rate": pd.to_numeric(aircraft["track_rate"]) if "track_rate" in aircraft else np.nan,
-                "mach": pd.to_numeric(aircraft["mach"]) if "mach" in aircraft else np.nan,
-                "baro_rate": pd.to_numeric(aircraft["baro_rate"]) if "baro_rate" in aircraft else np.nan,
-                "nav_qnh": pd.to_numeric(aircraft["nav_qnh"]) if "nav_qnh" in aircraft else np.nan,
-                "mag_heading": pd.to_numeric(aircraft["mag_heading"]) if "mag_heading" in aircraft else np.nan ,
-                "nav_altitude_mcp": pd.to_numeric(aircraft["nav_altitude_mcp"]) if "nav_altitude_mcp" in aircraft else np.nan,
-                "lat": aircraft["lat"] if "lat" in aircraft else np.nan,
-                "lon": aircraft["lon"] if "lon" in aircraft else np.nan,
-            })
-
-        # Create a Pandas DataFrame
-        df = pd.DataFrame(flight_details)
-        df["trk"] = (math.pi / 180) * df["track"]
-        df["hdg"] = (math.pi / 180) * df["mag_heading"]
-
-        # Append the Pandas DataFrame to the empty list
-        df_list.append(df)
-
-# Concatenate all the Pandas DataFrames in the list into a single Pandas DataFrame
-df = pd.concat(df_list)
-
-# Print the Pandas DataFrame
-print(df)
 
 
 
@@ -149,6 +116,6 @@ print(df)
 import matplotlib.pyplot as plt
 plt.scatter(df.ws,df.alt_geom)
 #%%
-plt.scatter(df.oat,df.alt_geom)
+plt.scatter(df.oat,df.alt_geom*0.0003048)
 
 # %%
