@@ -1,4 +1,9 @@
 #%%
+
+# METO-ADSB 
+# Author : Sarat Chandra (www.carbform.github.io)
+# Inspired by tar1090
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -121,3 +126,25 @@ axes[1].set_xlim(0,100)
 fig.suptitle('Vertical Atmospheric Structure')
 plt.show()
 # %%
+fig, axs = plt.subplots(1, 2, figsize=(8, 6))
+
+# Altitude vs. temperature
+axs[0].scatter(df.lat, df.oat, marker='o', color='red', label='Temperature')
+axs[0].set_ylabel('Altitude (km)')
+axs[0].set_xlabel('Temperature (°C)')
+axs[0].legend()
+#axes[0].set_xlim(-60,40)
+
+fig.suptitle('Vertical Atmospheric Structure')
+plt.show()
+# %%
+
+# %% Optional; Work in Progress
+#import plotly.express as px
+# Create a 3D scatter plot
+#fig = px.scatter_3d(df, x='lat', y='oat', z='alt_geom',color='oat',color_continuous_scale='jet')
+
+# Display the plot
+#fig.show()
+
+# TBD : Geom Alt vs OAT vs Lat, Geom Alt vs OAT vs Lon, Mapping OAT/WS for Alt_geom

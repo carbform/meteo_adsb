@@ -1,7 +1,9 @@
 
+# METO-ADSB 
+#Author : Sarat Chandra (www.carbform.github.io)
+# Inspired by tar1090
 
-
-# Read the JSON data
+#%% Read the JSON data
 import glob
 import pandas as pd
 import json
@@ -119,3 +121,4 @@ plt.scatter(df.ws,df.alt_geom)
 plt.scatter(df.oat,df.alt_geom*0.0003048)
 
 # %%
+plt.scatter(df.lat,df.alt_geom*0.0003048)
