@@ -30,11 +30,10 @@ To run the code, save it as a Python file (e.g. `vertical_structure.py`) and run
 **Usage**
 * Locate the aircraft.json/history_x.json files from the dump1090-fa logs. Or else, get started with the files provided in the dump1090-fa folder in this repository. 
 
-* Open the vertical_structure.py filea and specify the location of the folder containg the .json files as shown.
-
-```
+* When using a custom location containing the .json files, edit the ```
 json_files = glob.glob('path_to_folder/*.json')
-```
+``` line in the vertical_structure.py file and specify the location of the folder containing those files.
+
 
 * Run the file
 
@@ -51,14 +50,14 @@ The code will generate two plots:
 You can use these plots to analyze the vertical atmospheric structure in the area where the data was collected. For example, you can look at how the temperature, wind speed, and wind direction change with altitude.
 
 * How to interpret the plots
-Altitude vs. temperature: The temperature generally decreases with altitude. However, there can be inversions, where the temperature increases with altitude. Inversions can trap pollutants and can make it difficult for aircraft to take off and land.
+ ** Altitude vs. temperature: The temperature generally decreases with altitude. However, there can be inversions, where the temperature increases with altitude. Inversions can trap pollutants and can make it difficult for aircraft to take off and land.
 
-Altitude vs. wind speed: The wind speed generally increases with altitude. However, there can be low-level winds, which are caused by surface friction which can be used to understand the planetary boundary layer.
+** Altitude vs. wind speed: The wind speed generally increases with altitude. However, there can be low-level winds, which are caused by surface friction which can be used to understand the planetary boundary layer.
 
-Altitude vs. wind direction: The wind direction can vary with altitude. This is because the wind is affected by the Earth's rotation and by the presence of mountains and other obstacles.
+**Altitude vs. wind direction: The wind direction can vary with altitude. This is because the wind is affected by the Earth's rotation and by the presence of mountains and other obstacles.
 Applications
 
-**Use Cases**
+* Use Cases
 
 Meteorology: Meteorologists can use this information to study the vertical atmospheric structure and to develop weather forecasts.
 
