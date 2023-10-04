@@ -1,13 +1,14 @@
+#%%
 
 # METO-ADSB 
-#Author : Sarat Chandra (www.carbform.github.io)
+# Author : Sarat Chandra (www.carbform.github.io)
 # Inspired by tar1090
 
-#%% Read the JSON data
-import glob
 import pandas as pd
-import json
 import numpy as np
+import matplotlib.pyplot as plt
+import glob
+import json
 
 # Get a list of all the JSON files in the folder
 json_files = glob.glob('dump1090-fa/*.json')
@@ -49,15 +50,13 @@ for json_file in json_files:
         # Append the Pandas DataFrame to the empty list
         df_list.append(df)
 
-# Concatenate all the Pandas DataFrames in the list into a single Pandas DataFrame
+## Concatenate all the Pandas DataFrames in the list into a single Pandas DataFrame
 df = pd.concat(df_list)
-
-# Print the Pandas DataFrame
+df["trk"] = (np.pi / 180) * df["track"]
+df["hdg"] = (np.pi / 180) * df["mag_heading"]
 print(df)
-
+## Define a function to calculate wind speed and direction
 #%%
-import pandas as pd
-import numpy as np
 
 def calculate_wind_speed_and_direction(df):
   """Calculates the wind speed and wind direction in meters per second and
@@ -75,12 +74,13 @@ def calculate_wind_speed_and_direction(df):
     # If any of the columns are NaN, set the wind speed and wind direction to NaN.
     df["ws"] = np.nan
     df["wd"] = np.nan
+    df["oat"] = np.nan
+    df["tat"] = np.nan
   else:
     # Calculate the wind speed and wind direction.
     df["ws"] = np.round(np.sqrt(np.power(df["tas"] - df["gs"], 2) + 4 * df["tas"] * df["gs"] * np.power(np.sin((df["hdg"] - df["trk"]) / 2), 2)))
     df["wd"] = df["trk"] + np.arctan2(df["tas"] * np.sin(df["hdg"] - df["trk"]), df["tas"] * np.cos(df["hdg"] - df["trk"]) - df["gs"])
-
-  # Fix the wind direction if it is negative or greater than 360 degrees.
+    # Fix the wind direction if it is negative or greater than 360 degrees.
   if df["wd"].any() < 0:
     df["wd"] = df["wd"] + 2 * np.pi
   if df["wd"].any() > 2 * np.pi:
@@ -101,23 +101,52 @@ def calculate_wind_speed_and_direction(df):
     df["tat"] = -273.15 + (df["oat"] + 273.15) * (1 + 0.2 * df["mach"] * df["mach"])
 
   return df
-#%%
-# Calculate the wind speed, wind direction, oat and tat for each row of the DataFrame.
+
+# Calculate wind speed and direction, oat and tat
 df = calculate_wind_speed_and_direction(df.copy())
 
-# Print the DataFrame.
-print(df)
-
-# %%
-
-
-
-
-# %%
-import matplotlib.pyplot as plt
-plt.scatter(df.ws,df.alt_geom)
 #%%
-plt.scatter(df.oat,df.alt_geom*0.0003048)
+## Plot the vertical atmospheric structure as plots between Altitude and Temperature, Altitude vs. wind speed and Altitude vs Wind Direction
+fig, axes = plt.subplots(1, 2, figsize=(8, 6), sharey=True)
+
+# Altitude vs. temperature
+axes[0].scatter(df.oat, df.alt_geom*0.0003048, marker='o', color='red', label='Temperature')
+axes[0].set_ylabel('Altitude (km)')
+axes[0].set_xlabel('Temperature (°C)')
+axes[0].legend()
+axes[0].set_xlim(-60,40)
+
+# Altitude vs. wind speed
+axes[1].scatter(df.ws*1.852, df.alt_geom*0.0003048, marker='o', color='blue', label='Wind Speed')
+axes[1].set_ylabel('Altitude (km)')
+axes[1].set_xlabel('Wind Speed (km/hr)')
+axes[1].legend()
+axes[1].set_xlim(0,100)
+
+fig.suptitle('Vertical Atmospheric Structure')
+plt.show()
+# %%
+fig, axs = plt.subplots(1, 2, figsize=(8, 6))
+
+# Altitude vs. temperature
+axs[0].scatter(df.lat, df.oat, marker='o', color='red', label='Temperature')
+axs[0].set_ylabel('Altitude (km)')
+axs[0].set_xlabel('Temperature (°C)')
+axs[0].legend()
+#axes[0].set_xlim(-60,40)
+
+fig.suptitle('Vertical Atmospheric Structure')
+plt.show()
+# %%
+
+# %% Optional; Work in Progress
+import plotly.express as px
+# Create a 3D scatter plot
+fig = px.scatter_3d(df, x='lat', y='oat', z='alt_geom',color='oat',color_continuous_scale='jet')
+
+#Display the plot
+fig.show()
+
+# TBD : Geom Alt vs OAT vs Lat, Geom Alt vs OAT vs Lon, Mapping OAT/WS for Alt_geom
 
 # %%
-plt.scatter(df.lat,df.alt_geom*0.0003048)
