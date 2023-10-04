@@ -1,0 +1,8 @@
+{ "now" : 1696397941.9,
+  "messages" : 1219865,
+  "aircraft" : [
+    {"hex":"8014de","flight":"IGO807  ","alt_baro":6325,"alt_geom":6350,"gs":241.0,"ias":223,"tas":248,"mach":0.376,"track":304.3,"track_rate":0.16,"roll":1.2,"mag_heading":305.2,"baro_rate":3200,"geom_rate":3136,"squawk":"2701","emergency":"none","category":"A3","nav_qnh":1016.8,"nav_altitude_mcp":14016,"nav_heading":305.9,"lat":13.244856,"lon":77.618505,"nic":8,"rc":186,"seen_pos":0.5,"version":2,"nic_baro":1,"nac_p":10,"nac_v":4,"sil":3,"sil_type":"perhour","gva":2,"sda":3,"mlat":[],"tisb":[],"messages":146,"seen":0.1,"rssi":-17.8},
+    {"hex":"800d03","flight":"SEJ2705 ","alt_baro":24000,"alt_geom":25450,"gs":290.4,"ias":192,"tas":292,"mach":0.460,"track":185.5,"track_rate":0.00,"roll":0.0,"mag_heading":184.2,"baro_rate":0,"geom_rate":32,"squawk":"2733","emergency":"none","category":"A2","nav_qnh":1012.8,"nav_altitude_mcp":24000,"nav_heading":182.8,"lat":13.025875,"lon":77.677195,"nic":8,"rc":186,"seen_pos":0.0,"version":2,"nic_baro":1,"nac_p":10,"nac_v":1,"sil":3,"sil_type":"perhour","gva":2,"sda":2,"mlat":[],"tisb":[],"messages":2229,"seen":0.0,"rssi":-7.6},
+    {"hex":"8013e4","category":"A0","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":2025,"seen":152.7,"rssi":-22.9}
+  ]
+}

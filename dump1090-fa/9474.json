@@ -1,0 +1,9 @@
+{ "now" : 1696397641.5,
+  "messages" : 1217687,
+  "aircraft" : [
+    {"hex":"800d03","flight":"SEJ2705 ","alt_baro":24000,"alt_geom":25450,"gs":295.6,"ias":192,"tas":292,"mach":0.460,"track":206.7,"track_rate":0.00,"roll":-0.2,"mag_heading":205.3,"baro_rate":-64,"geom_rate":0,"squawk":"2733","emergency":"none","category":"A2","nav_qnh":1012.8,"nav_altitude_mcp":24000,"nav_heading":205.3,"lat":13.409546,"lon":77.797978,"nic":8,"rc":186,"seen_pos":0.1,"version":2,"nic_baro":1,"nac_p":10,"nac_v":1,"sil":3,"sil_type":"perhour","gva":2,"sda":2,"mlat":[],"tisb":[],"messages":221,"seen":0.1,"rssi":-19.9},
+    {"hex":"06a2b4","flight":"QTR24J  ","alt_baro":36000,"alt_geom":38350,"gs":514.3,"ias":277,"tas":488,"mach":0.836,"track":296.6,"roll":0.0,"mag_heading":299.5,"baro_rate":64,"geom_rate":-32,"squawk":"2133","emergency":"none","category":"A5","nav_qnh":1012.8,"nav_altitude_mcp":36000,"nav_heading":300.2,"lat":13.365194,"lon":77.017292,"nic":8,"rc":186,"seen_pos":11.3,"version":2,"nic_baro":1,"nac_p":9,"nac_v":1,"sil":3,"sil_type":"perhour","gva":1,"sda":2,"mlat":[],"tisb":[],"messages":2649,"seen":2.4,"rssi":-23.4},
+    {"hex":"8013e4","alt_baro":11925,"category":"A0","nav_qnh":1013.6,"nav_altitude_mcp":16000,"nav_heading":326.2,"version":2,"nic_baro":1,"nac_p":10,"sil":3,"sil_type":"perhour","mlat":[],"tisb":[],"messages":2013,"seen":38.6,"rssi":-22.9},
+    {"hex":"801524","category":"A3","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":2270,"seen":180.8,"rssi":-22.8}
+  ]
+}

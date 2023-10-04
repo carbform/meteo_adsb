@@ -1,0 +1,8 @@
+{ "now" : 1696397821.7,
+  "messages" : 1218435,
+  "aircraft" : [
+    {"hex":"800d03","flight":"SEJ2705 ","alt_baro":24000,"alt_geom":25450,"gs":289.4,"ias":191,"tas":290,"mach":0.456,"track":188.7,"track_rate":-0.50,"roll":-6.9,"mag_heading":187.6,"baro_rate":0,"geom_rate":0,"squawk":"2733","emergency":"none","category":"A2","nav_qnh":1012.8,"nav_altitude_mcp":24000,"nav_heading":187.0,"lat":13.187164,"lon":77.690956,"nic":8,"rc":186,"seen_pos":0.1,"version":2,"nic_baro":1,"nac_p":10,"nac_v":1,"sil":3,"sil_type":"perhour","gva":2,"sda":2,"mlat":[],"tisb":[],"messages":948,"seen":0.0,"rssi":-10.8},
+    {"hex":"06a2b4","category":"A5","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":2649,"seen":182.6,"rssi":-23.4},
+    {"hex":"8013e4","alt_baro":13700,"alt_geom":14150,"gs":213.1,"track":324.7,"baro_rate":384,"category":"A0","version":2,"nac_v":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":2025,"seen":32.5,"rssi":-22.9}
+  ]
+}

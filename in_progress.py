@@ -53,7 +53,7 @@ for json_file in json_files:
 ## Concatenate all the Pandas DataFrames in the list into a single Pandas DataFrame
 df = pd.concat(df_list)
 df["trk"] = (np.pi / 180) * df["track"]
-df["hdg"] = (np.pi / 180) * df["mag_heading"]
+df["hdg"] = (np.pi / 180) * df["mag_heading"] # Simplified , in actual it must be the true heading
 print(df)
 ## Define a function to calculate wind speed and direction
 #%%
@@ -76,34 +76,48 @@ def calculate_wind_speed_and_direction(df):
     df["wd"] = np.nan
     df["oat"] = np.nan
     df["tat"] = np.nan
+  
   else:
-    # Calculate the wind speed and wind direction.
-    df["ws"] = np.round(np.sqrt(np.power(df["tas"] - df["gs"], 2) + 4 * df["tas"] * df["gs"] * np.power(np.sin((df["hdg"] - df["trk"]) / 2), 2)))
-    df["wd"] = df["trk"] + np.arctan2(df["tas"] * np.sin(df["hdg"] - df["trk"]), df["tas"] * np.cos(df["hdg"] - df["trk"]) - df["gs"])
+
+    if df["mach"].any()>0.395:
+
+    # Calculate the wind speed and wind direction, oat and tat.
+      df["ws"] = np.round(np.sqrt(np.power(df["tas"] - df["gs"], 2) + 4 * df["tas"] * df["gs"] * np.power(np.sin((df["hdg"] - df["trk"]) / 2), 2)))
+      df["wd"] = df["trk"] + np.arctan2(df["tas"] * np.sin(df["hdg"] - df["trk"]), df["tas"] * np.cos(df["hdg"] - df["trk"]) - df["gs"])
+      df["oat"] = np.power((df["tas"] / 661.47 / df["mach"]), 2) * 288.15 - 273.15
+      df["tat"] = -273.15 + (df["oat"] + 273.15) * (1 + 0.2 * df["mach"] * df["mach"])
     # Fix the wind direction if it is negative or greater than 360 degrees.
-  if df["wd"].any() < 0:
-    df["wd"] = df["wd"] + 2 * np.pi
-  if df["wd"].any() > 2 * np.pi:
-    df["wd"] = df["wd"] - 2 * np.pi
+      if df["wd"].any() < 0:
+        df["wd"] = df["wd"] + 2 * np.pi
+      if df["wd"].any() > 2 * np.pi:
+        df["wd"] = df["wd"] - 2 * np.pi
 
-  # Convert the wind direction from radians to degrees.
-  df["wd"] = np.round((180 / np.pi) * df["wd"])
+      # Convert the wind direction from radians to degrees.
+      df["wd"] = np.round((180 / np.pi) * df["wd"])
+  
+    else:
+      df["ws"] = np.nan
+      df["wd"] = np.nan
+      df["oat"] = np.nan
+      df["tat"] = np.nan
 
-
-  # Check if any of the "tas", or "mach" columns are NaN.
-  if df["tas"].isna().all() or df["mach"].isna().all():
-    # If any of the columns are NaN, set the wind speed and wind direction to NaN.
-    df["oat"] = np.nan
-    df["tat"] = np.nan
-  else:
-    # Calculate the wind speed and wind direction.
-    df["oat"] = np.power((df["tas"] / 661.47 / df["mach"]), 2) * 288.15 - 273.15
-    df["tat"] = -273.15 + (df["oat"] + 273.15) * (1 + 0.2 * df["mach"] * df["mach"])
 
   return df
 
 # Calculate wind speed and direction, oat and tat
 df = calculate_wind_speed_and_direction(df.copy())
+
+print(df)
+#%%
+# Fix the wind direction if it is negative or greater than 360 degrees.
+if df["wd"].any() < 0:
+  df["wd"] = df["wd"] + 2 * np.pi
+if df["wd"].any() > 2 * np.pi:
+  df["wd"] = df["wd"] - 2 * np.pi
+
+# Convert the wind direction from radians to degrees.
+df["wd"] = np.round((180 / np.pi) * df["wd"])
+
 
 #%%
 ## Plot the vertical atmospheric structure as plots between Altitude and Temperature, Altitude vs. wind speed and Altitude vs Wind Direction
@@ -121,7 +135,7 @@ axes[1].scatter(df.ws*1.852, df.alt_geom*0.0003048, marker='o', color='blue', la
 axes[1].set_ylabel('Altitude (km)')
 axes[1].set_xlabel('Wind Speed (km/hr)')
 axes[1].legend()
-axes[1].set_xlim(0,100)
+axes[1].set_xlim(0,200)
 
 fig.suptitle('Vertical Atmospheric Structure')
 plt.show()
@@ -133,7 +147,7 @@ axs[0].scatter(df.lat, df.oat, marker='o', color='red', label='Temperature')
 axs[0].set_ylabel('Altitude (km)')
 axs[0].set_xlabel('Temperature (°C)')
 axs[0].legend()
-#axes[0].set_xlim(-60,40)
+
 
 fig.suptitle('Vertical Atmospheric Structure')
 plt.show()

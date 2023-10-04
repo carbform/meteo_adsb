@@ -1,0 +1,12 @@
+{ "now" : 1696398362.4,
+  "messages" : 1228482,
+  "aircraft" : [
+    {"hex":"8002c4","alt_baro":5100,"squawk":"2057","mlat":[],"tisb":[],"messages":272,"seen":0.9,"rssi":-6.1},
+    {"hex":"801421","version":0,"sil_type":"unknown","mlat":[],"tisb":[],"messages":5,"seen":154.0,"rssi":-17.6},
+    {"hex":"8015e2","flight":"IGO6482 ","alt_baro":12650,"alt_geom":13125,"gs":334.1,"ias":266,"tas":330,"mach":0.508,"track":22.3,"track_rate":0.03,"roll":0.7,"mag_heading":23.0,"baro_rate":-2176,"geom_rate":-2176,"squawk":"2764","emergency":"none","category":"A3","nav_qnh":1012.8,"nav_altitude_mcp":10016,"lat":12.882494,"lon":77.596002,"nic":8,"rc":186,"seen_pos":0.3,"version":2,"nic_baro":1,"nac_p":10,"nac_v":2,"sil":3,"sil_type":"perhour","gva":2,"sda":3,"mlat":[],"tisb":[],"messages":749,"seen":0.3,"rssi":-3.1},
+    {"hex":"8964b2","flight":"UAE415  ","alt_baro":40000,"alt_geom":42475,"gs":525.1,"ias":263,"tas":496,"mach":0.860,"track":299.1,"track_rate":0.16,"roll":3.7,"mag_heading":302.3,"baro_rate":0,"geom_rate":0,"squawk":"1304","emergency":"none","category":"A5","nav_qnh":1013.6,"nav_altitude_mcp":40000,"nav_heading":302.3,"lat":12.967405,"lon":77.647946,"nic":8,"rc":186,"seen_pos":0.4,"version":2,"nic_baro":1,"nac_p":10,"nac_v":1,"sil":3,"sil_type":"perhour","gva":1,"sda":2,"mlat":[],"tisb":[],"messages":1435,"seen":0.1,"rssi":-16.1},
+    {"hex":"80152f","category":"A3","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":958,"seen":73.5,"rssi":-22.9},
+    {"hex":"8014de","alt_baro":18450,"squawk":"2701","category":"A3","nav_qnh":1012.8,"nav_altitude_mcp":24992,"version":2,"nic_baro":1,"nac_p":10,"sil":3,"sil_type":"perhour","mlat":[],"tisb":[],"messages":1222,"seen":65.8,"rssi":-23.7},
+    {"hex":"800d03","flight":"SEJ2705 ","alt_baro":24000,"alt_geom":25425,"gs":295.5,"ias":194,"tas":294,"mach":0.464,"track":195.3,"track_rate":-0.06,"roll":-0.2,"mag_heading":194.9,"baro_rate":0,"geom_rate":0,"squawk":"2733","emergency":"none","category":"A2","nav_qnh":1012.8,"nav_altitude_mcp":24000,"nav_heading":194.8,"lat":12.489716,"lon":77.544535,"nic":8,"rc":186,"seen_pos":14.4,"version":2,"nic_baro":1,"nac_p":10,"nac_v":1,"sil":3,"sil_type":"perhour","gva":2,"sda":2,"mlat":[],"tisb":[],"messages":6325,"seen":13.4,"rssi":-22.1}
+  ]
+}
