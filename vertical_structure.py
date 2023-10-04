@@ -53,11 +53,10 @@ for json_file in json_files:
 ## Concatenate all the Pandas DataFrames in the list into a single Pandas DataFrame
 df = pd.concat(df_list)
 df["trk"] = (np.pi / 180) * df["track"]
-df["hdg"] = (np.pi / 180) * df["mag_heading"]
+df["hdg"] = (np.pi / 180) * df["mag_heading"] # Simplified , in actual it must be the true heading
 print(df)
 ## Define a function to calculate wind speed and direction
 #%%
-
 def calculate_wind_speed_and_direction(df):
   """Calculates the wind speed and wind direction in meters per second and
   degrees, respectively, from the given DataFrame.
@@ -99,11 +98,13 @@ def calculate_wind_speed_and_direction(df):
     # Calculate the wind speed and wind direction.
     df["oat"] = np.power((df["tas"] / 661.47 / df["mach"]), 2) * 288.15 - 273.15
     df["tat"] = -273.15 + (df["oat"] + 273.15) * (1 + 0.2 * df["mach"] * df["mach"])
-
+  df = df[df["mach"] > 0.4]
   return df
+ 
 
 # Calculate wind speed and direction, oat and tat
 df = calculate_wind_speed_and_direction(df.copy())
+print(df)
 
 #%%
 ## Plot the vertical atmospheric structure as plots between Altitude and Temperature, Altitude vs. wind speed and Altitude vs Wind Direction
@@ -125,18 +126,7 @@ axes[1].set_xlim(0,100)
 
 fig.suptitle('Vertical Atmospheric Structure')
 plt.show()
-# %%
-fig, axs = plt.subplots(1, 2, figsize=(8, 6))
 
-# Altitude vs. temperature
-axs[0].scatter(df.lat, df.oat, marker='o', color='red', label='Temperature')
-axs[0].set_ylabel('Altitude (km)')
-axs[0].set_xlabel('Temperature (°C)')
-axs[0].legend()
-#axes[0].set_xlim(-60,40)
-
-fig.suptitle('Vertical Atmospheric Structure')
-plt.show()
 # %%
 
 # %% Optional; Work in Progress
