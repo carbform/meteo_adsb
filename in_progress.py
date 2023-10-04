@@ -108,15 +108,6 @@ def calculate_wind_speed_and_direction(df):
 df = calculate_wind_speed_and_direction(df.copy())
 
 print(df)
-#%%
-# Fix the wind direction if it is negative or greater than 360 degrees.
-if df["wd"].any() < 0:
-  df["wd"] = df["wd"] + 2 * np.pi
-if df["wd"].any() > 2 * np.pi:
-  df["wd"] = df["wd"] - 2 * np.pi
-
-# Convert the wind direction from radians to degrees.
-df["wd"] = np.round((180 / np.pi) * df["wd"])
 
 
 #%%
@@ -127,8 +118,9 @@ fig, axes = plt.subplots(1, 2, figsize=(8, 6), sharey=True)
 axes[0].scatter(df.oat, df.alt_geom*0.0003048, marker='o', color='red', label='Temperature')
 axes[0].set_ylabel('Altitude (km)')
 axes[0].set_xlabel('Temperature (°C)')
+axes[0].set_xlim(-60,50)
 axes[0].legend()
-axes[0].set_xlim(-60,40)
+
 
 # Altitude vs. wind speed
 axes[1].scatter(df.ws*1.852, df.alt_geom*0.0003048, marker='o', color='blue', label='Wind Speed')
