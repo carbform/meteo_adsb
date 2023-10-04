@@ -64,4 +64,4 @@ Applications
 
 * Use Cases
 
-<span style="color:red">* Dislcaimer: The calculated data may not be accurate. The results must analyzed qualitatively.</span>.
+<span style="color:red">* Dislcaimer: The calculated data may not be accurate. The results must analyzed qualitatively.</span>
