@@ -64,10 +64,4 @@ Applications
 
 * Use Cases
 
-Meteorology: Meteorologists can use this information to study the vertical atmospheric structure and to develop weather forecasts.
-
-Aviation: Pilots can use this information to plan their flights and to avoid dangerous weather conditions.
-
-Environmental science: Environmental scientists can use this information to study the transport of pollutants in the atmosphere.
-
-* Dislcaimer: The calculated data may not be accurate. The results must analyzed qualitatively.
+* <span style="color:red">* Dislcaimer: The calculated data may not be accurate. The results must analyzed qualitatively.</span>.
