@@ -56,7 +56,7 @@ df["trk"] = (np.pi / 180) * df["track"]
 df["hdg"] = (np.pi / 180) * df["mag_heading"] # Simplified , in actual it must be the true heading
 print(df)
 ## Define a function to calculate wind speed and direction
-#%%
+
 def calculate_wind_speed_and_direction(df):
   """Calculates the wind speed and wind direction in meters per second and
   degrees, respectively, from the given DataFrame.
