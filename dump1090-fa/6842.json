@@ -1,0 +1,10 @@
+{ "now" : 1696563771.4,
+  "messages" : 4361336,
+  "aircraft" : [
+    {"hex":"800dba","flight":"IGO295  ","alt_baro":19525,"alt_geom":20550,"gs":408.5,"ias":300,"tas":418,"mach":0.644,"track":22.3,"track_rate":0.00,"roll":0.0,"mag_heading":23.9,"baro_rate":-2176,"geom_rate":-2176,"squawk":"2765","category":"A3","nav_qnh":1012.8,"nav_altitude_mcp":12000,"lat":12.670166,"lon":77.507882,"nic":8,"rc":186,"seen_pos":2.7,"version":0,"nic_baro":1,"nac_p":9,"nac_v":1,"sil":3,"sil_type":"unknown","mlat":[],"tisb":[],"messages":91,"seen":2.2,"rssi":-18.2},
+    {"hex":"800b78","alt_baro":17400,"alt_geom":18175,"gs":388.6,"track":53.9,"baro_rate":2048,"category":"A3","lat":13.592183,"lon":77.983800,"nic":8,"rc":186,"seen_pos":42.3,"version":2,"nac_v":1,"sil_type":"perhour","mlat":[],"tisb":[],"messages":825,"seen":1.9,"rssi":-24.0},
+    {"hex":"800ce4","flight":"IAD792  ","alt_baro":34000,"alt_geom":36175,"gs":465.9,"ias":265,"tas":456,"mach":0.764,"track":3.6,"track_rate":0.00,"roll":0.2,"mag_heading":7.6,"baro_rate":64,"geom_rate":32,"squawk":"2763","emergency":"none","category":"A3","nav_qnh":1012.8,"nav_altitude_mcp":34016,"lat":13.633392,"lon":77.577730,"nic":8,"rc":186,"seen_pos":0.1,"version":2,"nic_baro":1,"nac_p":9,"nac_v":1,"sil":3,"sil_type":"perhour","gva":1,"sda":2,"mlat":[],"tisb":[],"messages":4901,"seen":0.1,"rssi":-4.9},
+    {"hex":"3c70c6","category":"A5","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":2227,"seen":145.4,"rssi":-24.4},
+    {"hex":"800d6d","flight":"IGO6445 ","alt_baro":26000,"alt_geom":27525,"gs":418.9,"track":191.8,"baro_rate":64,"squawk":"2706","category":"A3","nav_qnh":1012.8,"nav_altitude_mcp":26016,"lat":12.073230,"lon":77.569644,"nic":8,"rc":186,"seen_pos":55.7,"version":2,"nic_baro":1,"nac_p":9,"nac_v":1,"sil":3,"sil_type":"perhour","gva":1,"sda":3,"mlat":[],"tisb":[],"messages":4995,"seen":48.2,"rssi":-23.2}
+  ]
+}
