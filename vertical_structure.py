@@ -56,7 +56,7 @@ df["trk"] = (np.pi / 180) * df["track"]
 df["hdg"] = (np.pi / 180) * df["mag_heading"] # Simplified , in actual it must be the true heading
 print(df)
 ## Define a function to calculate wind speed and direction
-#%%
+
 def calculate_wind_speed_and_direction(df):
   """Calculates the wind speed and wind direction in meters per second and
   degrees, respectively, from the given DataFrame.
@@ -98,14 +98,16 @@ def calculate_wind_speed_and_direction(df):
     # Calculate the wind speed and wind direction.
     df["oat"] = np.power((df["tas"] / 661.47 / df["mach"]), 2) * 288.15 - 273.15
     df["tat"] = -273.15 + (df["oat"] + 273.15) * (1 + 0.2 * df["mach"] * df["mach"])
-  df = df[df["mach"] > 0.4]
+  df = df[df["mach"] > 0.4 ] 
+  df = df[df["oat"] > -65]
+  df= df[df["ws"] < 30]
+
   return df
  
 
 # Calculate wind speed and direction, oat and tat
 df = calculate_wind_speed_and_direction(df.copy())
 print(df)
-
 #%%
 ## Plot the vertical atmospheric structure as plots between Altitude and Temperature, Altitude vs. wind speed and Altitude vs Wind Direction
 fig, axes = plt.subplots(1, 2, figsize=(8, 6), sharey=True)
@@ -122,12 +124,11 @@ axes[1].scatter(df.ws*1.852, df.alt_geom*0.0003048, marker='o', color='blue', la
 axes[1].set_ylabel('Altitude (km)')
 axes[1].set_xlabel('Wind Speed (km/hr)')
 axes[1].legend()
-axes[1].set_xlim(0,100)
+axes[1].set_xlim(0,60)
 
 fig.suptitle('Vertical Atmospheric Structure')
 plt.show()
 
-# %%
 
 # %% Optional; Work in Progress
 #import plotly.express as px
