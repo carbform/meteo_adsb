@@ -98,7 +98,10 @@ def calculate_wind_speed_and_direction(df):
     # Calculate the wind speed and wind direction.
     df["oat"] = np.power((df["tas"] / 661.47 / df["mach"]), 2) * 288.15 - 273.15
     df["tat"] = -273.15 + (df["oat"] + 273.15) * (1 + 0.2 * df["mach"] * df["mach"])
-  df = df[df["mach"] > 0.4]
+  df = df[df["mach"] > 0.4 ] 
+  df = df[df["oat"] > -65]
+  df= df[df["ws"] < 30]
+
   return df
  
 
@@ -121,7 +124,7 @@ axes[0].legend()
 axes[1].scatter(df.ws * 1.852, df.alt_geom * 0.0003048, marker='o', s=4, color='blue', label='Wind Speed')
 axes[1].set_ylabel('Altitude (km)')
 axes[1].set_xlabel('Wind Speed (km/hr)')
-axes[1].set_xlim(0, 200)
+axes[1].set_xlim(0, 100)
 axes[1].legend()
 
 # Add a title
@@ -185,7 +188,6 @@ fig.update_yaxes( linecolor="black",linewidth=2)
 
 # Show the plot
 fig.show()
-# %%
 
 # %% Optional; Work in Progress
 import plotly.express as px
