@@ -15,7 +15,7 @@ import pandas as pd
 
 
 # Get a list of all the JSON files in the folder
-json_files = glob.glob('dump1090-fa/aircraft.json')
+json_files = glob.glob('dump1090-fa/*.json')
 
 # Create an empty list to store the Pandas DataFrames
 df_list = []
