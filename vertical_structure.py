@@ -4,11 +4,15 @@
 # Author : Sarat Chandra (www.carbform.github.io)
 # Inspired by tar1090
 
-import pandas as pd
-import numpy as np
+import time
+import threading
+import datetime
 import matplotlib.pyplot as plt
 import glob
 import json
+import numpy as np
+import pandas as pd
+
 
 # Get a list of all the JSON files in the folder
 json_files = glob.glob('dump1090-fa/*.json')
@@ -109,25 +113,38 @@ def calculate_wind_speed_and_direction(df):
 df = calculate_wind_speed_and_direction(df.copy())
 print(df)
 #%%
-## Plot the vertical atmospheric structure as plots between Altitude and Temperature, Altitude vs. wind speed and Altitude vs Wind Direction
-fig, axes = plt.subplots(1, 2, figsize=(8, 6), sharey=True)
+def plot_and_save():
+  """Plots the vertical atmospheric structure and saves it as a .png file with the current UTC time as the filename."""
 
-# Altitude vs. temperature
-axes[0].scatter(df.oat, df.alt_geom*0.0003048, marker='o', color='red', label='Temperature')
-axes[0].set_ylabel('Altitude (km)')
-axes[0].set_xlabel('Temperature (°C)')
-axes[0].legend()
-axes[0].set_xlim(-60,40)
+  # Get the current UTC time.
+  now = datetime.datetime.utcnow()
 
-# Altitude vs. wind speed
-axes[1].scatter(df.ws*1.852, df.alt_geom*0.0003048, marker='o', color='blue', label='Wind Speed')
-axes[1].set_ylabel('Altitude (km)')
-axes[1].set_xlabel('Wind Speed (km/hr)')
-axes[1].legend()
-axes[1].set_xlim(0,60)
+  # Generate the plot.
+  fig, axes = plt.subplots(1, 2, figsize=(8, 6), sharey=True)
 
-fig.suptitle('Vertical Atmospheric Structure')
-plt.show()
+  # Altitude vs. temperature
+  axes[0].scatter(df.oat, df.alt_geom*0.0003048, marker='o', color='red', label='Temperature')
+  axes[0].set_ylabel('Altitude (km)')
+  axes[0].set_xlabel('Temperature (°C)')
+  axes[0].legend()
+  axes[0].set_xlim(-60,40)
+
+  # Altitude vs. wind speed
+  axes[1].scatter(df.ws*1.852, df.alt_geom*0.0003048, marker='o', color='blue', label='Wind Speed')
+  axes[1].set_ylabel('Altitude (km)')
+  axes[1].set_xlabel('Wind Speed (km/hr)')
+  axes[1].legend()
+  axes[1].set_xlim(0,60)
+
+  fig.suptitle('Vertical Atmospheric Structure')
+
+  # Save the plot as a .png file.
+  filename = f"plot_{now.strftime('%Y-%m-%d_%H-%M-%S')}.png"
+  plt.savefig(filename)
+
+# Start the timer to generate and save the plot every 30 seconds.
+timer = threading.Timer(30, plot_and_save)
+timer.start()
 
 
 # %% Optional; Work in Progress
