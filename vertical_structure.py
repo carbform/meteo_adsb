@@ -15,7 +15,7 @@ import pandas as pd
 
 
 # Get a list of all the JSON files in the folder
-json_files = glob.glob('dump1090-fa/*.json')
+json_files = glob.glob('dump1090-fa/aircraft.json')
 
 # Create an empty list to store the Pandas DataFrames
 df_list = []
@@ -143,7 +143,7 @@ def plot_and_save():
   plt.savefig(filename)
 
 # Start the timer to generate and save the plot every 30 seconds.
-timer = threading.Timer(30, plot_and_save)
+timer = threading.Timer(300, plot_and_save)
 timer.start()
 
 
