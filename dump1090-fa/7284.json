@@ -1,11 +1,12 @@
-{ "now" : 1696077822.1,
-  "messages" : 29926772,
+{ "now" : 1696337298.9,
+  "messages" : 94875,
   "aircraft" : [
-    {"hex":"8015e6","flight":"IGO968  ","alt_baro":8050,"alt_geom":8075,"gs":248.2,"ias":231,"tas":266,"mach":0.400,"track":301.3,"track_rate":-0.09,"roll":-0.4,"mag_heading":297.9,"baro_rate":3136,"geom_rate":3072,"squawk":"2712","emergency":"none","category":"A3","nav_qnh":1012.8,"nav_altitude_mcp":14016,"lat":13.263431,"lon":77.587666,"nic":8,"rc":186,"seen_pos":0.3,"version":2,"nic_baro":1,"nac_p":9,"nac_v":2,"sil":3,"sil_type":"perhour","gva":2,"sda":3,"mlat":[],"tisb":[],"messages":310,"seen":0.2,"rssi":-11.6},
-    {"hex":"8013c6","flight":"IGO2174 ","alt_baro":17300,"alt_geom":18000,"gs":332.2,"ias":246,"tas":326,"mach":0.508,"track":6.6,"track_rate":0.34,"roll":4.4,"mag_heading":2.8,"baro_rate":1024,"geom_rate":1216,"squawk":"2703","emergency":"none","category":"A3","nav_qnh":1012.8,"nav_altitude_mcp":24992,"nav_heading":9.8,"lat":13.743757,"lon":77.612915,"nic":8,"rc":186,"seen_pos":0.0,"version":2,"nic_baro":1,"nac_p":8,"nac_v":1,"sil":3,"sil_type":"perhour","gva":1,"sda":3,"mlat":[],"tisb":[],"messages":2291,"seen":0.0,"rssi":-19.2},
-    {"hex":"801508","flight":"AKJ1365 ","alt_baro":6850,"alt_geom":7125,"gs":219.6,"track":131.7,"baro_rate":-1216,"squawk":"0335","emergency":"none","category":"A3","nav_qnh":1012.0,"nav_altitude_mcp":4992,"nav_heading":139.9,"lat":13.285492,"lon":77.879760,"nic":8,"rc":186,"seen_pos":55.7,"version":2,"nic_baro":1,"nac_p":9,"nac_v":2,"sil":3,"sil_type":"perhour","mlat":[],"tisb":[],"messages":936,"seen":43.7,"rssi":-22.3},
-    {"hex":"800bb7","category":"A3","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":1319,"seen":160.3,"rssi":-24.6},
-    {"hex":"8014e8","alt_baro":3725,"alt_geom":3475,"gs":130.0,"track":270.0,"baro_rate":-640,"category":"A3","version":2,"nac_v":4,"sil_type":"perhour","mlat":[],"tisb":[],"messages":2116,"seen":2.8,"rssi":-22.6},
-    {"hex":"800d42","category":"A2","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":1225,"seen":298.4,"rssi":-21.4}
+    {"hex":"800c6e","alt_baro":4175,"alt_geom":4750,"gs":152.0,"track":270.4,"baro_rate":-832,"squawk":"0226","version":0,"nac_p":10,"nac_v":0,"sil":2,"sil_type":"unknown","mlat":[],"tisb":[],"messages":17,"seen":17.1,"rssi":-23.2},
+    {"hex":"801493","flight":"VTI508  ","alt_baro":11250,"alt_geom":11575,"gs":339.8,"ias":285,"tas":342,"mach":0.528,"track":339.9,"track_rate":0.03,"roll":0.0,"mag_heading":340.0,"baro_rate":2432,"geom_rate":2240,"squawk":"2743","emergency":"none","category":"A3","nav_qnh":1012.8,"nav_altitude_mcp":24992,"lat":13.386794,"lon":77.545937,"nic":8,"rc":186,"seen_pos":0.5,"version":2,"nic_baro":1,"nac_p":10,"nac_v":1,"sil":3,"sil_type":"perhour","gva":2,"sda":3,"mlat":[],"tisb":[],"messages":831,"seen":0.4,"rssi":-19.3},
+    {"hex":"8013b3","alt_baro":17350,"alt_geom":18150,"gs":311.0,"tas":310,"track":0.6,"roll":-1.4,"baro_rate":1472,"squawk":"1000","category":"A2","nav_qnh":1013.6,"nav_altitude_mcp":20992,"lat":13.665503,"lon":77.640236,"nic":8,"rc":186,"seen_pos":38.7,"version":2,"nic_baro":1,"nac_p":9,"nac_v":2,"sil":3,"sil_type":"perhour","gva":2,"sda":2,"mlat":[],"tisb":[],"messages":2068,"seen":20.1,"rssi":-24.9},
+    {"hex":"8014dd","flight":"VTI820  ","alt_baro":25050,"alt_geom":21775,"gs":411.0,"track":359.2,"baro_rate":1536,"category":"A3","nav_qnh":1013.6,"nav_altitude_mcp":23008,"nav_heading":0.0,"lat":14.021301,"lon":77.615180,"nic":8,"rc":186,"seen_pos":21.1,"version":2,"nic_baro":1,"nac_p":10,"nac_v":4,"sil":3,"sil_type":"perhour","gva":2,"sda":2,"mlat":[],"tisb":[],"messages":3221,"seen":4.0,"rssi":-25.8},
+    {"hex":"8015cb","category":"A3","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":1453,"seen":200.6,"rssi":-23.5},
+    {"hex":"800d03","category":"A2","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":536,"seen":112.4,"rssi":-23.5},
+    {"hex":"8015b2","category":"A3","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":4684,"seen":165.9,"rssi":-21.1}
   ]
 }
