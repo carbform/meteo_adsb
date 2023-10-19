@@ -2,7 +2,7 @@
 
 ## Vertical Atmospheric Structure Analysis 
 
-![Bnegaluru](bengaluru.png)
+![Bengaluru](bengaluru.png)
 
 This Python code plots the vertical atmospheric structure as plots between Altitude and Temperature, Altitude vs. wind speed, and Altitude vs. Wind Direction using data collected from the [dump1090-fa](https://www.flightaware.com/adsb/piaware/install) ADSB decoder. The calculations are similar to those used in the [tar1090](https://github.com/wiedehopf/tar1090) package.
 
