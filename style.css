@@ -1,0 +1,12 @@
+body {
+  font-family: sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+#chart {
+  width: 500px;
+  height: 500px;
+}
