@@ -111,6 +111,7 @@ def calculate_wind_speed_and_direction(df):
 
 # Calculate wind speed and direction, oat and tat
 df = calculate_wind_speed_and_direction(df.copy())
+
 print(df)
 #%%
 def plot_and_save():

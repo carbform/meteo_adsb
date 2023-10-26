@@ -1,82 +1,147 @@
-// Fetch the JSON file.
-const url = 'dump1090-fa/3.json';
-fetch(url)
-  .then(response => response.json())
-  .then(data => {
-    // Check if the data variable is an array.
-    if (!Array.isArray(data)) {
-      // Convert the data variable to an array.
-      data = Array.from(data);
-    }
+// Get the path to the JSON file.
+const jsonFile = 'dump1090-fa/9829.json';
 
-    // Calculate the wind speed and wind direction for each row of data.
-    const windData = calculateWindSpeedAndDirection(data);
-
-    // Log the windData variable to the console.
-    console.log(windData);
-
-    // Parse the data for the Chart.js library.
-    const parsedData = Chart.parseData(windData)|| [];
-
-    // Update the chart datasets.
-    chart.data.labels = parsedData.labels;
-    chart.data.datasets[0].data = parsedData.datasets[0].data;
-    chart.data.datasets[1].data = parsedData.datasets[1].data;
-
-    // Update the chart.
-    chart.update();
-  });
-
-// Calculate the wind speed and wind direction for each row of data.
-function calculateWindSpeedAndDirection(data) {
-  data.forEach(row => {
-    row.ws = Math.sqrt(Math.pow(row.tas - row.gs, 2) + 4 * row.tas * row.gs * Math.pow(Math.sin((row.hdg - row.trk) / 2), 2));
-    row.wd = row.trk + Math.atan2(row.tas * Math.sin(row.hdg - row.trk), row.tas * Math.cos(row.hdg - row.trk) - row.gs);
-
-    // Fix the wind direction if it is negative or greater than 360 degrees.
-    if (row.wd < 0) {
-      row.wd += 2 * Math.PI;
-    }
-    if (row.wd > 2 * Math.PI) {
-      row.wd -= 2 * Math.PI;
-    }
-
-    // Convert the wind direction from radians to degrees.
-    row.wd = (180 / Math.PI) * row.wd;
-
-    // Calculate the oat and tat.
-    row.oat = Math.pow((row.tas / 661.47 / row.mach), 2) * 288.15 - 273.15;
-    row.tat = -273.15 + (row.oat + 273.15) * (1 + 0.2 * row.mach * row.mach);
-  });
-
-  // Filter out rows with invalid data.
-  data = data.filter(row => row.mach > 0.4 && row.oat > -65 && row.ws < 30);
-
-  return data;
+// Load the JSON file.
+async function getDf() {
+  const response = await fetch(jsonFile);
+  const data = await response.json();
+  const aircraft = data.aircraft;
+  return aircraft;
 }
 
-// Create a new chart.
-const chart = new Chart('chart', {
-  type: 'scatter',
-  data: {
-    labels: [],
-    datasets: [{
-      label: 'Temperature',
-      data: [],
-      backgroundColor: 'red'
-    }, {
-      label: 'Wind Speed',
-      data: [],
-      backgroundColor: 'blue'
-    }]
-  },
-  options: {
-    title: 'Vertical Atmospheric Structure',
-    xAxis: {
-      label: 'Temperature (°C)'
+// Calculate wind speed and direction, OAT, and TAT.
+function calculateWindSpeedAndDirection(df) {
+  df.forEach(row => {
+    const tas = row.tas;
+    const gs = row.gs;
+    const hdg = row.track;
+    const trk = row.mag_heading;
+
+    const ws = Math.sqrt(Math.pow(tas - gs, 2) + 4 * tas * gs * Math.pow(Math.sin((hdg - trk) / 2), 2));
+    const wd = trk + Math.atan2(tas * Math.sin(hdg - trk), tas * Math.cos(hdg - trk) - gs);
+
+    // Convert the wind direction from radians to degrees.
+    row.ws = ws;
+    row.wd = (180 * wd) / Math.PI;
+  });
+}
+
+function calculateOatAndTat(df) {
+  df.forEach(row => {
+    const tas = row.tas;
+    const mach = row.mach;
+
+    const oat = Math.pow((tas / 661.47 / mach), 2) * 288.15 - 273.15;
+    const tat = -273.15 + (oat + 273.15) * (1 + 0.2 * mach * mach);
+
+    // Update the OAT and TAT values in the data.
+    row.oat = oat;
+    row.tat = tat;
+  });
+}
+
+function plotScatter(chartId, chartData, chartTitle, xLabel, yLabel, xMin, xMax, yMin, yMax, color) {
+  new Chart(chartId, {
+    type: 'scatter',
+    data: {
+      datasets: [
+        {
+          label: chartTitle,
+          data: chartData,
+          pointRadius: 3,
+          pointBackgroundColor: color,
+        },
+      ],
     },
-    yAxis: {
-      label: 'Altitude (km)'
-    }
-  }
-});
+    options: {
+      scales: {
+        x: {
+          type: 'linear',
+          position: 'bottom',
+          title: {
+            display: true,
+            text: xLabel,
+          },
+          min: xMin,
+          max: xMax,
+        },
+        y: {
+          type: 'linear',
+          position: 'left',
+          title: {
+            display: true,
+            text: yLabel,
+          },
+          min: yMin,
+          max: yMax,
+        },
+      },
+      plugins: {
+        title: {
+          display: true,
+          text: chartTitle,
+        },
+      },
+      plugins: {
+        legend: {
+          labels: {
+            font: {
+              color: color, // Set the legend label color to match the scatter color
+            },
+          },
+        },
+      },
+    },
+  });
+}
+
+// Load the data and perform calculations.
+async function main() {
+  const aircraftData = await getDf();
+  calculateWindSpeedAndDirection(aircraftData);
+  calculateOatAndTat(aircraftData);
+
+  // Get the canvas elements for the charts.
+  const chartCanvas1 = document.getElementById('chart1');
+  const chartCanvas2 = document.getElementById('chart2');
+
+  // Filter data for the two charts (Wind Speed vs Altitude and Temperature vs Altitude).
+  const windSpeedData = aircraftData.map(row => ({
+    x: row.ws,
+    y: row.alt_geom / 1000,
+  }));
+  const temperatureData = aircraftData.map(row => ({
+    x: row.oat,
+    y: row.alt_geom / 1000,
+  }));
+
+  // Plot the two scatter charts.
+  plotScatter(
+    chartCanvas1,
+    windSpeedData,
+    'Wind Speed vs Altitude',
+    'Wind Speed (km/hr)',
+    'Altitude (km)',
+    0,
+    60,
+    0,
+    14,
+    'red',
+  );
+
+  plotScatter(
+    chartCanvas2,
+    temperatureData,
+    'Temperature vs Altitude',
+    'Temperature (°C)',
+    'Altitude (km)',
+    -60,
+    40,
+    0,
+    14,
+    'blue'
+  );
+}
+
+// Call the main function.
+main();

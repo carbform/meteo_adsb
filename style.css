@@ -1,12 +1,9 @@
-body {
-  font-family: sans-serif;
+/* Custom styles go here */
+.chart-container {
+  display: flex;
+  justify-content: space-between;
 }
-
-h1 {
-  text-align: center;
-}
-
-#chart {
-  width: 500px;
-  height: 500px;
+.chart {
+  width: 48%; /* Adjust width as needed */
+  margin-top: 20px;
 }
