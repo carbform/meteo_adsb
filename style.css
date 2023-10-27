@@ -1,9 +1,179 @@
-/* Custom styles go here */
+/* Center the <h1> element */
+h1 {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Style the charts and forms */
 .chart-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 30px;
 }
+
 .chart {
-  width: 48%; /* Adjust width as needed */
+  text-align: center;
+  width: 50%;
+  max-width: 500px;
+  padding: 10px;
+}
+
+.chart canvas {
+  width: 100%;
+  height: auto;
+}
+
+.chart-form {
+  border: 1px solid #d1d1d1;
+  border-radius: 5px;
+  padding: 20px;
+  background: #f8f8f8;
+  font-family: 'Poppins', sans-serif;
+}
+
+legend {
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Style form control labels and inputs */
+.form-group {
   margin-top: 20px;
 }
+
+.form-group label {
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-control {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  padding: 5px;
+}
+
+/* Center the header */
+.header {
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+
+/* Container styling */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Chart styling */
+.chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 30px;
+}
+
+.chart {
+  text-align: center;
+  width: 50%;
+  max-width: 450px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.chart canvas {
+  width: 100%;
+  height: auto;
+}
+
+/* Form styling */
+.form-container {
+  border: 1px solid #d1d1d1;
+  border-radius: 5px;
+  padding: 20px;
+  background: #f8f8f8;
+  font-family: 'Poppins', sans-serif;
+}
+
+legend {
+  font-weight: bold;
+}
+
+/* Dark mode toggle switch styling */
+.dark-mode-toggle {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+/* Dark mode switch input */
+.dark-mode-toggle input {
+  display: none;
+}
+
+/* Dark mode switch label */
+.dark-mode-toggle label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 60px;
+  height: 30px;
+  background: #ccc;
+  display: block;
+  border-radius: 30px;
+  position: relative;
+}
+
+/* Dark mode switch label::before (the knob) */
+.dark-mode-toggle label::before {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #fff;
+  top: 3px;
+  left: 3px;
+  transition: 0.3s;
+}
+
+/* Dark mode switch label (checked state) */
+.dark-mode-toggle input:checked + label {
+  background: #444;
+}
+
+/* Dark mode switch label::before (checked state) */
+.dark-mode-toggle input:checked + label::before {
+  left: calc(100% - 28px);
+}
+
+/* Chart title */
+.chart-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Button styling */
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Add the following CSS variables for chart colors */
+:root {
+  --chart-background-color: #FFFFFF; /* Background color of the chart area in light mode */
+  --chart-grid-color: #387252; /* Grid lines color in light mode */
+  --chart-text-color: #e40c0c; /* Text color in light mode */
+}
+
+
