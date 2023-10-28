@@ -11,30 +11,40 @@ h1 {
   align-items: flex-start;
   margin-top: 30px;
 }
+/* Add CSS rules to style the chart container and canvas */
 
-.chart {
-  text-align: center;
-  width: 50%;
-  max-width: 500px;
-  padding: 10px;
-}
 
-.chart canvas {
+.chart-canvas {
   width: 100%;
   height: auto;
 }
+.chart {
+  text-align: center;
+  width: 50%;
+  max-width: 800px;
+  padding: 10px;
+  background-color: var(--chart-background-color-light);
+  color: var(--chart-text-color-light);
+  border: var(--chart-border-color-light);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-.chart-form {
-  border: 1px solid #d1d1d1;
+.chart-canvas {
+  width: 70%;
+  height: auto;
+}
+
+.form-container {
+  border: var(--form-border, 1px solid #d1d1d1);
   border-radius: 5px;
   padding: 20px;
-  background: #f8f8f8;
+  background: var(--form-background-color, #f8f8f8);
+  color: var(--form-text-color, #000000);
   font-family: 'Poppins', sans-serif;
 }
 
 legend {
   font-weight: bold;
-  font-family: 'Poppins', sans-serif;
 }
 
 /* Style form control labels and inputs */
@@ -66,41 +76,6 @@ legend {
   padding: 20px;
 }
 
-/* Chart styling */
-.chart-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  margin-top: 30px;
-}
-
-.chart {
-  text-align: center;
-  width: 50%;
-  max-width: 450px;
-  padding: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
-}
-
-.chart canvas {
-  width: 100%;
-  height: auto;
-}
-
-/* Form styling */
-.form-container {
-  border: 1px solid #d1d1d1;
-  border-radius: 5px;
-  padding: 20px;
-  background: #f8f8f8;
-  font-family: 'Poppins', sans-serif;
-}
-
-legend {
-  font-weight: bold;
-}
-
 /* Dark mode toggle switch styling */
 .dark-mode-toggle {
   position: absolute;
@@ -119,7 +94,7 @@ legend {
   text-indent: -9999px;
   width: 60px;
   height: 30px;
-  background: #ccc;
+  background: var(--toggle-background, #ccc);
   display: block;
   border-radius: 30px;
   position: relative;
@@ -132,20 +107,20 @@ legend {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: #fff;
+  background: var(--knob-background, #fff);
   top: 3px;
-  left: 3px;
+  left: var(--knob-left, 3px);
   transition: 0.3s;
 }
 
 /* Dark mode switch label (checked state) */
 .dark-mode-toggle input:checked + label {
-  background: #444;
+  background: var(--checked-background, #444);
 }
 
 /* Dark mode switch label::before (checked state) */
 .dark-mode-toggle input:checked + label::before {
-  left: calc(100% - 28px);
+  left: var(--knob-left-checked, calc(100% - 28px));
 }
 
 /* Chart title */
@@ -168,12 +143,18 @@ button {
 button:hover {
   background-color: #0056b3;
 }
-
-/* Add the following CSS variables for chart colors */
 :root {
-  --chart-background-color: #FFFFFF; /* Background color of the chart area in light mode */
-  --chart-grid-color: #387252; /* Grid lines color in light mode */
-  --chart-text-color: #e40c0c; /* Text color in light mode */
+  --light-chart-color1: red; /* Light mode chart color 1 */
+  --light-chart-color2: blue; /* Light mode chart color 2 */
+  --dark-chart-color1: orange; /* Dark mode chart color 1 */
+  --dark-chart-color2: cyan; /* Dark mode chart color 2 */
 }
-
-
+:root {
+  --light-chart-grid-color: rgba(0, 0, 0, 0.301); /* Light mode chart grid color */
+  --dark-chart-grid-color: rgba(243, 240, 240, 0.452); /* Dark mode chart grid color */
+  --light-chart-text-color: black; /* Light mode chart text color */
+  --dark-chart-text-color: white; /* Dark mode chart text color */
+}
+.poppins-font {
+  font-family: 'Poppins', sans-serif;
+}

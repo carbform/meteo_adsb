@@ -1,70 +1,59 @@
 /* Apply dark mode styles when the toggle is checked */
 body.dark-mode {
-    background-color: #000000; /* Body background color in dark mode */
-    color: #fff; /* Text color in dark mode */
+    background-color: var(--body-background-color-dark, #000000); /* Body background color in dark mode */
+    color: var(--body-text-color-dark, #78ec9f); /* Text color in dark mode */
 }
 
-.chart {
-    background-color: #000000; /* Chart background color in dark mode */
-    color: #fff; /* Chart text color in dark mode */
+.chart.dark-mode {
+    background-color: var(--chart-background-color-dark, #000000); /* Chart background color in dark mode */
+    color: var(--chart-text-color-dark, #ffffff); /* Chart text color in dark mode */
 }
 
-/* Customize other elements as needed for dark mode */
-/* Apply dark mode styles when the toggle is checked */
+.form-container.dark-mode {
+    border: var(--form-border-dark, 1px solid #000000); /* Form border color in dark mode */
+    background: var(--form-background-color-dark, #000000); /* Form background color in dark mode */
+    color: var(--form-text-color-dark, #fff); /* Form text color in dark mode */
+}
+
+/* Dark mode switch input */
+.dark-mode-toggle input {
+    display: none;
+}
+
+/* Dark mode switch label */
+.dark-mode-toggle label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 60px;
+    height: 30px;
+    background: var(--toggle-background, #ccc);
+    display: block;
+    border-radius: 30px;
+    position: relative;
+}
+
+/* Dark mode switch label::before (the knob) */
+.dark-mode-toggle label::before {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: var(--knob-background, #fff);
+    top: 3px;
+    left: var(--knob-left, 3px);
+    transition: 0.3s;
+}
+
+/* Dark mode switch label (checked state) */
 .dark-mode-toggle input:checked + label {
-    background: #000; /* Background color in dark mode */
+    background: var(--checked-background, #444);
 }
 
+/* Dark mode switch label::before (checked state) */
 .dark-mode-toggle input:checked + label::before {
-    left: calc(100% - 28px); /* Move the knob to the right in dark mode */
+    left: var(--knob-left-checked, calc(100% - 28px));
 }
-
-.chart-container {
-    background-color: #000000; /* Chart container background color in dark mode */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Slight box shadow */
-}
-
-.form-container {
-    border: 1px solid #000000; /* Form border color in dark mode */
-    background: #000000; /* Form background color in dark mode */
-    color: #fff; /* Form text color in dark mode */
-}
-/* Apply dark mode styles when the toggle is checked */
-body.dark-mode {
-    --dark-background-color: #000000; /* Body background color in dark mode */
-    --dark-text-color: #fff; /* Text color in dark mode */
-}
-
-.chart {
-    --dark-chart-background-color: #000000; /* Chart background color in dark mode */
-    --dark-chart-text-color: #fff; /* Chart text color in dark mode */
-}
-
-/* Customize other elements as needed for dark mode */
-/* Apply dark mode styles when the toggle is checked */
-.dark-mode-toggle input:checked + label {
-    --dark-background-color: #000; /* Background color in dark mode */
-}
-
-.dark-mode-toggle input:checked + label::before {
-    --dark-knob-left-position: calc(100% - 28px); /* Move the knob to the right in dark mode */
-}
-
-.chart-container {
-    --dark-chart-container-background-color: #000000; /* Chart container background color in dark mode */
-    --dark-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Slight box shadow */
-}
-
-.form-container {
-    --dark-form-border-color: #000000; /* Form border color in dark mode */
-    --dark-form-background-color: #000000; /* Form background color in dark mode */
-    --dark-form-text-color: #fff; /* Form text color in dark mode */
-}
-
-/* Add the following CSS variables for chart colors */
-
-
-  
-  
-
-
+.poppins-font {
+    font-family: 'Poppins', sans-serif;
+  }
