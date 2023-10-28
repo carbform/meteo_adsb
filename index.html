@@ -7,60 +7,68 @@
     <link rel="stylesheet" href="style.css">
     <link href="dark-mode.css" rel="stylesheet" id="dark-mode-style">
 
-    <title>Vertical Atmospheric Structure</title>
+    <title>Meto-ADSB</title>
 </head>
 <body class="light-mode">
     <div class="container">
-        <h1 class="mt-5 text-center">Vertical Atmospheric Structure</h1>
+        <h1 class="mt-5 text-center">Meto-ADSB</h1>
+        <h2 class="mt-5 text-center">Vertical Atmospheric Structure</h2>
         <div class="dark-mode-toggle">
             <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
             <label for="darkModeToggle"></label>
             <p class="poppins-font">Dark Mode</p>
         </div>
-        <div class="chart-container">
-            <div class="chart">
-                <canvas id="chart1"></canvas>
-                <div class="form-container light-mode">
-                    <div class="form-group">
-                        <label for="xMin1">X-axis Min:</label>
-                        <input type="number" class="form-control" id="xMin1" value="0" onchange="updateChartScales('chart1', 'xMin1', 'xMax1', 'yMin1', 'yMax1')">
-                    </div>
-                    <div class="form-group">
-                        <label for="xMax1">X-axis Max:</label>
-                        <input type="number" class="form-control" id="xMax1" value="60" onchange="updateChartScales('chart1', 'xMin1', 'xMax1', 'yMin1', 'yMax1')">
-                    </div>
-                    <div class="form-group">
-                        <label for="yMin1">Y-axis Min:</label>
-                        <input type="number" class="form-control" id="yMin1" value="0" onchange="updateChartScales('chart1', 'xMin1', 'xMax1', 'yMin1', 'yMax1')">
-                    </div>
-                    <div class="form-group">
-                        <label for="yMax1">Y-axis Max:</label>
-                        <input type="number" class="form-control" id="yMax1" value="14" onchange="updateChartScales('chart1', 'xMin1', 'xMax1', 'yMin1', 'yMax1')">
-                    </div>
-                </div>
-            </div>
-            <div class="chart">
-                <canvas id="chart2"></canvas>
-                <div class="form-container light-mode">
-                    <div class="form-group">
-                        <label for="xMin2">X-axis Min:</label>
-                        <input type="number" class="form-control" id="xMin2" value="-60" onchange="updateChartScales('chart2', 'xMin2', 'xMax2', 'yMin2', 'yMax2')">
-                    </div>
-                    <div class="form-group">
-                        <label for="xMax2">X-axis Max:</label>
-                        <input type="number" class="form-control" id="xMax2" value="40" onchange="updateChartScales('chart2', 'xMin2', 'xMax2', 'yMin2', 'yMax2')">
-                    </div>
-                    <div class="form-group">
-                        <label for="yMin2">Y-axis Min:</label>
-                        <input type="number" class="form-control" id="yMin2" value="0" onchange="updateChartScales('chart2', 'xMin2', 'xMax2', 'yMin2', 'yMax2')">
-                    </div>
-                    <div class="form-group">
-                        <label for="yMax2">Y-axis Max:</label>
-                        <input type="number" class="form-control" id="yMax2" value="14" onchange="updateChartScales('chart2', 'xMin2', 'xMax2', 'yMin2', 'yMax2')">
-                    </div>
-                </div>
-            </div>
+    </div>
+    <div class="chart-container">
+        <div class="chart">
+            <canvas id="chart1"></canvas>
         </div>
+        <div class="chart">
+            <canvas id="chart2"></canvas>
+        </div>
+    </div>
+    <div class="form-container light-mode">
+        <div class="form-content light-mode">
+            <div class="form-group">
+                <label for="xMin1">X-axis Min:</label>
+                <input type="number" class="form-control" id="xMin1" value="0" onchange="updateChartScales('chart1', 'xMin1', 'xMax1', 'yMin1', 'yMax1')">
+            </div>
+            <div class="form-group">
+                <label for="xMax1">X-axis Max:</label>
+                <input type="number" class="form-control" id="xMax1" value="60" onchange="updateChartScales('chart1', 'xMin1', 'xMax1', 'yMin1', 'yMax1')">
+            </div>
+            <div class="form-group">
+                <label for="yMin1">Y-axis Min:</label>
+                <input type="number" class="form-control" id="yMin1" value="0" onchange="updateChartScales('chart1', 'xMin1', 'xMax1', 'yMin1', 'yMax1')">
+            </div>
+            <div class="form-group">
+                <label for="yMax1">Y-axis Max:</label>
+                <input type="number" class="form-control" id="yMax1" value="14" onchange="updateChartScales('chart1', 'xMin1', 'xMax1', 'yMin1', 'yMax1')">
+            </div>
+            <!-- Other form groups for chart1 -->
+        </div>
+        <div class="form-content light-mode">
+            <div class="form-group">
+                <label for="xMin2">X-axis Min:</label>
+                <input type="number" class="form-control" id="xMin2" value="-60" onchange="updateChartScales('chart2', 'xMin2', 'xMax2', 'yMin2', 'yMax2')">
+            </div>
+            <div class="form-group">
+                <label for="xMax2">X-axis Max:</label>
+                <input type="number" class="form-control" id="xMax2" value="40" onchange="updateChartScales('chart2', 'xMin2', 'xMax2', 'yMin2', 'yMax2')">
+            </div>
+            <div class="form-group">
+                <label for="yMin2">Y-axis Min:</label>
+                <input type="number" class="form-control" id="yMin2" value="0" onchange="updateChartScales('chart2', 'xMin2', 'xMax2', 'yMin2', 'yMax2')">
+            </div>
+            <div class="form-group">
+                <label for="yMax2">Y-axis Max:</label>
+                <input type="number" class="form-control" id="yMax2" value="14" onchange="updateChartScales('chart2', 'xMin2', 'xMax2', 'yMin2', 'yMax2')">
+            </div>
+            <!-- Other form groups for chart2 -->
+        </div>
+    </div>
+    <div class="footer">
+        Made by Carbform. Find this on <a href="https://github.com/carbform/meto_adsb">GitHub</a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/1.0.0/chartjs-plugin-zoom.min.js"></script>

@@ -1,37 +1,29 @@
-/* Center the <h1> element */
+/* Add your custom CSS styles here */
 h1 {
   text-align: center;
   font-family: 'Poppins', sans-serif;
 }
+h2 {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
 
-/* Style the charts and forms */
 .chart-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   margin-top: 30px;
 }
-/* Add CSS rules to style the chart container and canvas */
 
-
-.chart-canvas {
-  width: 100%;
-  height: auto;
-}
 .chart {
   text-align: center;
   width: 50%;
-  max-width: 800px;
+  max-width: 500px;
   padding: 10px;
   background-color: var(--chart-background-color-light);
   color: var(--chart-text-color-light);
   border: var(--chart-border-color-light);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.chart-canvas {
-  width: 70%;
-  height: auto;
 }
 
 .form-container {
@@ -47,7 +39,6 @@ legend {
   font-weight: bold;
 }
 
-/* Style form control labels and inputs */
 .form-group {
   margin-top: 20px;
 }
@@ -62,33 +53,28 @@ legend {
   padding: 5px;
 }
 
-/* Center the header */
 .header {
   text-align: center;
   padding: 20px;
   position: relative;
 }
 
-/* Container styling */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
 
-/* Dark mode toggle switch styling */
 .dark-mode-toggle {
   position: absolute;
   right: 20px;
   top: 20px;
 }
 
-/* Dark mode switch input */
 .dark-mode-toggle input {
   display: none;
 }
 
-/* Dark mode switch label */
 .dark-mode-toggle label {
   cursor: pointer;
   text-indent: -9999px;
@@ -100,7 +86,6 @@ legend {
   position: relative;
 }
 
-/* Dark mode switch label::before (the knob) */
 .dark-mode-toggle label::before {
   content: '';
   position: absolute;
@@ -113,23 +98,19 @@ legend {
   transition: 0.3s;
 }
 
-/* Dark mode switch label (checked state) */
 .dark-mode-toggle input:checked + label {
   background: var(--checked-background, #444);
 }
 
-/* Dark mode switch label::before (checked state) */
 .dark-mode-toggle input:checked + label::before {
   left: var(--knob-left-checked, calc(100% - 28px));
 }
 
-/* Chart title */
 .chart-title {
   font-size: 1.5rem;
   font-weight: bold;
 }
 
-/* Button styling */
 button {
   background-color: #007bff;
   color: white;
@@ -143,18 +124,78 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
 :root {
-  --light-chart-color1: red; /* Light mode chart color 1 */
-  --light-chart-color2: blue; /* Light mode chart color 2 */
-  --dark-chart-color1: orange; /* Dark mode chart color 1 */
-  --dark-chart-color2: cyan; /* Dark mode chart color 2 */
+  --light-chart-color1: red;
+  --light-chart-color2: blue;
+  --dark-chart-color1: orange;
+  --dark-chart-color2: cyan;
 }
+
 :root {
-  --light-chart-grid-color: rgba(0, 0, 0, 0.301); /* Light mode chart grid color */
-  --dark-chart-grid-color: rgba(243, 240, 240, 0.452); /* Dark mode chart grid color */
-  --light-chart-text-color: black; /* Light mode chart text color */
-  --dark-chart-text-color: white; /* Dark mode chart text color */
+  --light-chart-grid-color: rgba(0, 0, 0, 0.301);
+  --dark-chart-grid-color: rgba(243, 240, 240, 0.452);
+  --light-chart-text-color: black;
+  --dark-chart-text-color: white;
 }
+
 .poppins-font {
   font-family: 'Poppins', sans-serif;
+}
+/* Your other CSS styles go here */
+.form-container {
+  display: flex;
+  justify-content: space-between;
+}
+.form {
+  flex: 1;
+  max-width: 400px;
+  /* Add other form styles here */
+}
+.form.dark-mode {
+  /* Add styles for dark mode form */
+}
+/* Add your custom CSS styles here */
+body {
+  overflow: auto; /* Enable scrolling */
+}
+.chart-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center the charts */
+}
+.chart {
+  text-align: center;
+  width: 50%;
+  max-width: 500px;
+  padding: 10px;
+  background-color: var(--chart-background-color-light);
+  color: var(--chart-text-color-light);
+  border: var(--chart-border-color-light);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.form-container {
+  text-align: center; /* Center the form elements */
+  width: 50%;
+}
+.form-content {
+  flex: 1;
+  max-width: 400px; /* Set a maximum width for the forms */
+}
+.dark-mode-toggle {
+  text-align: center; /* Center the dark mode toggle */
+}
+.footer {
+  text-align: center;
+  margin-top: 10px;
+  font-family: 'Poppins', sans-serif; /* Set the font to Poppins */
+}
+.footer a {
+  color: red; /* Set the URL color to red */
+}
+.form-container {
+  display: flex;
+  justify-content: center; /* Center the form container horizontally */
+  text-align: center; /* Center the form elements */
+  width: 100%; /* Make the form container take the full width */
 }
