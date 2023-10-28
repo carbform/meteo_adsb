@@ -169,7 +169,6 @@ function createScatterChart(chartId, chartData, chartTitle, xLabel, yLabel, xMin
 
 
 
-// Load the data and perform calculations.
 async function main() {
   const aircraftData = await loadAndConcatenateAllData();
   if (aircraftData.length > 0) {
@@ -178,44 +177,50 @@ async function main() {
 
     const windSpeedData = aircraftData.map(row => ({
       x: row.ws,
-      y: row.alt_geom*0.0003048,
+      y: row.alt_geom * 0.0003048,
     }));
     const temperatureData = aircraftData.map(row => ({
       x: row.oat,
-      y: row.alt_geom*0.0003048,
+      y: row.alt_geom * 0.0003048,
     }));
 
-    // Create and update the charts based on the concatenated data
-    // For chart1
-chart1 = createScatterChart(
-  'chart1',
-  windSpeedData,
-  'Wind Speed vs Altitude',
-  'Wind Speed (km/hr)',
-  'Altitude (km)',
-  chart1XMin,
-  chart1XMax,
-  chart1YMin,
-  chart1YMax,
-  'red',
-  0.9 // Set the aspect ratio for chart1 here
-);
+    // Destroy the existing charts if they exist
+    if (chart1) {
+      chart1.destroy();
+    }
+    if (chart2) {
+      chart2.destroy();
+    }
 
-// For chart2
-chart2 = createScatterChart(
-  'chart2',
-  temperatureData,
-  'Temperature vs Altitude',
-  'Temperature (°C)',
-  'Altitude (km)',
-  chart2XMin,
-  chart2XMax,
-  chart2YMin,
-  chart2YMax,
-  'blue',
-  0.9 // Set the aspect ratio for chart2 here
-);
-    
+    // Create and update the charts based on the concatenated data
+    chart1 = createScatterChart(
+      'chart1',
+      windSpeedData,
+      'Wind Speed vs Altitude',
+      'Wind Speed (km/hr)',
+      'Altitude (km)',
+      chart1XMin,
+      chart1XMax,
+      chart1YMin,
+      chart1YMax,
+      'red',
+      0.9 // Set the aspect ratio for chart1 here
+    );
+
+    chart2 = createScatterChart(
+      'chart2',
+      temperatureData,
+      'Temperature vs Altitude',
+      'Temperature (°C)',
+      'Altitude (km)',
+      chart2XMin,
+      chart2XMax,
+      chart2YMin,
+      chart2YMax,
+      'blue',
+      0.9 // Set the aspect ratio for chart2 here
+    );
+
     // Set the initial grid color for chart1 and chart2
     chart1.options.scales.x.grid.color = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
     chart1.options.scales.y.grid.color = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
@@ -323,5 +328,9 @@ function updateChartColors() {
 }
 // Wrap the main function call in an event listener
 document.addEventListener('DOMContentLoaded', () => {
+  // Call the main function immediately when the page loads
   main();
+
+  // Schedule the main function to be called every 300 seconds (30,000 milliseconds)
+  setInterval(main, 300000);
 });
