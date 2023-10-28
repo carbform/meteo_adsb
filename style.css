@@ -152,9 +152,7 @@ button:hover {
   max-width: 400px;
   /* Add other form styles here */
 }
-.form.dark-mode {
-  /* Add styles for dark mode form */
-}
+
 /* Add your custom CSS styles here */
 body {
   overflow: auto; /* Enable scrolling */
