@@ -12,7 +12,7 @@
 <body class="light-mode">
     <div class="container">
         <h1 class="mt-5 text-center">Meto-ADSB</h1>
-        <h2 class="mt-5 text-center">Vertical Atmospheric Structure</h2>
+        <h2 class="mt-3 text-center">Vertical Atmospheric Structure</h2>
         <div class="dark-mode-toggle">
             <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
             <label for="darkModeToggle"></label>
@@ -29,6 +29,7 @@
     </div>
     <div class="form-container light-mode">
         <div class="form-content light-mode">
+            <h3 class="form-heading">Chart 1 Settings</h3>
             <div class="form-group">
                 <label for="xMin1">X-axis Min:</label>
                 <input type="number" class="form-control" id="xMin1" value="0" onchange="updateChartScales('chart1', 'xMin1', 'xMax1', 'yMin1', 'yMax1')">
@@ -48,6 +49,7 @@
             <!-- Other form groups for chart1 -->
         </div>
         <div class="form-content light-mode">
+            <h3 class="form-heading">Chart 2 Settings</h3>
             <div class="form-group">
                 <label for="xMin2">X-axis Min:</label>
                 <input type="number" class="form-control" id="xMin2" value="-60" onchange="updateChartScales('chart2', 'xMin2', 'xMax2', 'yMin2', 'yMax2')">
@@ -68,7 +70,8 @@
         </div>
     </div>
     <div class="footer">
-        Made by Carbform. Find this on <a href="https://github.com/carbform/meto_adsb">GitHub</a>
+        <p>Made by <a href="https://carbform.github.io/index.html">Carbform</a>.</p>
+        <p>Find this on <a href="https://github.com/carbform/meto_adsb">GitHub</a></p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/1.0.0/chartjs-plugin-zoom.min.js"></script>

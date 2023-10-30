@@ -8,13 +8,13 @@ function generateJSONFilePaths(basePath, numberOfFiles) {
   return jsonFiles;
 }
 
-const jsonFilesToLoad = generateJSONFilePaths('dump1090-fa', 100);
+const jsonFilesToLoad = generateJSONFilePaths('dump1090-fa', 10000);
 
 // Variables to store the chart objects and initial scale values
 let chart1;
 let chart2;
 let chart1XMin = 0;
-let chart1XMax = 60;
+let chart1XMax = 30;
 let chart1YMin = 0;
 let chart1YMax = 14;
 let chart2XMin = -60;
@@ -48,41 +48,44 @@ async function loadAndConcatenateAllData() {
   }
   return aircraftData;
 }
-
-// Calculate wind speed and direction, OAT, and TAT.
 function calculateWindSpeedAndDirection(df) {
-  df.forEach(row => {
+  const filteredWindData = [];
+  
+  for (let row of df) {
     const tas = row.tas;
     const gs = row.gs;
     const hdg = row.track;
     const trk = row.mag_heading;
-
-    const ws = Math.sqrt(Math.pow(tas - gs, 2) + 4 * tas * gs * Math.pow(Math.sin((hdg - trk) / 2), 2));
-    const wd = trk + Math.atan2(tas * Math.sin(hdg - trk), tas * Math.cos(hdg - trk) - gs);
-
-    // Convert the wind direction from radians to degrees.
-    row.ws = ws;
-    row.wd = (180 * wd) / Math.PI;
-  });
-}
-
-function calculateOatAndTat(df) {
-  df.forEach(row => {
-    const tas = row.tas;
     const mach = row.mach;
-
     const oat = Math.pow((tas / 661.47 / mach), 2) * 288.15 - 273.15;
-    const tat = -273.15 + (oat + 273.15) * (1 + 0.2 * mach * mach);
+    const ws = Math.round(Math.sqrt(Math.pow(tas - gs, 2) + 4 * tas * gs * Math.pow(Math.sin((hdg - trk) / 2), 2)));
+    const wd = trk + Math.atan2(tas * Math.sin(hdg - trk), tas * Math.cos(hdg - trk) - gs);
+    
+    // Adjust wind direction to [0, 360] degrees
+    const wdAdjusted = ((wd * (180 / Math.PI)) + 360) % 360;
+    
+    if (!isNaN(tas) && !isNaN(gs) && !isNaN(hdg) && !isNaN(trk) && !isNaN(mach)) {
+      if (gs >= 0 && ws < 30) {
+        row.ws = ws;
+        row.wd = wdAdjusted;
+        filteredWindData.push(row);
+      }
+    }
+  }
 
-    // Update the OAT and TAT values in the data.
+  // Extract temperature data for the filtered wind data
+  const filteredTemperatureData = filteredWindData.map(row => {
+    const mach = row.mach;
+    const oat = Math.pow((row.tas / 661.47 / mach), 2) * 288.15 - 273.15;
     row.oat = oat;
-    row.tat = tat;
+    row.tat = -273.15 + (oat + 273.15) * (1 + 0.2 * mach * mach);
+    return row;
   });
+
+  return [filteredWindData, filteredTemperatureData];
 }
 
-// Function to create a Chart.js scatter plot
-// Function to create a Chart.js scatter plot
-// Function to create a Chart.js scatter plot
+
 // Function to create a Chart.js scatter plot with custom aspect ratio
 function createScatterChart(chartId, chartData, chartTitle, xLabel, yLabel, xMin, xMax, yMin, yMax, color, aspectRatio) {
   const gridColor = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
@@ -169,58 +172,53 @@ function createScatterChart(chartId, chartData, chartTitle, xLabel, yLabel, xMin
 
 
 
+// Load the data and perform calculations.
 async function main() {
   const aircraftData = await loadAndConcatenateAllData();
   if (aircraftData.length > 0) {
-    calculateWindSpeedAndDirection(aircraftData);
-    calculateOatAndTat(aircraftData);
+    const [filteredWindData, filteredTemperatureData] = calculateWindSpeedAndDirection(aircraftData);
+    
 
-    const windSpeedData = aircraftData.map(row => ({
+    const windSpeedData = filteredWindData.map(row => ({
       x: row.ws,
-      y: row.alt_geom * 0.0003048,
+      y: row.alt_geom*0.0003048,
     }));
-    const temperatureData = aircraftData.map(row => ({
+    const temperatureData = filteredTemperatureData.map(row => ({
       x: row.oat,
-      y: row.alt_geom * 0.0003048,
+      y: row.alt_geom*0.0003048,
     }));
-
-    // Destroy the existing charts if they exist
-    if (chart1) {
-      chart1.destroy();
-    }
-    if (chart2) {
-      chart2.destroy();
-    }
 
     // Create and update the charts based on the concatenated data
-    chart1 = createScatterChart(
-      'chart1',
-      windSpeedData,
-      'Wind Speed vs Altitude',
-      'Wind Speed (km/hr)',
-      'Altitude (km)',
-      chart1XMin,
-      chart1XMax,
-      chart1YMin,
-      chart1YMax,
-      'red',
-      0.9 // Set the aspect ratio for chart1 here
-    );
+    // For chart1
+chart1 = createScatterChart(
+  'chart1',
+  windSpeedData,
+  'Wind Speed vs Altitude',
+  'Wind Speed (km/hr)',
+  'Altitude (km)',
+  chart1XMin,
+  chart1XMax,
+  chart1YMin,
+  chart1YMax,
+  'red',
+  0.9 // Set the aspect ratio for chart1 here
+);
 
-    chart2 = createScatterChart(
-      'chart2',
-      temperatureData,
-      'Temperature vs Altitude',
-      'Temperature (°C)',
-      'Altitude (km)',
-      chart2XMin,
-      chart2XMax,
-      chart2YMin,
-      chart2YMax,
-      'blue',
-      0.9 // Set the aspect ratio for chart2 here
-    );
-
+// For chart2
+chart2 = createScatterChart(
+  'chart2',
+  temperatureData,
+  'Temperature vs Altitude',
+  'Temperature (°C)',
+  'Altitude (km)',
+  chart2XMin,
+  chart2XMax,
+  chart2YMin,
+  chart2YMax,
+  'blue',
+  0.9 // Set the aspect ratio for chart2 here
+);
+    
     // Set the initial grid color for chart1 and chart2
     chart1.options.scales.x.grid.color = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
     chart1.options.scales.y.grid.color = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
@@ -328,9 +326,5 @@ function updateChartColors() {
 }
 // Wrap the main function call in an event listener
 document.addEventListener('DOMContentLoaded', () => {
-  // Call the main function immediately when the page loads
   main();
-
-  // Schedule the main function to be called every 300 seconds (30,000 milliseconds)
-  setInterval(main, 300000);
 });
