@@ -8,7 +8,30 @@ function generateJSONFilePaths(basePath, numberOfFiles) {
   return jsonFiles;
 }
 
-const jsonFilesToLoad = generateJSONFilePaths('dump1090-fa', 10000);
+// Declare jsonFilesToLoad as a global variable with an initial value
+let jsonFilesToLoad = generateJSONFilePaths('dump1090-fa', 150);
+
+// Function to handle slider changes
+function handleSliderChange() {
+  const fileCountSlider = document.getElementById("fileCount");
+  const fileCountValue = document.getElementById("fileCountValue");
+
+  // Add an event listener to the slider
+  fileCountSlider.addEventListener("input", function () {
+    const selectedValue = this.value;
+    fileCountValue.textContent = selectedValue;
+
+    // Update the global jsonFilesToLoad variable with the selected value
+    jsonFilesToLoad = generateJSONFilePaths('dump1090-fa', selectedValue);
+
+    // Call a function to load and process the JSON files with the updated count
+    loadAndProcessJSONFiles(jsonFilesToLoad);
+  });
+}
+
+// Call the function to handle slider changes
+handleSliderChange();
+
 
 // Variables to store the chart objects and initial scale values
 let chart1;
@@ -65,11 +88,11 @@ function calculateWindSpeedAndDirection(df) {
     const wdAdjusted = ((wd * (180 / Math.PI)) + 360) % 360;
     
     if (!isNaN(tas) && !isNaN(gs) && !isNaN(hdg) && !isNaN(trk) && !isNaN(mach)) {
-      if (gs >= 0 && ws < 30) {
+      
         row.ws = ws;
         row.wd = wdAdjusted;
         filteredWindData.push(row);
-      }
+      
     }
   }
 
