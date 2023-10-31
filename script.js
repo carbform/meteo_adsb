@@ -166,6 +166,11 @@ function extractLatLonAndMap(aircraftData) {
 function createScatterChart(chartId, chartData, chartTitle, xLabel, yLabel, xMin, xMax, yMin, yMax, color, aspectRatio) {
   const gridColor = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
 
+  // Check if a chart with the same ID already exists
+  if (window.myCharts && window.myCharts[chartId]) {
+    window.myCharts[chartId].destroy();
+  }
+
   // Set the initial grid color
   document.documentElement.style.setProperty('--chart-grid-color', gridColor);
 
@@ -243,9 +248,14 @@ function createScatterChart(chartId, chartData, chartTitle, xLabel, yLabel, xMin
     },
   });
 
+  // Store the chart in a global object to keep track of it
+  if (!window.myCharts) {
+    window.myCharts = {};
+  }
+  window.myCharts[chartId] = scatterChart;
+
   return scatterChart;
 }
-
 
 
 // Load the data and perform calculations.
@@ -404,4 +414,9 @@ function updateChartColors() {
   chart1.update();
   chart2.update();
 }
+function updateAndRunMain() {
+  main();
+}
 
+// Run the updateAndRunMain function every 30 seconds (30000 milliseconds)
+setInterval(updateAndRunMain, 30000);
