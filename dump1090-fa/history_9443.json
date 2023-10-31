@@ -1,8 +1,0 @@
-{ "now" : 1696826677.9,
-  "messages" : 9858423,
-  "aircraft" : [
-    {"hex":"8014b4","flight":"IGO524  ","alt_baro":15550,"alt_geom":15175,"gs":370.5,"ias":292,"tas":370,"mach":0.568,"track":65.4,"track_rate":-0.03,"roll":-0.4,"mag_heading":67.1,"baro_rate":1472,"geom_rate":2496,"squawk":"7262","emergency":"none","category":"A3","nav_qnh":1012.8,"nav_altitude_mcp":24992,"lat":13.467270,"lon":77.900927,"nic":8,"rc":186,"seen_pos":6.2,"version":2,"nic_baro":1,"nac_p":10,"nac_v":4,"sil":3,"sil_type":"perhour","gva":2,"sda":3,"mlat":[],"tisb":[],"messages":991,"seen":6.2,"rssi":-22.9},
-    {"hex":"801389","category":"A0","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":569,"seen":191.3,"rssi":-24.3},
-    {"hex":"800cb9","category":"A0","version":0,"sil_type":"unknown","mlat":[],"tisb":[],"messages":4424,"seen":152.8,"rssi":-22.4}
-  ]
-}

@@ -27,12 +27,17 @@ h2 {
 }
 
 .form-container {
-  border: var(--form-border, 1px solid #d1d1d1);
-  border-radius: 5px;
-  padding: 20px;
-  background: var(--form-background-color, #f8f8f8);
-  color: var(--form-text-color, #000000);
-  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center; /* Center the form container horizontally */
+  text-align: left; /* Reset text alignment for form elements to default (left) */
+  width: 100%; /* Make the form container take the full width */
+  flex-wrap: wrap; /* Allow form contents to wrap on smaller screens */
+}
+
+.form-content {
+  flex: 1;
+  max-width: 400px; /* Set a maximum width for the forms */
+  margin: 0 10px; /* Add some spacing between form content */
 }
 
 legend {
@@ -49,7 +54,7 @@ legend {
 
 .form-control {
   font-family: 'Poppins', sans-serif;
-  font-size: 14px;
+  
   padding: 5px;
 }
 
@@ -141,6 +146,7 @@ button:hover {
 
 .poppins-font {
   font-family: 'Poppins', sans-serif;
+  justify-content: center;
 }
 /* Your other CSS styles go here */
 .form-container {

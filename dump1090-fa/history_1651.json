@@ -1,8 +1,0 @@
-{ "now" : 1696826798.0,
-  "messages" : 9858652,
-  "aircraft" : [
-    {"hex":"8013a3","alt_baro":32025,"alt_geom":34300,"gs":435.3,"ias":260,"mach":0.764,"track":147.5,"mag_heading":146.6,"baro_rate":-3200,"geom_rate":-2784,"squawk":"6541","nav_qnh":1013.6,"nav_altitude_mcp":26016,"nav_heading":0.0,"version":0,"nic_baro":1,"nac_p":8,"nac_v":1,"sil":2,"sil_type":"unknown","mlat":[],"tisb":[],"messages":19,"seen":11.8,"rssi":-24.9},
-    {"hex":"8014b4","flight":"IGO524  ","alt_baro":19250,"alt_geom":20275,"gs":392.0,"ias":294,"tas":400,"mach":0.624,"track":47.3,"track_rate":0.00,"roll":0.0,"mag_heading":49.4,"baro_rate":1280,"geom_rate":1952,"squawk":"7262","emergency":"none","category":"A3","nav_qnh":1012.8,"nav_altitude_mcp":24992,"lat":13.573189,"lon":78.077136,"nic":8,"rc":186,"seen_pos":11.9,"version":2,"nic_baro":1,"nac_p":10,"nac_v":4,"sil":3,"sil_type":"perhour","gva":2,"sda":3,"mlat":[],"tisb":[],"messages":1198,"seen":11.5,"rssi":-24.2},
-    {"hex":"800cb9","category":"A0","version":0,"sil_type":"unknown","mlat":[],"tisb":[],"messages":4424,"seen":272.9,"rssi":-22.4}
-  ]
-}

@@ -6,6 +6,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link href="dark-mode.css" rel="stylesheet" id="dark-mode-style">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
     <title>Meto-ADSB</title>
 </head>
@@ -16,24 +18,24 @@
         <div class="dark-mode-toggle">
             <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
             <label for="darkModeToggle"></label>
-            <p class="poppins-font">Dark Mode</p>
+            <p class="poppins-font">Dark Mode / Grids</p>
         </div>
     </div>
     <div class="chart-container">
         <div class="chart">
-            
             <canvas id="chart1"></canvas>
         </div>
         <div class="chart">
             <canvas id="chart2"></canvas>
         </div>
         
+        <div id="map" style="height: 575px; width: 25%; float: right;"></div>
+        
     </div>
-
     
-    <div class="form-container light-mode">
-        <div class="form-content light-mode">
-            <h3 class="form-heading">Axis Settings</h3>
+    <div class="form-container light-mode" >
+        <div class="form-content light-mode" >
+            <h3 class="form-heading" style="font-family: Poppins;">Axis Settings</h3>
             <div class="form-group">
                 <label for="xMin1">X-axis Min:</label>
                 <input type="number" class="form-control" id="xMin1" value="0" onchange="updateChartScales('chart1', 'xMin1', 'xMax1', 'yMin1', 'yMax1')">
@@ -52,8 +54,9 @@
             </div>
             <!-- Other form groups for chart1 -->
         </div>
+        
         <div class="form-content light-mode">
-            <h3 class="form-heading">Axis Settings</h3>
+            <h3 class="form-heading" style="font-family: Poppins;">Axis Settings</h3>
             <div class="form-group">
                 <label for="xMin2">X-axis Min:</label>
                 <input type="number" class="form-control" id="xMin2" value="-60" onchange="updateChartScales('chart2', 'xMin2', 'xMax2', 'yMin2', 'yMax2')">
@@ -72,7 +75,24 @@
             </div>
             <!-- Other form groups for chart2 -->
         </div>
+        <div class="form-content light-mode">
+            <h3 class="form-heading" style="font-family: Poppins;">Map of Sampling Locations</h3>
+            <div class="form-group">
+                <label for="map-lat-input">Latitude:</label>
+                <input type="number" class="form-control" id="map-lat-input" value="13" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="map-lon-input">Longitude:</label>
+                <input type="number" class="form-control" id="map-lon-input" value="77.5" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="map-zoom-input">Zoom Level:</label>
+                <input type="number" class="form-control" id="map-zoom-input" value="9" step="1">
+            </div>
+        </div>
+        
     </div>
+    
     <div class="footer">
         <p>Made by <a href="https://carbform.github.io/index.html">Carbform</a>.</p>
         <p>Find this on <a href="https://github.com/carbform/meto_adsb">GitHub</a></p>

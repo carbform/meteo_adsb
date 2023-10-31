@@ -1,8 +1,0 @@
-{ "now" : 1696827008.3,
-  "messages" : 9860257,
-  "aircraft" : [
-    {"hex":"8014bb","flight":"IGO6583 ","alt_baro":10150,"alt_geom":10500,"gs":351.4,"ias":292,"tas":346,"mach":0.528,"track":292.8,"track_rate":0.06,"roll":0.2,"mag_heading":293.4,"baro_rate":2944,"geom_rate":2976,"squawk":"2701","emergency":"none","category":"A3","nav_qnh":1012.8,"nav_altitude_mcp":24992,"lat":13.307330,"lon":77.444169,"nic":8,"rc":186,"seen_pos":0.3,"version":2,"nic_baro":1,"nac_p":9,"nac_v":4,"sil":3,"sil_type":"perhour","gva":2,"sda":3,"mlat":[],"tisb":[],"messages":821,"seen":0.1,"rssi":-18.7},
-    {"hex":"8013a3","flight":"VTI863  ","alt_baro":25150,"alt_geom":26700,"gs":375.4,"ias":249,"tas":376,"mach":0.604,"track":147.6,"track_rate":0.00,"roll":0.4,"mag_heading":147.3,"baro_rate":-2240,"geom_rate":-2304,"squawk":"0343","emergency":"none","category":"A3","nav_qnh":1013.6,"nav_altitude_mcp":16000,"nav_heading":0.0,"lat":13.672765,"lon":77.332523,"nic":8,"rc":186,"seen_pos":2.2,"version":2,"nic_baro":1,"nac_p":9,"nac_v":1,"sil":3,"sil_type":"perhour","gva":2,"sda":2,"mlat":[],"tisb":[],"messages":782,"seen":0.1,"rssi":-22.2},
-    {"hex":"8014b4","category":"A3","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":1208,"seen":169.9,"rssi":-24.4}
-  ]
-}
