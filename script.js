@@ -418,5 +418,5 @@ function updateAndRunMain() {
   main();
 }
 
-// Run the updateAndRunMain function every 30 seconds (30000 milliseconds)
-setInterval(updateAndRunMain, 30000);
+// Run the updateAndRunMain function every 100 seconds
+setInterval(updateAndRunMain, 100000);
