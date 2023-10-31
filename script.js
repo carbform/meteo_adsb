@@ -287,7 +287,7 @@ chart1 = createScatterChart(
   chart1YMin,
   chart1YMax,
   'red',
-  0.9 // Set the aspect ratio for chart1 here
+  1 // Set the aspect ratio for chart1 here
 );
 
 // For chart2
@@ -302,7 +302,7 @@ chart2 = createScatterChart(
   chart2YMin,
   chart2YMax,
   'blue',
-  0.9 // Set the aspect ratio for chart2 here
+  1 // Set the aspect ratio for chart2 here
 );
     
     // Set the initial grid color for chart1 and chart2
