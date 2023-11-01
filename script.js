@@ -413,6 +413,7 @@ function updateChartColors() {
 function updateAndRunMain() {
   main();
   //captureAndSaveSnapshots()
+  console.log('Reloaded after 5 minutes')
 }
 
 // Function to capture and save a snapshot of a chart as a PNG image inside the "snaps" folder
