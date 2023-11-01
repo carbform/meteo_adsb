@@ -4,7 +4,7 @@
 
 ![Bengaluru](bengaluru.png)
 
-An app that plots the vertical atmospheric structure as plots between Altitude and Temperature, Altitude vs. wind speed, and Altitude vs. Wind Direction using data collected from the [dump1090-fa](https://www.flightaware.com/adsb/piaware/install) ADSB decoder. The calculations are similar to those used in the [tar1090](https://github.com/wiedehopf/tar1090) package.
+ Plots the vertical atmospheric structure as plots between Altitude and Temperature and Altitude vs. wind speed using aircraft data collected from the [dump1090-fa](https://www.flightaware.com/adsb/piaware/install) ADSB decoder. The calculations are similar to those used in the [tar1090](https://github.com/wiedehopf/tar1090) package.
 
 
 Reads the JSON data from `dump1090-fa/history_xx.json` files and calculates the following meteorologic parameters:
@@ -23,9 +23,8 @@ sudo ./meto_adsb.sh /var/run/dump1090-fa/
 /var/run/dump1090-fa/ is the default location where dump1090-fa stores the JSON files. However, you can specify the source folder depending on how you installed dump1090-fa
 
 This will start a local sever on port 5050, which is accesible at 
-```
-http://10.xxx.xx.xx:5050.
-```
+http://10.197.xx.yy:5050
+
 The webpage will generate
 * Altitude vs. temperature
 * Altitude vs. wind speed
