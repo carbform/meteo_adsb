@@ -14,15 +14,23 @@ Reads the JSON data from `dump1090-fa/history_xx.json` files and calculates the 
 
 ### Usage
 
-* When using a custom location containing the .json files, edit the Javascript line and replace the path to the       custom location (Generally '/var/run/dump1090-fa')
+* Open the terminal and run the command
 
 ```
-let jsonFilesToLoad = generateJSONFilePaths('path_to_json_files', 100);
+sudo ./meto_adsb.sh /var/run/dump1090-fa/json
 ```
-Open index.html and the page will generate two plots:
+``` 
+/var/run/dump1090-fa/json 
+``` is the default location where dump1090-fa stores the JSON files. However, you can specify the source folder depending on how you installed dump1090-fa
 
+This will start a local sever on port 5050, which is accesible at 
+```
+http://10.xxx.xx.xx:5050.
+```
+The webpage will generate
 * Altitude vs. temperature
 * Altitude vs. wind speed
+* Map of Aircraft data sampling locations
 
 You can use these plots to analyze the vertical atmospheric structure in the area where the data was collected. For example, you can look at how the temperature and wind speed change with altitude.
 
