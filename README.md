@@ -14,7 +14,7 @@ Reads the JSON data from `dump1090-fa/history_xx.json` files and calculates the 
 
 ### Usage
 
-* When using a custom location containing the .json files, edit the Javascript line and replace the path to the       custom location (Generally 'usr/run/dump1090-fa/')
+* When using a custom location containing the .json files, edit the Javascript line and replace the path to the       custom location (Generally '/var/run/dump1090-fa')
 
 ```
 let jsonFilesToLoad = generateJSONFilePaths('path_to_json_files', 100);

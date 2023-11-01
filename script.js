@@ -1,4 +1,3 @@
-// Define a function to generate JSON file paths based on a pattern
 function generateJSONFilePaths(basePath, numberOfFiles) {
   const jsonFiles = [];
   for (let i = 0; i < numberOfFiles; i++) {
@@ -9,10 +8,7 @@ function generateJSONFilePaths(basePath, numberOfFiles) {
 }
 
 // Declare jsonFilesToLoad as a global variable with an initial value
-let jsonFilesToLoad = generateJSONFilePaths('dump1090-fa', 100);
-
-
-
+let jsonFilesToLoad = generateJSONFilePaths('json', 120);
 
 // Variables to store the chart objects and initial scale values
 let chart1;
@@ -29,7 +25,7 @@ let chart2YMax = 14;
 // Function to load a JSON file and concatenate data
 async function loadAndConcatenateData(jsonFileName, data) {
   try {
-    const response = await fetch(jsonFileName);
+    const response = await fetch(jsonFileName); // This will use the relative URL
     if (!response.ok) {
       throw new Error(`Failed to fetch data from ${jsonFileName}.`);
     }
@@ -416,7 +412,25 @@ function updateChartColors() {
 }
 function updateAndRunMain() {
   main();
+  //captureAndSaveSnapshots()
 }
 
-// Run the updateAndRunMain function every 100 seconds
-setInterval(updateAndRunMain, 100000);
+// Function to capture and save a snapshot of a chart as a PNG image inside the "snaps" folder
+async function captureAndSaveSnapshot(chart, filename) {
+  const canvas = await html2canvas(chart.canvas);
+  canvas.toBlob(function (blob) {
+    const folderPath = 'snaps'; // Specify the folder path
+    saveAs(blob, `${folderPath}/${filename}.png`);
+  });
+}
+
+// Function to capture and save snapshots of both charts
+async function captureAndSaveSnapshots() {
+  const utcTime = new Date().toISOString(); // Get the current UTC time
+  await captureAndSaveSnapshot(chart1, `chart1_${utcTime}`);
+  await captureAndSaveSnapshot(chart2, `chart2_${utcTime}`);
+}
+
+
+// Run the updateAndRunMain function every 300 seconds
+setInterval(updateAndRunMain, 300000);
