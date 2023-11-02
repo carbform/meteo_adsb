@@ -23,8 +23,7 @@ sudo ./meteo_adsb.sh /var/run/dump1090-fa/
 /var/run/dump1090-fa/ is the default location where dump1090-fa stores the JSON files. However, you can specify the source folder depending on how you installed dump1090-fa
 
 This will start a local sever on port 5050, which is accesible at 
-http://127.0.0.1:5050 (on the local machine)
-or at http://REMOTE_DEVICE_IP:5050 (if running on a remote machine)
+http://DEVICE_LOCAL_IP:5050
 
 The webpage will generate
 * Altitude vs. temperature
