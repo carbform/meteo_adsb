@@ -14,16 +14,27 @@ Reads the JSON data from `dump1090-fa/history_xx.json` files and calculates the 
 
 ### Usage
 
-* Open the terminal and run the command
+* Installation:
+
+1. Download the script to your system.
+
+2. Open the terminal and navigate to the folder containing the script.
+
+3. Make the script executable using the following command:
 
 ```
-sudo ./meteo_adsb.sh /var/run/dump1090-fa/
+bash chmod +x meteo_adsb.sh ```
+
+4. Open the terminal and run the command to install Meteo-ADSB:
+
 ```
+sudo ./meteo_adsb.sh -i
+```
+The script will prompt you to configure the source directory for JSON data. You can choose to run the ADSB decoder locally or on a remote machine.
 
-/var/run/dump1090-fa/ is the default location where dump1090-fa stores the JSON files. However, you can specify the source folder depending on how you installed dump1090-fa
+```sudo ./meteo_adsb.sh -r```
 
-This will start a local sever on port 5050, which is accesible at 
-http://DEVICE_LOCAL_IP:5050
+5. This will start a local server on port 5050, which is accessible at http://DEVICE_LOCAL_IP:5050.
 
 The webpage will generate
 * Altitude vs. temperature
