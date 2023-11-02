@@ -22,7 +22,9 @@ Reads the JSON data from `dump1090-fa/history_xx.json` files and calculates the 
 
 3. Make the script executable using the following command:
 
-```bash chmod +x meteo_adsb.sh ```
+```
+bash chmod +x meteo_adsb.sh 
+```
 
 4. Open the terminal and run the command to install Meteo-ADSB:
 
@@ -31,7 +33,9 @@ sudo ./meteo_adsb.sh -i
 ```
 The script will prompt you to configure the source directory for JSON data. You can choose to run the ADSB decoder locally or on a remote machine.
 
-```sudo ./meteo_adsb.sh -r```
+```
+sudo ./meteo_adsb.sh -r
+```
 
 5. This will start a local server on port 5050, which is accessible at http://DEVICE_LOCAL_IP:5050.
 
