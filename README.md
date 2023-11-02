@@ -22,8 +22,7 @@ Reads the JSON data from `dump1090-fa/history_xx.json` files and calculates the 
 
 3. Make the script executable using the following command:
 
-```
-bash chmod +x meteo_adsb.sh ```
+```bash chmod +x meteo_adsb.sh ```
 
 4. Open the terminal and run the command to install Meteo-ADSB:
 
