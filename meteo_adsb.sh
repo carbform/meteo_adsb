@@ -14,7 +14,7 @@ server_pid=""
 # Function to copy .json files from source to destination
 copy_files() {
     cp "$src_dir"/*.json "$dest_dir"
-    echo "Files located and copied"
+    echo "Copied .json files from $src_dir to $dest_dir"
 }
 
 # Function to start the HTTP server
@@ -25,8 +25,8 @@ start_server() {
     server_pid=$!
     sleep 1
     if ps -p $server_pid > /dev/null; then
-        echo "Do not close this terminal."
-        echo "The app is available at http://$local_ip:5050."
+        echo "Do not close this terminal"
+        echo "Meteo-ADSB is running. Access it at http://$local_ip:5050."
     else
         echo "Failed to start the server."
     fi
@@ -39,12 +39,14 @@ stop_server() {
         kill -TERM "$server_pid"
         wait "$server_pid"
         server_pid=""
+        echo "Server stopped."
     fi
 }
 
 # Function to exit the script gracefully
 exit_script() {
     stop_server
+    echo "Exiting the script."
     exit 0
 }
 

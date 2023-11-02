@@ -118,19 +118,19 @@ function extractLatLonAndMap(aircraftData) {
       const lat = parseFloat(latInput.value);
       mapCenter[0] = isNaN(lat) ? 0 : lat;
       map.setView(mapCenter, mapZoom);
-    });
+    },{ passive: true });
 
     lonInput.addEventListener('input', () => {
       const lon = parseFloat(lonInput.value);
       mapCenter[1] = isNaN(lon) ? 0 : lon;
       map.setView(mapCenter, mapZoom);
-    });
+    },{ passive: true });
 
     zoomInput.addEventListener('input', () => {
       const zoom = parseInt(zoomInput.value);
       mapZoom = isNaN(zoom) ? 9 : zoom;
       map.setView(mapCenter, mapZoom);
-    });
+    },{ passive: true });
   }
 
   // Define a function to determine the color based on some criteria

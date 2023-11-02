@@ -1,4 +1,4 @@
-# Meto-ADSB 
+# Meteo-ADSB
 
 ## Vertical Atmospheric Structure Analysis 
 
@@ -17,7 +17,7 @@ Reads the JSON data from `dump1090-fa/history_xx.json` files and calculates the 
 * Open the terminal and run the command
 
 ```
-sudo ./meto_adsb.sh /var/run/dump1090-fa/
+sudo ./meteo_adsb.sh /var/run/dump1090-fa/
 ```
 
 /var/run/dump1090-fa/ is the default location where dump1090-fa stores the JSON files. However, you can specify the source folder depending on how you installed dump1090-fa
