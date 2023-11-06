@@ -4,20 +4,24 @@
 script_dir="$(dirname "$(realpath "$0")")"
 
 # Set the local destination directory
-dest_dir="$script_dir/json"
+dest_dir="$script_dir/html/json"
 
 # Config file path
 config_file="$script_dir/meteo_adsb_config"
 
-# Function to read or create the configuration file
+local_machine="n"
+src_dir="/var/run/dump1090-fa"
+
 read_config() {
     if [ -f "$config_file" ]; then
         source "$config_file"
     else
         echo "Config file not found. Creating a new configuration."
+
+        read -p "Enter the source directory (e.g., /var/run/dump1090-fa): " src_dir
+
         # Initialize default values
         local_machine="n"
-        src_dir="/var/run/dump1090-fa"
         remote_ip=""
         remote_user=""
         save_config
@@ -51,8 +55,12 @@ copy_files() {
         echo "Copied .json files from $src_dir on $remote_ip to $dest_dir"
     else
         cp "$src_dir"/*.json "$dest_dir"
-        echo "JSON Files found"
-        echo "Copied .json files from $src_dir to $dest_dir"
+        if [ $? -eq 0 ]; then
+            echo "JSON Files found"
+            echo "Copied .json files from $src_dir to $dest_dir"
+        else
+            echo "Error: Failed to copy .json files from $src_dir. Please check the source directory."
+        fi
     fi
 }
 

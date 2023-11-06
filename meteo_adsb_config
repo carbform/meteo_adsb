@@ -1,4 +1,4 @@
 local_machine="y"
-src_dir=""
+src_dir="/var/run/dump1090-fa"
 remote_ip=""
 remote_user=""
