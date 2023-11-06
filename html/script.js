@@ -8,7 +8,7 @@ function generateJSONFilePaths(basePath, numberOfFiles) {
 }
 
 // Declare jsonFilesToLoad as a global variable with an initial value
-let jsonFilesToLoad = generateJSONFilePaths('json', 120);
+let jsonFilesToLoad = generateJSONFilePaths('json/', 120);
 
 // Variables to store the chart objects and initial scale values
 let chart1;
