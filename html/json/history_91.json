@@ -1,11 +1,7 @@
-{ "now" : 1698743362.3,
-  "messages" : 10071349,
+{ "now" : 1699348891.0,
+  "messages" : 24029669,
   "aircraft" : [
-    {"hex":"800d3c","alt_baro":10125,"alt_geom":10825,"gs":361.3,"track":228.6,"geom_rate":-2624,"version":0,"nac_p":7,"nac_v":0,"sil":2,"sil_type":"unknown","mlat":[],"tisb":[],"messages":4,"seen":2.3,"rssi":-25.9},
-    {"hex":"29cbb8","alt_baro":4550,"gs":388.0,"tas":394,"track":104.4,"roll":-27.9,"squawk":"2020","nav_qnh":1016.0,"nav_altitude_mcp":4000,"nav_modes":["approach"],"mlat":[],"tisb":[],"messages":32,"seen":40.7,"rssi":-20.7},
-    {"hex":"801424","flight":"VTI273  ","alt_baro":35050,"alt_geom":37050,"gs":445.8,"ias":262,"tas":458,"mach":0.772,"track":183.5,"track_rate":0.03,"roll":-0.2,"mag_heading":188.6,"baro_rate":-192,"geom_rate":-128,"squawk":"0515","emergency":"none","category":"A3","nav_qnh":1013.6,"nav_altitude_mcp":35008,"nav_heading":0.0,"lat":13.374970,"lon":77.670786,"nic":8,"rc":186,"seen_pos":0.4,"version":2,"nic_baro":1,"nac_p":10,"nac_v":4,"sil":3,"sil_type":"perhour","gva":2,"sda":2,"mlat":[],"tisb":[],"messages":1529,"seen":0.2,"rssi":-9.5},
-    {"hex":"738444","alt_baro":28275,"category":"A3","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":2802,"seen":39.3,"rssi":-23.9},
-    {"hex":"800278","mlat":[],"tisb":[],"messages":178,"seen":287.9,"rssi":-25.5},
-    {"hex":"8013e4","category":"A0","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":2444,"seen":79.6,"rssi":-24.1}
+    {"hex":"800be9","flight":"IAD613  ","alt_baro":21475,"alt_geom":22800,"gs":402.4,"ias":281,"tas":400,"mach":0.628,"track":329.9,"track_rate":-0.03,"roll":-0.2,"mag_heading":332.4,"baro_rate":1280,"geom_rate":1600,"squawk":"2706","category":"A0","nav_qnh":1016.0,"nav_altitude_mcp":25008,"lat":13.886169,"lon":77.514464,"nic":7,"rc":371,"seen_pos":32.2,"version":0,"nac_p":7,"nac_v":0,"sil":2,"sil_type":"unknown","mlat":[],"tisb":[],"messages":657,"seen":32.2,"rssi":-21.7},
+    {"hex":"800c0a","alt_baro":3325,"alt_geom":3675,"gs":107.0,"ias":104,"mach":0.168,"track":90.5,"mag_heading":89.6,"baro_rate":-512,"geom_rate":-704,"category":"A0","lat":13.207397,"lon":77.665621,"nic":8,"rc":186,"seen_pos":43.7,"version":0,"nac_p":8,"nac_v":0,"sil":2,"sil_type":"unknown","mlat":[],"tisb":[],"messages":4538,"seen":42.6,"rssi":-23.2}
   ]
 }

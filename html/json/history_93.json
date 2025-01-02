@@ -1,10 +1,7 @@
-{ "now" : 1698743422.4,
-  "messages" : 10072253,
+{ "now" : 1699348951.0,
+  "messages" : 24029674,
   "aircraft" : [
-    {"hex":"800d3c","flight":"IAD1983 ","alt_baro":9075,"alt_geom":9675,"gs":289.7,"ias":242,"tas":282,"mach":0.432,"track":228.5,"track_rate":0.03,"roll":0.2,"mag_heading":229.7,"baro_rate":-736,"geom_rate":-768,"squawk":"0465","category":"A0","nav_qnh":1016.0,"nav_altitude_mcp":6000,"lat":13.424362,"lon":77.588919,"nic":7,"rc":371,"seen_pos":0.1,"version":0,"nac_p":7,"nac_v":0,"sil":2,"sil_type":"unknown","mlat":[],"tisb":[],"messages":136,"seen":0.1,"rssi":-15.4},
-    {"hex":"29cbb8","alt_baro":4650,"mlat":[],"tisb":[],"messages":39,"seen":0.6,"rssi":-21.4},
-    {"hex":"801424","flight":"VTI273  ","alt_baro":35000,"alt_geom":37000,"gs":432.5,"ias":255,"tas":446,"mach":0.756,"track":192.0,"track_rate":0.28,"roll":6.0,"mag_heading":196.0,"baro_rate":0,"geom_rate":32,"squawk":"0515","emergency":"none","category":"A3","nav_qnh":1013.6,"nav_altitude_mcp":35008,"nav_heading":0.0,"lat":13.255657,"lon":77.658547,"nic":8,"rc":186,"seen_pos":0.9,"version":2,"nic_baro":1,"nac_p":10,"nac_v":4,"sil":3,"sil_type":"perhour","gva":2,"sda":2,"mlat":[],"tisb":[],"messages":2281,"seen":0.6,"rssi":-7.2},
-    {"hex":"738444","alt_baro":35000,"alt_geom":36975,"gs":473.1,"track":93.9,"baro_rate":-64,"category":"A3","nav_qnh":1012.8,"nav_altitude_mcp":35008,"lat":13.062279,"lon":78.171917,"nic":8,"rc":186,"seen_pos":54.7,"version":2,"nic_baro":1,"nac_p":8,"nac_v":1,"sil":3,"sil_type":"perhour","gva":1,"sda":3,"mlat":[],"tisb":[],"messages":2812,"seen":35.0,"rssi":-23.1},
-    {"hex":"8013e4","category":"A0","version":2,"sil_type":"perhour","mlat":[],"tisb":[],"messages":2444,"seen":139.7,"rssi":-24.1}
+    {"hex":"800be9","squawk":"6133","category":"A0","version":0,"sil_type":"unknown","mlat":[],"tisb":[],"messages":659,"seen":23.6,"rssi":-22.9},
+    {"hex":"800c0a","squawk":"4726","category":"A0","version":0,"sil_type":"unknown","mlat":[],"tisb":[],"messages":4539,"seen":9.9,"rssi":-23.6}
   ]
 }

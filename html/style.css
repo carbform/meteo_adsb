@@ -10,20 +10,20 @@ h2 {
 
 .chart-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .chart {
   text-align: center;
-  width: 50%;
+  width: 45%;
   max-width: 500px;
-  padding: 10px;
-  background-color: var(--chart-background-color-light);
+  padding: 20px;
+  background-color: #ffffff;
   color: var(--chart-text-color-light);
-  border: var(--chart-border-color-light);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin: 0 10px;
 }
 
 .form-container {
@@ -32,12 +32,21 @@ h2 {
   text-align: left; /* Reset text alignment for form elements to default (left) */
   width: 100%; /* Make the form container take the full width */
   flex-wrap: wrap; /* Allow form contents to wrap on smaller screens */
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-content {
   flex: 1;
   max-width: 400px; /* Set a maximum width for the forms */
   margin: 0 10px; /* Add some spacing between form content */
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 legend {
@@ -46,6 +55,7 @@ legend {
 
 .form-group {
   margin-top: 20px;
+  margin-bottom: 15px;
 }
 
 .form-group label {
@@ -68,6 +78,7 @@ legend {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  margin-top: 20px;
 }
 
 .dark-mode-toggle {
@@ -162,21 +173,23 @@ button:hover {
 /* Add your custom CSS styles here */
 body {
   overflow: auto; /* Enable scrolling */
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fa;
+  color: #343a40;
 }
 .chart-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Center the charts */
+  justify-content: space-between; /* Center the charts */
 }
 .chart {
   text-align: center;
   width: 50%;
   max-width: 500px;
-  padding: 10px;
-  background-color: var(--chart-background-color-light);
+  padding: 20px;
+  background-color: #ffffff;
   color: var(--chart-text-color-light);
-  border: var(--chart-border-color-light);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 .form-container {
   text-align: center; /* Center the form elements */
@@ -191,15 +204,85 @@ body {
 }
 .footer {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 20px;
   font-family: 'Poppins', sans-serif; /* Set the font to Poppins */
+  padding: 10px;
+  background-color: #343a40;
+  color: #ffffff;
+  border-radius: 8px;
 }
 .footer a {
-  color: red; /* Set the URL color to red */
+  color: #78ec9f;
+  text-decoration: none;
+}
+.footer a:hover {
+  text-decoration: underline;
 }
 .form-container {
   display: flex;
   justify-content: center; /* Center the form container horizontally */
   text-align: center; /* Center the form elements */
   width: 100%; /* Make the form container take the full width */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    color: #343a40;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+.chart-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.chart {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+#map {
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.form-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-heading {
+    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.footer {
+    margin-top: 20px;
+    text-align: center;
+    padding: 10px;
+    background-color: #343a40;
+    color: #ffffff;
+    border-radius: 8px;
+}
+
+.footer a {
+    color: #78ec9f;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
 }
