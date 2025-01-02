@@ -253,6 +253,21 @@ function createScatterChart(chartId, chartData, chartTitle, xLabel, yLabel, xMin
   return scatterChart;
 }
 
+function setChartTheme(chartInstance, isDark) {
+  if (!chartInstance) return;
+  const axisColor = isDark ? '#ffffff' : '#343a40';
+  chartInstance.options.scales.x.ticks.color = axisColor;
+  chartInstance.options.scales.x.grid.color = axisColor;
+  chartInstance.options.scales.y.ticks.color = axisColor;
+  chartInstance.options.scales.y.grid.color = axisColor;
+  chartInstance.options.plugins.legend.labels.color = axisColor;
+  chartInstance.data.datasets.forEach(dataset => {
+    dataset.pointBackgroundColor = isDark ? '#ff6666' : '#355C7D';
+    dataset.pointBorderColor = isDark ? '#ffffff' : '#000000';
+    // ...other color customizations...
+  });
+  chartInstance.update();
+}
 
 // Load the data and perform calculations.
 async function main() {
@@ -308,6 +323,8 @@ chart2 = createScatterChart(
     chart2.options.scales.y.grid.color = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
   }
   extractLatLonAndMap(aircraftData);
+  setChartTheme(chart1, false);
+  setChartTheme(chart2, false);
 }
 
 // Call the main function.

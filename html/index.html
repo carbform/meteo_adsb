@@ -72,6 +72,17 @@
         }
 
         document.addEventListener('DOMContentLoaded', initialize);
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            document.querySelectorAll('.chart').forEach(chart => chart.classList.toggle('dark-mode'));
+            document.getElementById('map').classList.toggle('dark-mode');
+
+            const isDark = document.body.classList.contains('dark-mode');
+            // Update the theme for each chart instance
+            setChartTheme(window.myChart1, isDark);
+            setChartTheme(window.myChart2, isDark);
+        }
     </script>
 </body>
 </html>

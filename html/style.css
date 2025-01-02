@@ -396,3 +396,7 @@ body {
     font-family: 'Poppins', sans-serif !important;
     font-size: 11px !important;
 }
+
+body.dark-mode .chart {
+    background-color: var(--chart-background-color-dark, #1E1E1E) !important;
+}

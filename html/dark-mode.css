@@ -5,7 +5,7 @@ body.dark-mode {
 }
 
 .chart.dark-mode {
-    background-color: var(--chart-background-color-dark, #000000); /* Chart background color in dark mode */
+    background-color: var(--chart-background-color-dark, #1E1E1E); /* Chart background color in dark mode */
     color: var(--chart-text-color-dark, #ffffff); /* Chart text color in dark mode */
 }
 
@@ -13,6 +13,10 @@ body.dark-mode {
     border: var(--form-border-dark, 1px solid #000000); /* Form border color in dark mode */
     background: var(--form-background-color-dark, #000000); /* Form background color in dark mode */
     color: var(--form-text-color-dark, #fff); /* Form text color in dark mode */
+}
+
+#map.dark-mode {
+    filter: invert(0.9) hue-rotate(180deg);
 }
 
 /* Dark mode switch input */
