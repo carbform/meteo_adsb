@@ -198,6 +198,13 @@ legend {
   font-size: 0.7rem;
   padding: 4px 6px;
   height: auto;
+  width: 100px; /* Resize the input boxes */
+  text-align: center; /* Center the input text */
+  padding: 5px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .container {
@@ -437,4 +444,40 @@ body {
 
 body.dark-mode .chart {
     background-color: var(--chart-background-color-dark, #1E1E1E) !important;
+}
+
+/* Light mode form styles */
+.form-container {
+    border: var(--form-border-light, 1px solid #ccc); /* Form border color in light mode */
+    background: var(--form-background-color-light, #fff); /* Form background color in light mode */
+    color: var(--form-text-color-light, #000); /* Form text color in light mode */
+}
+
+.form-content {
+    background: var(--form-content-background-light, #f8f9fa); /* Form content background color in light mode */
+    color: var(--form-content-text-color-light, #000); /* Form content text color in light mode */
+}
+
+.form-control {
+    background: var(--form-control-background-light, #fff); /* Form control background color in light mode */
+    color: var(--form-control-text-color-light, #000); /* Form control text color in light mode */
+    border: var(--form-control-border-light, 1px solid #ccc); /* Form control border color in light mode */
+}
+
+/* Dark mode styles for form elements */
+.form-container.dark-mode {
+    border: var(--form-border-dark, 1px solid #444); /* Form border color in dark mode */
+    background: var(--form-background-color-dark, #333); /* Form background color in dark mode */
+    color: var(--form-text-color-dark, #fff); /* Form text color in dark mode */
+}
+
+.form-content.dark-mode {
+    background: var(--form-content-background-dark, #444); /* Form content background color in dark mode */
+    color: var(--form-content-text-color-dark, #fff); /* Form content text color in dark mode */
+}
+
+.form-control.dark-mode {
+    background: var(--form-control-background-dark, #555); /* Form control background color in dark mode */
+    color: var(--form-control-text-color-dark, #fff); /* Form control text color in dark mode */
+    border: var(--form-control-border-dark, 1px solid #666); /* Form control border color in dark mode */
 }

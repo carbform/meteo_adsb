@@ -370,7 +370,7 @@ function updateChartScales(chartId, xMinId, xMaxId, yMinId, yMaxId) {
 
 function toggleDarkMode() {
   const body = document.body;
-  const chartForms = document.querySelectorAll('.form-container');
+  const chartForms = document.querySelectorAll('.form-container, .form-content, .form-control');
   const isDarkMode = document.getElementById('darkModeToggle').checked;
 
   if (isDarkMode) {
