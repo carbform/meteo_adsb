@@ -165,6 +165,12 @@ function createScatterChart(chartId, chartData, chartTitle, xLabel, yLabel, xMin
     const gridColor = isDarkMode ? '#ffffff' : '#000000';
 
     const ctx = document.getElementById(chartId).getContext('2d');
+
+    // Destroy existing chart if it exists
+    if (window.myCharts && window.myCharts[chartId]) {
+        window.myCharts[chartId].destroy();
+    }
+
     const scatterChart = new Chart(ctx, {
         type: 'scatter',
         data: {
@@ -436,28 +442,68 @@ function updateChartColors() {
 // Add event listener to the dark mode toggle
 document.getElementById('darkModeToggle').addEventListener('change', toggleDarkMode);
 
-function updateAndRunMain() {
-  main();
-  //captureAndSaveSnapshots()
-  console.log('Reloaded after 5 minutes')
+// Function to capture and save a snapshot of a chart as a PNG image
+async function captureAndSaveSnapshot(chart, filename) {
+  const wasDarkMode = document.body.classList.contains('dark-mode');
+  const originalBackgroundColor = chart.canvas.style.backgroundColor;
+  const originalTextColor = chart.options.scales.x.ticks.color;
+
+  if (wasDarkMode) {
+    // Temporarily switch to light mode
+    document.body.classList.remove('dark-mode');
+    document.body.classList.add('light-mode');
+    updateChartColors();
+  }
+
+  chart.canvas.style.backgroundColor = '#ffffff'; // Set to light mode background color
+  chart.options.scales.x.ticks.color = '#000000'; // Set text color to black for light mode
+  chart.options.scales.y.ticks.color = '#000000';
+  chart.options.plugins.legend.labels.color = '#000000';
+  chart.update();
+
+  try {
+    const canvas = await html2canvas(chart.canvas, { useCORS: true });
+    canvas.toBlob(function (blob) {
+      const folderPath = 'snaps'; // Specify the folder path
+      saveAs(blob, `${folderPath}/${filename}.png`);
+      // Restore original background color and text color
+      chart.canvas.style.backgroundColor = originalBackgroundColor;
+      chart.options.scales.x.ticks.color = originalTextColor;
+      chart.options.scales.y.ticks.color = originalTextColor;
+      chart.options.plugins.legend.labels.color = originalTextColor;
+      chart.update();
+    });
+  } catch (error) {
+    console.error("Error capturing snapshot:", error);
+  }
+
+  if (wasDarkMode) {
+    // Switch back to dark mode
+    document.body.classList.remove('light-mode');
+    document.body.classList.add('dark-mode');
+    updateChartColors();
+  }
 }
 
-// Function to capture and save a snapshot of a chart as a PNG image inside the "snaps" folder
-async function captureAndSaveSnapshot(chart, filename) {
-  const canvas = await html2canvas(chart.canvas);
-  canvas.toBlob(function (blob) {
-    const folderPath = 'snaps'; // Specify the folder path
-    saveAs(blob, `${folderPath}/${filename}.png`);
-  });
+// Function to capture and save a screenshot of the charts container
+async function captureAndSaveChartsScreenshot(filename) {
+  const chartsContainer = document.getElementById('chartContainer');
+  try {
+    const canvas = await html2canvas(chartsContainer, { useCORS: true });
+    canvas.toBlob(function (blob) {
+      const folderPath = 'snaps'; // Specify the folder path
+      saveAs(blob, `${folderPath}/${filename}.png`);
+    });
+  } catch (error) {
+    console.error("Error capturing charts screenshot:", error);
+  }
 }
 
 // Function to capture and save snapshots of both charts
 async function captureAndSaveSnapshots() {
   const utcTime = new Date().toISOString(); // Get the current UTC time
-  await captureAndSaveSnapshot(chart1, `chart1_${utcTime}`);
-  await captureAndSaveSnapshot(chart2, `chart2_${utcTime}`);
+  await captureAndSaveChartsScreenshot(`charts_screenshot_${utcTime}`);
 }
 
-
-// Run the updateAndRunMain function every 300 seconds
-setInterval(updateAndRunMain, 300000);
+// Add event listener to the snapshot button
+document.getElementById('snapshotButton').addEventListener('click', captureAndSaveSnapshots);

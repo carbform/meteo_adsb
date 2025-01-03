@@ -481,3 +481,22 @@ body.dark-mode .chart {
     color: var(--form-control-text-color-dark, #fff); /* Form control text color in dark mode */
     border: var(--form-control-border-dark, 1px solid #666); /* Form control border color in dark mode */
 }
+
+.snapshot-button-container {
+    text-align: center;
+    margin-top: 10px; /* Adjust margin as needed */
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}

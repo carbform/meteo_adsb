@@ -28,9 +28,13 @@
                 <i class="fas fa-moon"></i>
                 <i class="fas fa-moon black-moon"></i> <!-- Ensure black moon icon is included -->
             </div>
+            <!-- Add a snapshot button -->
+            <div class="snapshot-button-container">
+                <button id="snapshotButton" class="btn btn-primary">Capture Snapshot</button>
+            </div>
         </div>
         
-        <div class="chart-section">
+        <div class="chart-section" id="chartContainer">
             <div class="chart">
                 <canvas id="chart1"></canvas>
             </div>
@@ -56,6 +60,7 @@
                 <input type="number" id="map-zoom-input" class="form-control" value="9">
             </div>
         </div>
+
         
         <div class="footer">
             <p>Made by <a href="https://carbform.github.io/index.html">Carbform</a>. Find this on <a href="https://github.com/carbform/meteo_adsb">GitHub</a></p>
