@@ -160,113 +160,113 @@ function extractLatLonAndMap(aircraftData) {
 
 // Function to create a Chart.js scatter plot with custom aspect ratio
 function createScatterChart(chartId, chartData, chartTitle, xLabel, yLabel, xMin, xMax, yMin, yMax, color, aspectRatio) {
-  const gridColor = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    const textColor = isDarkMode ? '#ffffff' : '#000000';
+    const gridColor = isDarkMode ? '#ffffff' : '#000000';
 
-  // Check if a chart with the same ID already exists
-  if (window.myCharts && window.myCharts[chartId]) {
-    window.myCharts[chartId].destroy();
-  }
-
-  // Set the initial grid color
-  document.documentElement.style.setProperty('--chart-grid-color', gridColor);
-
-  const ctx = document.getElementById(chartId).getContext('2d');
-  const scatterChart = new Chart(ctx, {
-    type: 'scatter',
-    data: {
-      datasets: [
-        {
-          label: chartTitle,
-          data: chartData,
-          pointRadius: 3,
-          pointBackgroundColor: color,
+    const ctx = document.getElementById(chartId).getContext('2d');
+    const scatterChart = new Chart(ctx, {
+        type: 'scatter',
+        data: {
+            datasets: [
+                {
+                    label: chartTitle,
+                    data: chartData,
+                    pointRadius: 3,
+                    pointBackgroundColor: color,
+                },
+            ],
         },
-      ],
-    },
-    options: {
-      aspectRatio: aspectRatio, // Set the aspect ratio here
-      scales: {
-        x: {
-          type: 'linear',
-          position: 'bottom',
-          title: {
-            display: true,
-            text: xLabel,
-            color: getComputedStyle(document.documentElement).getPropertyValue('--chart-text-color'),
-          },
-          min: xMin,
-          max: xMax,
-          grid: {
-            color: getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color'),
-          },
-        },
-        y: {
-          type: 'linear',
-          position: 'left',
-          title: {
-            display: true,
-            text: yLabel,
-            color: getComputedStyle(document.documentElement).getPropertyValue('--chart-text-color'),
-          },
-          min: yMin,
-          max: yMax,
-          grid: {
-            color: getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color'),
-          },
-        },
-      },
-      plugins: {
-        title: {
-          display: true,
-          text: chartTitle,
-          color: getComputedStyle(document.documentElement).getPropertyValue('--chart-text-color'),
-        },
-        legend: {
-          display: true,
-          labels: {
-            usePointStyle: true,
-            pointStyle: 'circle',
-            radius: 3,
-          },
-        },
-        zoom: {
-          zoom: {
-            wheel: {
-              enabled: true,
+        options: {
+            aspectRatio: aspectRatio, // Set the aspect ratio here
+            scales: {
+                x: {
+                    type: 'linear',
+                    position: 'bottom',
+                    title: {
+                        display: true,
+                        text: xLabel,
+                        color: textColor,
+                    },
+                    min: xMin,
+                    max: xMax,
+                    grid: {
+                        color: gridColor,
+                        display: true, // Ensure the grid is turned on
+                    },
+                    ticks: {
+                        color: textColor,
+                    },
+                },
+                y: {
+                    type: 'linear',
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: yLabel,
+                        color: textColor,
+                    },
+                    min: yMin,
+                    max: yMax,
+                    grid: {
+                        color: gridColor,
+                        display: true, // Ensure the grid is turned on
+                    },
+                    ticks: {
+                        color: textColor,
+                    },
+                },
             },
-            pinch: {
-              enabled: true,
+            plugins: {
+                title: {
+                    display: false, // Remove the chart title text
+                },
+                legend: {
+                    display: true,
+                    labels: {
+                        usePointStyle: true,
+                        pointStyle: 'circle',
+                        radius: 3,
+                        color: textColor,
+                    },
+                },
+                zoom: {
+                    zoom: {
+                        wheel: {
+                            enabled: true,
+                        },
+                        pinch: {
+                            enabled: true,
+                        },
+                        mode: 'xy',
+                    },
+                },
             },
-            mode: 'xy',
-          },
         },
-      },
-    },
-  });
+    });
 
-  // Store the chart in a global object to keep track of it
-  if (!window.myCharts) {
-    window.myCharts = {};
-  }
-  window.myCharts[chartId] = scatterChart;
+    // Store the chart in a global object to keep track of it
+    if (!window.myCharts) {
+        window.myCharts = {};
+    }
+    window.myCharts[chartId] = scatterChart;
 
-  return scatterChart;
+    return scatterChart;
 }
 
 function setChartTheme(chartInstance, isDark) {
-  if (!chartInstance) return;
-  const axisColor = isDark ? '#ffffff' : '#343a40';
-  chartInstance.options.scales.x.ticks.color = axisColor;
-  chartInstance.options.scales.x.grid.color = axisColor;
-  chartInstance.options.scales.y.ticks.color = axisColor;
-  chartInstance.options.scales.y.grid.color = axisColor;
-  chartInstance.options.plugins.legend.labels.color = axisColor;
-  chartInstance.data.datasets.forEach(dataset => {
-    dataset.pointBackgroundColor = isDark ? '#ff6666' : '#355C7D';
-    dataset.pointBorderColor = isDark ? '#ffffff' : '#000000';
-    // ...other color customizations...
-  });
-  chartInstance.update();
+    if (!chartInstance) return;
+    const textColor = isDark ? '#ffffff' : '#000000';
+    const gridColor = isDark ? '#ffffff' : '#000000';
+    chartInstance.options.scales.x.ticks.color = textColor;
+    chartInstance.options.scales.x.grid.color = gridColor;
+    chartInstance.options.scales.y.ticks.color = textColor;
+    chartInstance.options.scales.y.grid.color = gridColor;
+    chartInstance.options.plugins.legend.labels.color = textColor;
+    chartInstance.options.plugins.title.color = textColor;
+    chartInstance.options.plugins.tooltip.titleColor = textColor;
+    chartInstance.options.plugins.tooltip.bodyColor = textColor;
+    chartInstance.update();
 }
 
 // Load the data and perform calculations.
@@ -368,30 +368,29 @@ function updateChartScales(chartId, xMinId, xMaxId, yMinId, yMaxId) {
   }
 }
 
-
-
 function toggleDarkMode() {
   const body = document.body;
   const chartForms = document.querySelectorAll('.form-container');
-  
+  const isDarkMode = document.getElementById('darkModeToggle').checked;
 
-  if (body.classList.contains('light-mode')) {
-    body.classList.replace('light-mode', 'dark-mode');
+  if (isDarkMode) {
+    body.classList.add('dark-mode');
+    body.classList.remove('light-mode');
     chartForms.forEach((form) => {
-      form.classList.replace('light-mode', 'dark-mode');
+      form.classList.add('dark-mode');
+      form.classList.remove('light-mode');
     });
-
-    // Update the chart colors based on dark mode
-    updateChartColors();
   } else {
-    body.classList.replace('dark-mode', 'light-mode');
+    body.classList.add('light-mode');
+    body.classList.remove('dark-mode');
     chartForms.forEach((form) => {
-      form.classList.replace('dark-mode', 'light-mode');
+      form.classList.add('light-mode');
+      form.classList.remove('dark-mode');
     });
-
-    // Update the chart colors based on light mode
-    updateChartColors();
   }
+
+  // Update the chart colors based on the mode
+  updateChartColors();
 }
 
 function updateChartColors() {
@@ -415,18 +414,28 @@ function updateChartColors() {
   chart1.options.scales.y.title.color = textColor;
   chart1.options.scales.x.grid.color = gridColor;
   chart1.options.scales.y.grid.color = gridColor;
+  chart1.options.scales.x.ticks.color = textColor; // Update axis number labels
+  chart1.options.scales.y.ticks.color = textColor; // Update axis number labels
   chart1.options.plugins.title.color = textColor;
+  chart1.options.plugins.legend.labels.color = textColor; // Update legend text color
 
   chart2.options.scales.x.title.color = textColor;
   chart2.options.scales.y.title.color = textColor;
   chart2.options.scales.x.grid.color = gridColor;
   chart2.options.scales.y.grid.color = gridColor;
+  chart2.options.scales.x.ticks.color = textColor; // Update axis number labels
+  chart2.options.scales.y.ticks.color = textColor; // Update axis number labels
   chart2.options.plugins.title.color = textColor;
+  chart2.options.plugins.legend.labels.color = textColor; // Update legend text color
 
   // Update the chart after changing the dark/light mode settings
   chart1.update();
   chart2.update();
 }
+
+// Add event listener to the dark mode toggle
+document.getElementById('darkModeToggle').addEventListener('change', toggleDarkMode);
+
 function updateAndRunMain() {
   main();
   //captureAndSaveSnapshots()

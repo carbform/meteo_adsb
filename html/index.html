@@ -8,6 +8,7 @@
     <link href="dark-mode.css" rel="stylesheet" id="dark-mode-style">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
@@ -21,9 +22,11 @@
             <h1>Meteo-ADSB</h1>
             <h2>Vertical Atmospheric Structure</h2>
             <div class="dark-mode-toggle">
-                <span>Dark Mode</span>
+                <i class="fas fa-sun"></i>
                 <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
                 <label for="darkModeToggle"></label>
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-moon black-moon"></i> <!-- Ensure black moon icon is included -->
             </div>
         </div>
         

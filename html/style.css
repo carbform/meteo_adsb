@@ -57,11 +57,84 @@ h2 {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    position: relative;
 }
 
 .dark-mode-toggle span {
     font-size: 0.9rem;
     color: #666;
+}
+
+.dark-mode-toggle i {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.dark-mode-toggle input {
+    display: none;
+}
+
+.dark-mode-toggle label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 60px;
+    height: 30px;
+    background: var(--toggle-background, #ccc);
+    display: block;
+    border-radius: 30px;
+    position: relative;
+}
+
+.dark-mode-toggle label::before {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: var(--knob-background, #fff);
+    top: 3px;
+    left: var(--knob-left, 3px);
+    transition: 0.3s;
+}
+
+.dark-mode-toggle input:checked + label {
+    background: var(--checked-background, #444);
+}
+
+.dark-mode-toggle input:checked + label::before {
+    left: var(--knob-left-checked, calc(100% - 28px));
+}
+
+.dark-mode-toggle input:checked ~ .fa-sun {
+    display: none;
+}
+
+.dark-mode-toggle input:not(:checked) ~ .fa-moon {
+    display: none;
+}
+
+.dark-mode-toggle .fa-moon {
+    color: #666; /* Ensure the dark mode icon is visible */
+    margin-left: 10px; /* Adjust positioning closer to the toggle */
+}
+
+.dark-mode-toggle .fa-sun {
+    color: #666; /* Ensure the light mode icon is visible */
+    margin-right: 10px; /* Adjust positioning closer to the toggle */
+}
+
+.dark-mode-toggle .black-moon {
+    color: #000; /* Black moon icon for light mode */
+    margin-left: 10px; /* Adjust positioning closer to the toggle */
+    display: none; /* Hide by default */
+}
+
+.dark-mode-toggle input:not(:checked) ~ .black-moon {
+    display: block; /* Show black moon icon in light mode */
+}
+
+.dark-mode-toggle input:checked ~ .black-moon {
+    display: none; /* Hide black moon icon in dark mode */
 }
 
 .footer {
@@ -132,41 +205,6 @@ legend {
   margin: 0 auto;
   padding: 20px;
   margin-top: 20px;
-}
-
-.dark-mode-toggle input {
-  display: none;
-}
-
-.dark-mode-toggle label {
-  cursor: pointer;
-  text-indent: -9999px;
-  width: 60px;
-  height: 30px;
-  background: var(--toggle-background, #ccc);
-  display: block;
-  border-radius: 30px;
-  position: relative;
-}
-
-.dark-mode-toggle label::before {
-  content: '';
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: var(--knob-background, #fff);
-  top: 3px;
-  left: var(--knob-left, 3px);
-  transition: 0.3s;
-}
-
-.dark-mode-toggle input:checked + label {
-  background: var(--checked-background, #444);
-}
-
-.dark-mode-toggle input:checked + label::before {
-  left: var(--knob-left-checked, calc(100% - 28px));
 }
 
 .chart-title {
