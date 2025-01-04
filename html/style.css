@@ -2,6 +2,9 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: #f8f9fa;
     color: #343a40;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .container {
@@ -11,14 +14,28 @@ body {
 }
 
 .header {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 3rem;
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+.header.dark-mode {
+    background-color: #000000; /* Header background color in dark mode */
+}
+
+.header h1 {
+    flex: 1;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    text-align: center;
+    color: #007bff;
+    font-family: 'Poppins', sans-serif;
 }
 
 h2 {
@@ -29,19 +46,20 @@ h2 {
 }
 
 .chart-section {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    grid-template-rows: repeat(2, 1fr); /* 2 rows */
+    gap: 1rem; /* Reduce gap for tighter layout */
+    margin-bottom: 1rem; /* Reduce bottom margin */
 }
 
 .chart {
-    flex: 1;
-    max-width: 600px;
     background-color: #ffffff;
     border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    padding: 1rem; /* Adjust padding */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    min-height: 300px; /* Reduce height */
+    width: 100%; /* Ensure full width */
 }
 
 #map {
@@ -58,6 +76,7 @@ h2 {
     justify-content: center;
     gap: 0.5rem;
     position: relative;
+    margin-left: auto;
 }
 
 .dark-mode-toggle span {
@@ -142,16 +161,20 @@ h2 {
     padding: 1rem;
     font-size: 0.9rem;
     color: #666;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
 }
 
 .footer a {
-    color: #0066cc;
+    color: #007bff;
     text-decoration: none;
     transition: color 0.2s;
 }
 
 .footer a:hover {
-    color: #0052a3;
+    color: #0056b3;
 }
 
 .form-container {
@@ -236,11 +259,16 @@ button:hover {
 :root {
   --light-chart-color1: red;
   --light-chart-color2: blue;
+  --light-chart-color3: green;
+  --light-chart-color4: purple;
+  --light-chart-color5: orange;
+  --light-chart-color6: brown;
   --dark-chart-color1: orange;
   --dark-chart-color2: cyan;
-}
-
-:root {
+  --dark-chart-color3: yellow;
+  --dark-chart-color4: pink;
+  --dark-chart-color5: lightgreen;
+  --dark-chart-color6: lightblue;
   --light-chart-grid-color: rgba(0, 0, 0, 0.301);
   --dark-chart-grid-color: rgba(243, 240, 240, 0.452);
   --light-chart-text-color: black;
@@ -276,9 +304,9 @@ body {
 }
 .chart {
   text-align: center;
-  width: 50%;
-  max-width: 500px;
-  padding: 20px;
+  width: 95%;
+  max-width: 750px;
+  padding: 2px;
   background-color: #ffffff;
   color: var(--chart-text-color-light);
   border-radius: 8px;
@@ -485,6 +513,8 @@ body.dark-mode .chart {
 .snapshot-button-container {
     text-align: center;
     margin-top: 10px; /* Adjust margin as needed */
+    margin-right: auto;
+    margin-left: 1rem;
 }
 
 .btn-primary {

@@ -13,6 +13,10 @@ let jsonFilesToLoad = generateJSONFilePaths('json/', 120);
 // Variables to store the chart objects and initial scale values
 let chart1;
 let chart2;
+let chart3;
+let chart4;
+let chart5;
+let chart6;
 let chart1XMin = 0;
 let chart1XMax = 30;
 let chart1YMin = 0;
@@ -281,7 +285,6 @@ async function main() {
   if (aircraftData.length > 0) {
     const [filteredWindData, filteredTemperatureData] = calculateWindSpeedAndDirection(aircraftData);
     
-
     const windSpeedData = filteredWindData.map(row => ({
       x: row.ws,
       y: row.alt_geom*0.0003048,
@@ -290,47 +293,135 @@ async function main() {
       x: row.oat,
       y: row.alt_geom*0.0003048,
     }));
+    const groundSpeedData = aircraftData.map(row => ({
+      x: row.gs,
+      y: row.alt_geom*0.0003048,
+    }));
+    const trackData = aircraftData.map(row => ({
+      x: row.track,
+      y: row.alt_geom*0.0003048,
+    }));
+    const rateOfClimbData = aircraftData.map(row => ({
+      x: row.baro_rate,
+      y: row.alt_geom*0.0003048,
+    }));
+    const rssiData = aircraftData.map(row => ({
+      x: row.rssi,
+      y: row.alt_geom*0.0003048,
+    }));
 
     // Create and update the charts based on the concatenated data
     // For chart1
-chart1 = createScatterChart(
-  'chart1',
-  windSpeedData,
-  'Wind Speed vs Altitude',
-  'Wind Speed (km/hr)',
-  'Altitude (km)',
-  chart1XMin,
-  chart1XMax,
-  chart1YMin,
-  chart1YMax,
-  'red',
-  1 // Set the aspect ratio for chart1 here
-);
+    chart1 = createScatterChart(
+      'chart1',
+      windSpeedData,
+      'Wind Speed vs Altitude',
+      'Wind Speed (km/hr)',
+      'Altitude (km)',
+      chart1XMin,
+      chart1XMax,
+      chart1YMin,
+      chart1YMax,
+      'red',
+      1 // Set the aspect ratio for chart1 here
+    );
 
-// For chart2
-chart2 = createScatterChart(
-  'chart2',
-  temperatureData,
-  'Temperature vs Altitude',
-  'Temperature (°C)',
-  'Altitude (km)',
-  chart2XMin,
-  chart2XMax,
-  chart2YMin,
-  chart2YMax,
-  'blue',
-  1 // Set the aspect ratio for chart2 here
-);
-    
-    // Set the initial grid color for chart1 and chart2
+    // For chart2
+    chart2 = createScatterChart(
+      'chart2',
+      temperatureData,
+      'Temperature vs Altitude',
+      'Temperature (°C)',
+      'Altitude (km)',
+      chart2XMin,
+      chart2XMax,
+      chart2YMin,
+      chart2YMax,
+      'blue',
+      1 // Set the aspect ratio for chart2 here
+    );
+
+    // For chart3
+    chart3 = createScatterChart(
+      'chart3',
+      groundSpeedData,
+      'Ground Speed vs Altitude',
+      'Ground Speed (knots/hr)',
+      'Altitude (km)',
+      0,
+      500,
+      0,
+      14,
+      'green',
+      1 // Set the aspect ratio for chart3 here
+    );
+
+    // For chart4
+    chart4 = createScatterChart(
+      'chart4',
+      trackData,
+      'Track vs Altitude',
+      'Track (degrees)',
+      'Altitude (km)',
+      0,
+      360,
+      0,
+      14,
+      'purple',
+      1 // Set the aspect ratio for chart4 here
+    );
+
+    // For chart5
+    chart5 = createScatterChart(
+      'chart5',
+      rateOfClimbData,
+      'Rate of Climb/Descent vs Altitude',
+      'Rate of Climb/Descent (ft/min)',
+      'Altitude (km)',
+      -3000,
+      3000,
+      0,
+      14,
+      'orange',
+      1 // Set the aspect ratio for chart5 here
+    );
+
+    // For chart6
+    chart6 = createScatterChart(
+      'chart6',
+      rssiData,
+      'RSSI vs Altitude',
+      'RSSI (dB)',
+      'Altitude (km)',
+      -40,
+      0,
+      0,
+      14,
+      'brown',
+      1 // Set the aspect ratio for chart6 here
+    );
+
+    // Set the initial grid color for all charts
     chart1.options.scales.x.grid.color = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
     chart1.options.scales.y.grid.color = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
     chart2.options.scales.x.grid.color = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
     chart2.options.scales.y.grid.color = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
+    chart3.options.scales.x.grid.color = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
+    chart3.options.scales.y.grid.color = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
+    chart4.options.scales.x.grid.color = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
+    chart4.options.scales.y.grid.color = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
+    chart5.options.scales.x.grid.color = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
+    chart5.options.scales.y.grid.color = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
+    chart6.options.scales.x.grid.color = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
+    chart6.options.scales.y.grid.color = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
   }
   extractLatLonAndMap(aircraftData);
   setChartTheme(chart1, false);
   setChartTheme(chart2, false);
+  setChartTheme(chart3, false);
+  setChartTheme(chart4, false);
+  setChartTheme(chart5, false);
+  setChartTheme(chart6, false);
 }
 
 // Call the main function.
@@ -376,12 +467,14 @@ function updateChartScales(chartId, xMinId, xMaxId, yMinId, yMaxId) {
 
 function toggleDarkMode() {
   const body = document.body;
+  const header = document.querySelector('.header');
   const chartForms = document.querySelectorAll('.form-container, .form-content, .form-control');
   const isDarkMode = document.getElementById('darkModeToggle').checked;
 
   if (isDarkMode) {
     body.classList.add('dark-mode');
     body.classList.remove('light-mode');
+    header.classList.add('dark-mode');
     chartForms.forEach((form) => {
       form.classList.add('dark-mode');
       form.classList.remove('light-mode');
@@ -389,6 +482,7 @@ function toggleDarkMode() {
   } else {
     body.classList.add('light-mode');
     body.classList.remove('dark-mode');
+    header.classList.remove('dark-mode');
     chartForms.forEach((form) => {
       form.classList.add('light-mode');
       form.classList.remove('dark-mode');
@@ -414,6 +508,18 @@ function updateChartColors() {
   chart2.data.datasets[0].pointBackgroundColor = isDarkMode
     ? getComputedStyle(document.documentElement).getPropertyValue('--dark-chart-color2')
     : getComputedStyle(document.documentElement).getPropertyValue('--light-chart-color2');
+  chart3.data.datasets[0].pointBackgroundColor = isDarkMode
+    ? getComputedStyle(document.documentElement).getPropertyValue('--dark-chart-color3')
+    : getComputedStyle(document.documentElement).getPropertyValue('--light-chart-color3');
+  chart4.data.datasets[0].pointBackgroundColor = isDarkMode
+    ? getComputedStyle(document.documentElement).getPropertyValue('--dark-chart-color4')
+    : getComputedStyle(document.documentElement).getPropertyValue('--light-chart-color4');
+  chart5.data.datasets[0].pointBackgroundColor = isDarkMode
+    ? getComputedStyle(document.documentElement).getPropertyValue('--dark-chart-color5')
+    : getComputedStyle(document.documentElement).getPropertyValue('--light-chart-color5');
+  chart6.data.datasets[0].pointBackgroundColor = isDarkMode
+    ? getComputedStyle(document.documentElement).getPropertyValue('--dark-chart-color6')
+    : getComputedStyle(document.documentElement).getPropertyValue('--light-chart-color6');
 
   // Update chart options for scales, grid, and text colors
   chart1.options.scales.x.title.color = textColor;
@@ -434,9 +540,49 @@ function updateChartColors() {
   chart2.options.plugins.title.color = textColor;
   chart2.options.plugins.legend.labels.color = textColor; // Update legend text color
 
+  chart3.options.scales.x.title.color = textColor;
+  chart3.options.scales.y.title.color = textColor;
+  chart3.options.scales.x.grid.color = gridColor;
+  chart3.options.scales.y.grid.color = gridColor;
+  chart3.options.scales.x.ticks.color = textColor; // Update axis number labels
+  chart3.options.scales.y.ticks.color = textColor; // Update axis number labels
+  chart3.options.plugins.title.color = textColor;
+  chart3.options.plugins.legend.labels.color = textColor; // Update legend text color
+
+  chart4.options.scales.x.title.color = textColor;
+  chart4.options.scales.y.title.color = textColor;
+  chart4.options.scales.x.grid.color = gridColor;
+  chart4.options.scales.y.grid.color = gridColor;
+  chart4.options.scales.x.ticks.color = textColor; // Update axis number labels
+  chart4.options.scales.y.ticks.color = textColor; // Update axis number labels
+  chart4.options.plugins.title.color = textColor;
+  chart4.options.plugins.legend.labels.color = textColor; // Update legend text color
+
+  chart5.options.scales.x.title.color = textColor;
+  chart5.options.scales.y.title.color = textColor;
+  chart5.options.scales.x.grid.color = gridColor;
+  chart5.options.scales.y.grid.color = gridColor;
+  chart5.options.scales.x.ticks.color = textColor; // Update axis number labels
+  chart5.options.scales.y.ticks.color = textColor; // Update axis number labels
+  chart5.options.plugins.title.color = textColor;
+  chart5.options.plugins.legend.labels.color = textColor; // Update legend text color
+
+  chart6.options.scales.x.title.color = textColor;
+  chart6.options.scales.y.title.color = textColor;
+  chart6.options.scales.x.grid.color = gridColor;
+  chart6.options.scales.y.grid.color = gridColor;
+  chart6.options.scales.x.ticks.color = textColor; // Update axis number labels
+  chart6.options.scales.y.ticks.color = textColor; // Update axis number labels
+  chart6.options.plugins.title.color = textColor;
+  chart6.options.plugins.legend.labels.color = textColor; // Update legend text color
+
   // Update the chart after changing the dark/light mode settings
   chart1.update();
   chart2.update();
+  chart3.update();
+  chart4.update();
+  chart5.update();
+  chart6.update();
 }
 
 // Add event listener to the dark mode toggle
@@ -488,18 +634,31 @@ async function captureAndSaveSnapshot(chart, filename) {
 // Function to capture and save a screenshot of the charts container
 async function captureAndSaveChartsScreenshot(filename) {
   const chartsContainer = document.getElementById('chartContainer');
+  const charts = document.querySelectorAll('.chart canvas');
+  const originalBackgroundColors = [];
+
+  // Set the background color of all charts to white
+  charts.forEach((chart, index) => {
+    originalBackgroundColors[index] = chart.style.backgroundColor;
+    chart.style.backgroundColor = '#ffffff';
+  });
+
   try {
     const canvas = await html2canvas(chartsContainer, { useCORS: true });
     canvas.toBlob(function (blob) {
       const folderPath = 'snaps'; // Specify the folder path
       saveAs(blob, `${folderPath}/${filename}.png`);
+      // Restore original background colors
+      charts.forEach((chart, index) => {
+        chart.style.backgroundColor = originalBackgroundColors[index];
+      });
     });
   } catch (error) {
     console.error("Error capturing charts screenshot:", error);
   }
 }
 
-// Function to capture and save snapshots of both charts
+// Function to capture and save snapshots of all six charts
 async function captureAndSaveSnapshots() {
   const utcTime = new Date().toISOString(); // Get the current UTC time
   await captureAndSaveChartsScreenshot(`charts_screenshot_${utcTime}`);

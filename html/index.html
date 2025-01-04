@@ -19,20 +19,18 @@
 <body class="light-mode">
     <div class="container">
         <div class="header">
+            <div class="snapshot-button-container">
+                <button id="snapshotButton" class="btn btn-primary">
+                    <i class="fas fa-camera"></i> Snapshot
+                </button>
+            </div>
             <h1>Meteo-ADSB</h1>
-            <!-- <h2>Vertical Atmospheric Structure</h2> -->
             <div class="dark-mode-toggle">
                 <i class="fas fa-sun"></i>
                 <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
                 <label for="darkModeToggle"></label>
                 <i class="fas fa-moon"></i>
                 <i class="fas fa-moon black-moon"></i> <!-- Ensure black moon icon is included -->
-            </div>
-            <!-- Add a snapshot button -->
-            <div class="snapshot-button-container">
-                <button id="snapshotButton" class="btn btn-primary">
-                    <i class="fas fa-camera"></i> Capture Snapshot
-                </button>
             </div>
         </div>
         
@@ -42,6 +40,18 @@
             </div>
             <div class="chart">
                 <canvas id="chart2"></canvas>
+            </div>
+            <div class="chart">
+                <canvas id="chart3"></canvas>
+            </div>
+            <div class="chart">
+                <canvas id="chart4"></canvas>
+            </div>
+            <div class="chart">
+                <canvas id="chart5"></canvas>
+            </div>
+            <div class="chart">
+                <canvas id="chart6"></canvas>
             </div>
         </div>
         
