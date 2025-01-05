@@ -3,7 +3,7 @@ import shutil
 import subprocess
 import time
 import json
-import platform
+import threading
 
 CONFIG_FILE = "meteo_adsb_config.json"
 DEST_DIR = os.path.join("html", "json")
@@ -64,6 +64,13 @@ def stop_server(server_process):
         server_process.wait()
         print("Server stopped.")
 
+def update_data_periodically(config, interval=300):
+    def update():
+        while True:
+            copy_files(config)
+            time.sleep(interval)
+    threading.Thread(target=update, daemon=True).start()
+
 def main():
     config = read_config()
     if len(os.sys.argv) == 2 and os.sys.argv[1] in ["-r", "-i"]:
@@ -72,12 +79,12 @@ def main():
         read_config()
 
     copy_files(config)
+    update_data_periodically(config)
     server_process = start_server()
 
     try:
         while True:
-            time.sleep(240)
-            copy_files(config)
+            time.sleep(1)
     except (KeyboardInterrupt, SystemExit):
         stop_server(server_process)
         print("Exiting the script.")
