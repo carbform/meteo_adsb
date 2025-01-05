@@ -2,8 +2,8 @@
 
 ## Vertical Atmospheric Structure Analysis 
 
-![Bengaluru](html/light.png)
-![Bengaluru](html/dark.png)
+![Bengaluru](light.png)
+![Bengaluru](dark.png)
 
 
 ## Installation
