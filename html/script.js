@@ -282,7 +282,6 @@ async function main() {
 window.generateJSONFilePaths = generateJSONFilePaths;
 window.loadAndConcatenateData = loadAndConcatenateData;
 window.loadAndConcatenateAllData = loadAndConcatenateAllData;
-window.toggleDarkMode = toggleDarkMode;
 window.setMapTheme = setMapTheme;
 window.setFormTheme = setFormTheme;
 window.setChartTheme = setChartTheme;
