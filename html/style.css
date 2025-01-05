@@ -11,20 +11,16 @@ body {
     --light-chart-color1: red;
     --light-chart-color2: blue;
     --light-chart-color3: green;
-    --light-chart-color4: purple;
-    --light-chart-color5: orange;
-    --light-chart-color6: brown;
+
     --dark-chart-color1: orange;
     --dark-chart-color2: cyan;
     --dark-chart-color3: yellow;
-    --dark-chart-color4: pink;
-    --dark-chart-color5: lightgreen;
-    --dark-chart-color6: lightblue;
+
     --light-chart-grid-color: rgba(0, 0, 0, 0.301);
     --dark-chart-grid-color: rgb(255, 255, 255);
     --light-chart-text-color: black;
     --dark-chart-text-color: rgb(255, 255, 255);
-    --chart-background-color-dark: #1b1b1b; /* Add this line */
+    --chart-background-color-dark: #1b1b1b;
 }
 
 .container {

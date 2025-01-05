@@ -14,7 +14,7 @@ body.dark-mode {
 }
 
 body.dark-mode .header {
-    background-color: #1b1b1b;;
+    background-color: #1b1b1b;
 }
 
 body.dark-mode .chart {
@@ -49,6 +49,7 @@ body.dark-mode .footer a {
 
 body.dark-mode .dark-mode-toggle label {
     background: #444;
+    border: 1px solid white; /* Add border color for the toggle switch */
 }
 
 body.dark-mode .dark-mode-toggle label::before {
@@ -71,7 +72,6 @@ body.dark-mode .dark-mode-toggle .black-moon {
     background-color: var(--chart-background-color-dark, #1E1E1E); /* Chart background color in dark mode */
     color: var(--dark-chart-text-color, #ffffff); /* Chart text color in dark mode */
 }
-
 
 #map.dark-mode {
     filter: invert(0.9) hue-rotate(180deg);
@@ -111,6 +111,7 @@ body.dark-mode .dark-mode-toggle .black-moon {
 /* Dark mode switch label (checked state) */
 .dark-mode-toggle input:checked + label {
     background: var(--checked-background, #1b1b1b);
+    border: 1px solid white; /* Add border color for the toggle switch when checked */
 }
 
 /* Dark mode switch label::before (checked state) */
@@ -119,4 +120,4 @@ body.dark-mode .dark-mode-toggle .black-moon {
 }
 .poppins-font {
     font-family: 'Poppins', sans-serif;
-  }
+}

@@ -13,7 +13,7 @@ let jsonFilesToLoad = generateJSONFilePaths('json/', 120);
 // Function to load a JSON file and concatenate data
 async function loadAndConcatenateData(jsonFileName, data) {
   try {
-    const response = await fetch(jsonFileName); // This will use the relative URL
+    const response = await fetch(jsonFileName);
     if (!response.ok) {
       throw new Error(`Failed to fetch data from ${jsonFileName}.`);
     }
@@ -44,132 +44,134 @@ let mapCenter = [13, 77.5];
 let mapZoom = 9;
 
 document.addEventListener('DOMContentLoaded', () => {
-    initialize();
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    darkModeToggle.addEventListener('change', () => {
-        const isDark = darkModeToggle.checked;
-        setChartTheme(window.myChart1, isDark);
-        setChartTheme(window.myChart2, isDark);
-        setChartTheme(window.myChart3, isDark);
-        setFormTheme(isDark); // Update form theme
-        setMapTheme(isDark); // Update map theme
-    });
-
-    // Initialize the map
-    map = L.map('map').setView([13, 77.5], 9);
-
-    lightLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="https://carto.com/attributions">CARTO</a>'
-    });
-
-    // Set initial map theme based on current mode
-    const isDark = document.body.classList.contains('dark-mode');
+  initialize();
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  darkModeToggle.addEventListener('change', () => {
+    const isDark = darkModeToggle.checked;
+    setChartTheme(window.myChart1, isDark);
+    setChartTheme(window.myChart2, isDark);
+    setChartTheme(window.myChart3, isDark);
+    setFormTheme(isDark);
     setMapTheme(isDark);
+    updateChartColors();
+  });
+
+  // Initialize the map
+  map = L.map('map').setView([13, 77.5], 9);
+
+  lightLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  darkLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    className: 'dark-matter'
+  });
+
+  // Set initial map theme based on current mode
+  const isDark = document.body.classList.contains('dark-mode');
+  setMapTheme(isDark);
 });
 
 function toggleDarkMode() {
-    document.body.classList.toggle('dark-mode');
-    document.querySelectorAll('.chart').forEach(chart => chart.classList.toggle('dark-mode'));
-    document.getElementById('map').classList.toggle('dark-mode');
+  document.body.classList.toggle('dark-mode');
+  document.querySelectorAll('.chart').forEach(chart => chart.classList.toggle('dark-mode'));
+  document.getElementById('map').classList.toggle('dark-mode');
 
-    const isDark = document.body.classList.contains('dark-mode');
-    // Update the theme for each chart instance
-    setChartTheme(window.myChart1, isDark);
-    setChartTheme(window.myChart2, isDark);
-    setChartTheme(window.myChart3, isDark); // Ensure all charts are updated
-    setFormTheme(isDark); // Update form theme
-    setMapTheme(isDark); // Update map theme
+  const isDark = document.body.classList.contains('dark-mode');
+  setChartTheme(window.myChart1, isDark);
+  setChartTheme(window.myChart2, isDark);
+  setChartTheme(window.myChart3, isDark);
+  setFormTheme(isDark);
+  setMapTheme(isDark);
+  updateChartColors();
 }
 
 function setMapTheme(isDark) {
-    console.log(`Setting map theme to ${isDark ? 'dark' : 'light'} mode`);
-    if (isDark) {
-        if (map.hasLayer(lightLayer)) {
-            map.removeLayer(lightLayer);
-            console.log('Removed light layer');
-        }
-        if (!map.hasLayer(darkLayer)) {
-            darkLayer.addTo(map);
-            console.log('Added dark layer');
-        }
-    } else {
-        if (map.hasLayer(darkLayer)) {
-            map.removeLayer(darkLayer);
-            console.log('Removed dark layer');
-        }
-        if (!map.hasLayer(lightLayer)) {
-            lightLayer.addTo(map);
-            console.log('Added light layer');
-        }
+  console.log(`Setting map theme to ${isDark ? 'dark' : 'light'} mode`);
+  if (isDark) {
+    if (map.hasLayer(lightLayer)) {
+      map.removeLayer(lightLayer);
+      console.log('Removed light layer');
     }
+    if (!map.hasLayer(darkLayer)) {
+      darkLayer.addTo(map);
+      console.log('Added dark layer');
+    }
+  } else {
+    if (map.hasLayer(darkLayer)) {
+      map.removeLayer(darkLayer);
+      console.log('Removed dark layer');
+    }
+    if (!map.hasLayer(lightLayer)) {
+      lightLayer.addTo(map);
+      console.log('Added light layer');
+    }
+  }
 }
 
 function setFormTheme(isDark) {
-    const formContainer = document.querySelector('.form-container');
-    const formContents = document.querySelectorAll('.form-content');
-    const formControls = document.querySelectorAll('.form-control');
+  const formContainer = document.querySelector('.form-container');
+  const formContents = document.querySelectorAll('.form-content');
+  const formControls = document.querySelectorAll('.form-control');
 
-    if (isDark) {
-        formContainer.classList.add('dark-mode');
-        formContents.forEach(content => content.classList.add('dark-mode'));
-        formControls.forEach(control => control.classList.add('dark-mode'));
-    } else {
-        formContainer.classList.remove('dark-mode');
-        formContents.forEach(content => content.classList.remove('dark-mode'));
-        formControls.forEach(control => control.classList.remove('dark-mode'));
-    }
+  if (isDark) {
+    formContainer.classList.add('dark-mode');
+    formContents.forEach(content => content.classList.add('dark-mode'));
+    formControls.forEach(control => control.classList.add('dark-mode'));
+  } else {
+    formContainer.classList.remove('dark-mode');
+    formContents.forEach(content => content.classList.remove('dark-mode'));
+    formControls.forEach(control => control.classList.remove('dark-mode'));
+  }
 }
 
 function setChartTheme(chart, isDark) {
-    if (chart) {
-        const rootStyles = getComputedStyle(document.documentElement);
-        chart.options.scales.x.grid.color = isDark ? rootStyles.getPropertyValue('--dark-chart-grid-color') : rootStyles.getPropertyValue('--light-chart-grid-color');
-        chart.options.scales.y.grid.color = isDark ? rootStyles.getPropertyValue('--dark-chart-grid-color') : rootStyles.getPropertyValue('--light-chart-grid-color');
-        chart.options.scales.x.ticks.color = isDark ? rootStyles.getPropertyValue('--dark-chart-text-color') : rootStyles.getPropertyValue('--light-chart-text-color');
-        chart.options.scales.y.ticks.color = isDark ? rootStyles.getPropertyValue('--dark-chart-text-color') : rootStyles.getPropertyValue('--light-chart-text-color');
-        chart.options.plugins.legend.labels.color = isDark ? rootStyles.getPropertyValue('--dark-chart-text-color') : rootStyles.getPropertyValue('--light-chart-text-color');
-        chart.options.plugins.title.color = isDark ? rootStyles.getPropertyValue('--dark-chart-text-color') : rootStyles.getPropertyValue('--light-chart-text-color');
-        chart.options.plugins.tooltip.backgroundColor = isDark ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)';
-        chart.options.plugins.tooltip.titleColor = isDark ? 'black' : 'white';
-        chart.options.plugins.tooltip.bodyColor = isDark ? 'black' : 'white';
+  if (chart) {
+    const rootStyles = getComputedStyle(document.documentElement);
+    chart.options.scales.x.grid.color = isDark ? rootStyles.getPropertyValue('--dark-chart-grid-color') : rootStyles.getPropertyValue('--light-chart-grid-color');
+    chart.options.scales.y.grid.color = isDark ? rootStyles.getPropertyValue('--dark-chart-grid-color') : rootStyles.getPropertyValue('--light-chart-grid-color');
+    chart.options.scales.x.ticks.color = isDark ? rootStyles.getPropertyValue('--dark-chart-text-color') : rootStyles.getPropertyValue('--light-chart-text-color');
+    chart.options.scales.y.ticks.color = isDark ? rootStyles.getPropertyValue('--dark-chart-text-color') : rootStyles.getPropertyValue('--light-chart-text-color');
+    chart.options.plugins.legend.labels.color = isDark ? rootStyles.getPropertyValue('--dark-chart-text-color') : rootStyles.getPropertyValue('--light-chart-text-color');
+    chart.options.plugins.title.color = isDark ? rootStyles.getPropertyValue('--dark-chart-text-color') : rootStyles.getPropertyValue('--light-chart-text-color');
+    chart.options.plugins.tooltip.backgroundColor = isDark ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)';
+    chart.options.plugins.tooltip.titleColor = isDark ? 'black' : 'white';
+    chart.options.plugins.tooltip.bodyColor = isDark ? 'black' : 'white';
 
-        // Update dataset colors
-        chart.data.datasets.forEach((dataset, index) => {
-            dataset.borderColor = isDark ? rootStyles.getPropertyValue(`--dark-chart-color${index + 1}`) : rootStyles.getPropertyValue(`--light-chart-color${index + 1}`);
-            dataset.backgroundColor = isDark ? rootStyles.getPropertyValue(`--dark-chart-color${index + 1}`) : rootStyles.getPropertyValue(`--light-chart-color${index + 1}`);
-        });
+    // Update dataset colors
+    chart.data.datasets.forEach((dataset, index) => {
+      dataset.borderColor = isDark ? rootStyles.getPropertyValue(`--dark-chart-color${index + 1}`) : rootStyles.getPropertyValue(`--light-chart-color${index + 1}`);
+      dataset.backgroundColor = isDark ? rootStyles.getPropertyValue(`--dark-chart-color${index + 1}`) : rootStyles.getPropertyValue(`--light-chart-color${index + 1}`);
+    });
 
-        chart.update();
-    }
+    chart.update();
+  }
 }
 
 async function fetchData(url) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return await response.json();
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong with fetching data!',
-        });
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Something went wrong with fetching data!',
+    });
+  }
 }
 
 async function initialize() {
-    const historyData = await fetchData('json/history_0.json');
-    const aircraftData = await fetchData('json/aircraft.json');
-    // Process and plot data
+  const historyData = await fetchData('json/history_0.json');
+  const aircraftData = await fetchData('json/aircraft.json');
+  // Process and plot data
 }
 
 function extractLatLonAndMap(aircraftData) {
@@ -189,8 +191,7 @@ function extractLatLonAndMap(aircraftData) {
 
     // Add a tile layer (basemap)
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
     // Get the latitude, longitude, and zoom input elements
@@ -203,19 +204,19 @@ function extractLatLonAndMap(aircraftData) {
       const lat = parseFloat(latInput.value);
       mapCenter[0] = isNaN(lat) ? 0 : lat;
       map.setView(mapCenter, mapZoom);
-    },{ passive: true });
+    }, { passive: true });
 
     lonInput.addEventListener('input', () => {
       const lon = parseFloat(lonInput.value);
       mapCenter[1] = isNaN(lon) ? 0 : lon;
       map.setView(mapCenter, mapZoom);
-    },{ passive: true });
+    }, { passive: true });
 
     zoomInput.addEventListener('input', () => {
       const zoom = parseInt(zoomInput.value);
       mapZoom = isNaN(zoom) ? 9 : zoom;
       map.setView(mapCenter, mapZoom);
-    },{ passive: true });
+    }, { passive: true });
   }
 
   // Define a function to determine the color based on some criteria
@@ -268,6 +269,21 @@ async function main() {
   extractLatLonAndMap(aircraftData);
 }
 
+// Attach functions to the window object to make them globally accessible
+window.generateJSONFilePaths = generateJSONFilePaths;
+window.loadAndConcatenateData = loadAndConcatenateData;
+window.loadAndConcatenateAllData = loadAndConcatenateAllData;
+window.toggleDarkMode = toggleDarkMode;
+window.setMapTheme = setMapTheme;
+window.setFormTheme = setFormTheme;
+window.setChartTheme = setChartTheme;
+window.fetchData = fetchData;
+window.initialize = initialize;
+window.extractLatLonAndMap = extractLatLonAndMap;
+window.main = main;
+
+// Ensure the toggleDarkMode function is attached to the window object
+window.toggleDarkMode = toggleDarkMode;
 
 // Call the main function.
 main();
