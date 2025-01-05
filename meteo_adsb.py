@@ -48,11 +48,11 @@ def copy_files(config):
 def start_server():
     os.chdir(DEST_DIR)
     local_ip = subprocess.check_output(["hostname", "-I"]).decode().split()[0]
-    server_process = subprocess.Popen(["python3", "-m", "http.server", "5050", "-d", "..", "--bind", local_ip])
+    server_process = subprocess.Popen(["python3", "-m", "http.server", "8000"])
     time.sleep(1)
     if server_process.poll() is None:
         print(f"Do not close this terminal")
-        print(f"Meteo-ADSB is running. Access it at http://{local_ip}:5050 on any browser")
+        print(f"Meteo-ADSB is running. Access it at http://{local_ip}:8000 on any browser")
     else:
         print("Failed to start the server. Check if Python 3 is installed on this machine.")
     return server_process

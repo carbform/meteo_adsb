@@ -1,42 +1,46 @@
 #!/bin/bash
 
-CONFIG_FILE="meteo_adsb_config.json"
-DEST_DIR="html/json"
-SRC_DIR="/var/run/dump1090-fa"
+CONFIG_FILE="config.json"
+DEST_DIR="json_files"
 
+# Function to read the configuration file
 read_config() {
     if [ -f "$CONFIG_FILE" ]; then
-        config=$(cat "$CONFIG_FILE")
+        cat "$CONFIG_FILE"
     else
-        config=$(cat <<EOF
-{
-    "local_machine": "n",
-    "src_dir": "$SRC_DIR",
-    "remote_ip": "",
-    "remote_user": ""
-}
-EOF
-)
-        echo "$config" > "$CONFIG_FILE"
+        echo "{}"
     fi
-    echo "$config"
 }
 
+# Function to save the configuration file
 save_config() {
     echo "$1" > "$CONFIG_FILE"
 }
 
+# Function to prompt for local or remote setup
 prompt_local_or_remote() {
+    config=$(read_config)
+    local_machine=$(echo "$config" | jq -r '.local_machine')
+    if [ "$local_machine" == "null" ]; then
+        read -p "Is this a local machine setup? (y/n): " local_machine
+        config=$(echo "$config" | jq --arg local_machine "$local_machine" '.local_machine = $local_machine')
+    fi
+    save_config "$config"
+}
+
+# Function to prompt for remote details if needed
+prompt_remote_details() {
     config=$(read_config)
     local_machine=$(echo "$config" | jq -r '.local_machine')
     if [ "$local_machine" == "n" ]; then
         read -p "Enter the remote IP address: " remote_ip
         read -p "Enter the remote username: " remote_user
         config=$(echo "$config" | jq --arg remote_ip "$remote_ip" --arg remote_user "$remote_user" '.remote_ip = $remote_ip | .remote_user = $remote_user')
+        save_config "$config"
     fi
-    save_config "$config"
 }
 
+# Function to copy JSON files from source to destination
 copy_files() {
     config=$(read_config)
     local_machine=$(echo "$config" | jq -r '.local_machine')
@@ -52,47 +56,21 @@ copy_files() {
     fi
 }
 
+# Function to start the server
 start_server() {
-    cd "$DEST_DIR"
+    cd "$DEST_DIR" || exit
     local_ip=$(hostname -I | awk '{print $1}')
-    python3 -m http.server 5050 -d .. --bind "$local_ip" &
-    server_pid=$!
-    sleep 1
-    if ps -p $server_pid > /dev/null; then
-        echo "Do not close this terminal"
-        echo "Meteo-ADSB is running. Access it at http://$local_ip:5050 on any browser"
-    else
-        echo "Failed to start the server. Check if Python 3 is installed on this machine."
-    fi
-    echo $server_pid
+    echo "Starting server at http://$local_ip:8000"
+    python3 -m http.server 8000
 }
 
-stop_server() {
-    if [ -n "$1" ]; then
-        echo "Stopping the server..."
-        kill "$1"
-        wait "$1"
-        echo "Server stopped."
-    fi
-}
-
+# Main script execution
 main() {
-    config=$(read_config)
-    if [ "$1" == "-r" ] || [ "$1" == "-i" ]; then
-        prompt_local_or_remote
-    else
-        read_config
-    fi
-
+    mkdir -p "$DEST_DIR"
+    prompt_local_or_remote
+    prompt_remote_details
     copy_files
-    server_pid=$(start_server)
-
-    trap "stop_server $server_pid; exit" INT TERM
-
-    while true; do
-        sleep 240
-        copy_files
-    done
+    start_server
 }
 
-main "$@"
+main
