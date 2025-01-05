@@ -1,30 +1,77 @@
 /* Apply dark mode styles when the toggle is checked */
 body.dark-mode {
-    background-color: var(--body-background-color-dark, #000000); /* Body background color in dark mode */
-    color: var(--body-text-color-dark, #78ec9f); /* Text color in dark mode */
+    background-color: #000000;
+    color: white;
+    --chart-background-color-dark: #141414;
+    --dark-chart-grid-color: rgba(243, 240, 240, 0.452);
+    --dark-chart-text-color: white;
+    --dark-chart-color1: orange;
+    --dark-chart-color2: cyan;
+    --dark-chart-color3: yellow;
+    --dark-chart-color4: pink;
+    --dark-chart-color5: lightgreen;
+    --dark-chart-color6: lightblue;
+}
+
+body.dark-mode .header {
+    background-color: #1b1b1b;;
+}
+
+body.dark-mode .chart {
+    background-color: var(--chart-background-color-dark);
+    color: var(--dark-chart-text-color);
+}
+
+body.dark-mode .form-container,
+body.dark-mode .form-content,
+body.dark-mode .form-control {
+    background-color: #1b1b1b;
+    color: white;
+    border: 1px solid #1b1b1b;
+}
+
+body.dark-mode .form-control {
+    border: 1px solid white; /* Dark mode border color */
+}
+
+body.dark-mode .form-content {
+    border: 1px solid white; /* Dark mode border color for form content */
+}
+
+body.dark-mode .footer {
+    background-color: #343a40;
+    color: white;
+}
+
+body.dark-mode .footer a {
+    color: #78ec9f;
+}
+
+body.dark-mode .dark-mode-toggle label {
+    background: #444;
+}
+
+body.dark-mode .dark-mode-toggle label::before {
+    background: #fff;
+}
+
+body.dark-mode .dark-mode-toggle .fa-moon {
+    color: white;
+}
+
+body.dark-mode .dark-mode-toggle .fa-sun {
+    color: white;
+}
+
+body.dark-mode .dark-mode-toggle .black-moon {
+    color: #1b1b1b;
 }
 
 .chart.dark-mode {
     background-color: var(--chart-background-color-dark, #1E1E1E); /* Chart background color in dark mode */
-    color: var(--chart-text-color-dark, #ffffff); /* Chart text color in dark mode */
+    color: var(--dark-chart-text-color, #ffffff); /* Chart text color in dark mode */
 }
 
-.form-container.dark-mode {
-    border: var(--form-border-dark, 1px solid #444); /* Form border color in dark mode */
-    background: var(--form-background-color-dark, #333); /* Form background color in dark mode */
-    color: var(--form-text-color-dark, #fff); /* Form text color in dark mode */
-}
-
-.form-content.dark-mode {
-    background: var(--form-content-background-dark, #444); /* Form content background color in dark mode */
-    color: var(--form-content-text-color-dark, #fff); /* Form content text color in dark mode */
-}
-
-.form-control.dark-mode {
-    background: var(--form-control-background-dark, #555); /* Form control background color in dark mode */
-    color: var(--form-control-text-color-dark, #fff); /* Form control text color in dark mode */
-    border: var(--form-control-border-dark, 1px solid #666); /* Form control border color in dark mode */
-}
 
 #map.dark-mode {
     filter: invert(0.9) hue-rotate(180deg);
@@ -62,7 +109,7 @@ body.dark-mode {
 
 /* Dark mode switch label (checked state) */
 .dark-mode-toggle input:checked + label {
-    background: var(--checked-background, #444);
+    background: var(--checked-background, #1b1b1b);
 }
 
 /* Dark mode switch label::before (checked state) */

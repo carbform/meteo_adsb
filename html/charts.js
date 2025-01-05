@@ -1,5 +1,3 @@
-
-
 // Function to update chart scales when input values change
 function updateChartScales(chartId, xMinId, xMaxId, yMinId, yMaxId) {
   const xMin = parseFloat(document.getElementById(xMinId).value);
@@ -82,7 +80,7 @@ let chart2YMax = 14;
 function createScatterChart(chartId, chartData, chartTitle, xLabel, yLabel, xMin, xMax, yMin, yMax, color, aspectRatio) {
     const isDarkMode = document.body.classList.contains('dark-mode');
     const textColor = isDarkMode ? '#ffffff' : '#000000';
-    const gridColor = isDarkMode ? '#444444' : '#e0e0e0'; // Adjust grid color for better visibility
+    const gridColor = isDarkMode ? '#ffffff' : '#000000';
 
     const ctx = document.getElementById(chartId).getContext('2d');
 
@@ -183,7 +181,7 @@ function createScatterChart(chartId, chartData, chartTitle, xLabel, yLabel, xMin
 function setChartTheme(chartInstance, isDark) {
     if (!chartInstance) return;
     const textColor = isDark ? '#ffffff' : '#000000';
-    const gridColor = isDark ? '#444444' : '#e0e0e0'; // Adjust grid color for better visibility
+    const gridColor = isDark ? '#ffffff' : '#000000';
     chartInstance.options.scales.x.ticks.color = textColor;
     chartInstance.options.scales.x.grid.color = gridColor;
     chartInstance.options.scales.y.ticks.color = textColor;
@@ -283,12 +281,12 @@ function createCharts(windSpeedData, temperatureData, lapseRateData, approximate
     );
 
     // Set the initial grid color for all charts
-    chart1.options.scales.x.grid.color = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
-    chart1.options.scales.y.grid.color = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
-    chart2.options.scales.x.grid.color = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
-    chart2.options.scales.y.grid.color = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
-    chart3.options.scales.x.grid.color = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
-    chart3.options.scales.y.grid.color = getComputedStyle(document.documentElement).getPropertyValue('--chart-grid-color');
+    chart1.options.scales.x.grid.display = true;
+    chart1.options.scales.y.grid.display = true;
+    chart2.options.scales.x.grid.display = true;
+    chart2.options.scales.y.grid.display = true;
+    chart3.options.scales.x.grid.display = true;
+    chart3.options.scales.y.grid.display = true;
 
     // Update the charts to reflect the changes
     chart1.update();
@@ -349,6 +347,7 @@ function updateChartColors() {
     chart3.update();
 }
 
+
 // Attach functions to the window object to make them globally accessible
 window.createCharts = createCharts;
 window.setChartTheme = setChartTheme;
@@ -356,5 +355,6 @@ window.updateChartColors = updateChartColors;
 window.calculateAdditionalParameters = calculateAdditionalParameters;
 window.calculateLapseRate = calculateLapseRate;
 window.calculateLinearRegression = calculateLinearRegression;
+window.calculateWindSpeedAndDirection = calculateWindSpeedAndDirection;
 window.toggleDarkMode = toggleDarkMode;
 window.updateChartScales = updateChartScales;

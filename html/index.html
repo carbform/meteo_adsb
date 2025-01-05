@@ -95,12 +95,38 @@
         }
 
         async function initialize() {
-            const historyData = await fetchData('json/history_102.json');
+            const historyData = await fetchData('json/history_0.json');
             const aircraftData = await fetchData('json/aircraft.json');
             // Process and plot data
         }
 
-        document.addEventListener('DOMContentLoaded', initialize);
+        function setFormTheme(isDark) {
+            const formContainer = document.querySelector('.form-container');
+            const formContents = document.querySelectorAll('.form-content');
+            const formControls = document.querySelectorAll('.form-control');
+
+            if (isDark) {
+                formContainer.classList.add('dark-mode');
+                formContents.forEach(content => content.classList.add('dark-mode'));
+                formControls.forEach(control => control.classList.add('dark-mode'));
+            } else {
+                formContainer.classList.remove('dark-mode');
+                formContents.forEach(content => content.classList.remove('dark-mode'));
+                formControls.forEach(control => control.classList.remove('dark-mode'));
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initialize();
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            darkModeToggle.addEventListener('change', () => {
+                const isDark = darkModeToggle.checked;
+                setChartTheme(window.myChart1, isDark);
+                setChartTheme(window.myChart2, isDark);
+                setChartTheme(window.myChart3, isDark);
+                setFormTheme(isDark); // Update form theme
+            });
+        });
 
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
@@ -111,7 +137,25 @@
             // Update the theme for each chart instance
             setChartTheme(window.myChart1, isDark);
             setChartTheme(window.myChart2, isDark);
+            setChartTheme(window.myChart3, isDark); // Ensure all charts are updated
+            setFormTheme(isDark); // Update form theme
         }
-    </script>
+
+        function setChartTheme(chart, isDark) {
+            if (chart) {
+                const rootStyles = getComputedStyle(document.documentElement);
+                chart.options.scales.x.grid.color = isDark ? rootStyles.getPropertyValue('--dark-chart-grid-color') : rootStyles.getPropertyValue('--light-chart-grid-color');
+                chart.options.scales.y.grid.color = isDark ? rootStyles.getPropertyValue('--dark-chart-grid-color') : rootStyles.getPropertyValue('--light-chart-grid-color');
+                chart.options.scales.x.ticks.color = isDark ? rootStyles.getPropertyValue('--dark-chart-text-color') : rootStyles.getPropertyValue('--light-chart-text-color');
+                chart.options.scales.y.ticks.color = isDark ? rootStyles.getPropertyValue('--dark-chart-text-color') : rootStyles.getPropertyValue('--light-chart-text-color');
+                chart.options.plugins.legend.labels.color = isDark ? rootStyles.getPropertyValue('--dark-chart-text-color') : rootStyles.getPropertyValue('--light-chart-text-color');
+                chart.options.plugins.title.color = isDark ? rootStyles.getPropertyValue('--dark-chart-text-color') : rootStyles.getPropertyValue('--light-chart-text-color');
+                chart.options.plugins.tooltip.backgroundColor = isDark ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)';
+                chart.options.plugins.tooltip.titleColor = isDark ? 'black' : 'white';
+                chart.options.plugins.tooltip.bodyColor = isDark ? 'black' : 'white';
+
+                // Update dataset colors
+                chart.data.datasets.forEach((dataset, index) => {
+                dataset.borderColor = isDark ? rootStyles.getPropertyValue(`--dark-chart-color${index + 1}`) : rootStyles.getPropertyValue(`--light-chart-color${index + 1}`);
 </body>
 </html>
