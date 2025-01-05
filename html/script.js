@@ -71,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Set initial map theme based on current mode
-  const isDark = document.body.classList.contains('dark-mode');
   setMapTheme(isDark);
 });
 
@@ -219,11 +218,20 @@ function extractLatLonAndMap(aircraftData) {
     }, { passive: true });
   }
 
-  // Define a function to determine the color based on some criteria
-  function getColor() {
-    // You can define your own logic to determine the color based on data
-    // For simplicity, we'll use a random color here
-    return '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
+  // Map to store unique colors for each aircraft hex code
+  const aircraftColors = new Map();
+
+  // Function to generate a random color
+  function generateRandomColor() {
+    return '#' + (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
+  }
+
+  // Function to get the color for an aircraft hex code
+  function getColor(hex) {
+    if (!aircraftColors.has(hex)) {
+      aircraftColors.set(hex, generateRandomColor());
+    }
+    return aircraftColors.get(hex);
   }
 
   // Clear existing layers from the map
@@ -235,9 +243,10 @@ function extractLatLonAndMap(aircraftData) {
 
   // Add colored points to the map based on latitude and longitude data
   validLocations.forEach((location) => {
+    const color = getColor(location.hex);
     L.circle([location.lat, location.lon], {
-      color: getColor(),
-      fillColor: getColor(),
+      color: color,
+      fillColor: color,
       fillOpacity: 1,
       radius: 500,
     }).addTo(map);
