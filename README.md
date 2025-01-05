@@ -4,7 +4,6 @@
 
 ![Bengaluru](html/meteo.png)
 
-Meteo-ADSB is a web application that visualizes meteorological data and aircraft data on interactive charts and maps. The application supports both light and dark modes for better visibility and user experience.
 
 ## Installation
 

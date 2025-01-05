@@ -75,6 +75,7 @@ body.dark-mode .dark-mode-toggle .black-moon {
 
 #map.dark-mode {
     filter: invert(0.9) hue-rotate(180deg);
+    background-color: #1b1b1b; /* Dark mode background color for map */
 }
 
 /* Dark mode switch input */

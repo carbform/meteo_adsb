@@ -36,34 +36,6 @@ function updateChartScales(chartId, xMinId, xMaxId, yMinId, yMaxId) {
   }
 }
 
-function toggleDarkMode() {
-  const body = document.body;
-  const header = document.querySelector('.header');
-  const chartForms = document.querySelectorAll('.form-container, .form-content, .form-control');
-  const isDarkMode = document.getElementById('darkModeToggle').checked;
-
-  if (isDarkMode) {
-    body.classList.add('dark-mode');
-    body.classList.remove('light-mode');
-    header.classList.add('dark-mode');
-    chartForms.forEach((form) => {
-      form.classList.add('dark-mode');
-      form.classList.remove('light-mode');
-    });
-  } else {
-    body.classList.add('light-mode');
-    body.classList.remove('dark-mode');
-    header.classList.remove('dark-mode');
-    chartForms.forEach((form) => {
-      form.classList.add('light-mode');
-      form.classList.remove('dark-mode');
-    });
-  }
-
-  // Update the chart colors based on the mode
-  updateChartColors();
-}
-
 // Variables to store the chart objects and initial scale values
 let chart1;
 let chart2;
@@ -347,6 +319,18 @@ function updateChartColors() {
     chart3.update();
 }
 
+// Define the missing function
+function calculateAdditionalParameters(filteredTemperatureData) {
+    // Implement the logic for calculating additional parameters
+    // For example, calculating lapse rate data, approximated line, and slope
+    const lapseRateData = [];
+    const approximatedLine = [];
+    let slope = 0;
+
+    // Add your calculation logic here
+
+    return { lapseRateData, approximatedLine, slope };
+}
 
 // Attach functions to the window object to make them globally accessible
 window.createCharts = createCharts;
