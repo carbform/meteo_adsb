@@ -6,14 +6,6 @@
 
 Meteo-ADSB is a web application that visualizes meteorological data and aircraft data on interactive charts and maps. The application supports both light and dark modes for better visibility and user experience.
 
-## Features
-
-- Interactive charts displaying meteorological data
-- Interactive map displaying aircraft data
-- Light and dark mode toggle
-- Snapshot functionality to capture charts and maps
-- Responsive design for various screen sizes
-
 ## Installation
 
 ### Clone the Repository
@@ -75,9 +67,9 @@ Meteo-ADSB is a web application that visualizes meteorological data and aircraft
 ### Visualizations
 
 The webpage will generate:
-- Altitude vs. Temperature plot
-- Altitude vs. Wind Speed plot
-- Map of Aircraft data sampling locations
+- **Altitude vs. Temperature plot**: Shows the relationship between altitude and temperature.
+- **Altitude vs. Wind Speed plot**: Displays how wind speed changes with altitude.
+- **Map of Aircraft data sampling locations**: Visualizes the locations where aircraft data was sampled.
 
 You can use these plots to analyze the vertical atmospheric structure in the area where the data was collected.
 
@@ -85,6 +77,7 @@ You can use these plots to analyze the vertical atmospheric structure in the are
 
 - **Altitude vs. Temperature**: The temperature generally decreases with height. However, there can be inversions, where the temperature increases with altitude. Inversions can trap pollutants and cause decreased air quality. The lapse rate can also be used to study the local moisture convection.
 - **Altitude vs. Wind Speed**: The wind speed generally increases with altitude. However, there can be low-level winds, which are caused by surface friction which can be used to understand the planetary boundary layer.
+- **Lapse Rate**: The lapse rate is the rate at which temperature changes with altitude. It is calculated as the change in temperature divided by the change in altitude. The lapse rate can help identify atmospheric stability and potential weather patterns.
 
 ## Recent Additions
 
