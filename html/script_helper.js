@@ -99,8 +99,33 @@ function calculateWindSpeedAndDirection(df) {
   return [filteredWindData, filteredTemperatureData];
 }
 
+function calculateAirPressure(df, lapseRate) {
+  const p_b = 101325; // Sea level standard atmospheric pressure in Pascals
+  const T_b = 288.15; // Sea level standard temperature in Kelvin
+  const g = 9.80665; // Standard gravity in m/s^2
+  const R = 287.05; // Universal gas constant for air in J/(kg·K)
+
+  const pressureData = df.map(row => {
+    const altitude = row.alt_baro * 0.3048; // Convert feet to meters
+    let pressure;
+
+    if (altitude >= 0 && altitude <= 11000) {
+      pressure = p_b * Math.pow((1 + (lapseRate * altitude) / T_b), (-g / (lapseRate * R)));
+    } else if (altitude > 11000) {
+      pressure = p_b * Math.exp(-g * (altitude - 11000) / (R * T_b));
+    } else {
+      return null;
+    }
+
+    return { altitude, pressure };
+  }).filter(point => point !== null);
+
+  return pressureData;
+}
+
 // Attach functions to the window object to make them globally accessible
 window.calculateWindSpeedAndDirection = calculateWindSpeedAndDirection;
 window.calculateLinearRegression = calculateLinearRegression;
 window.calculateLapseRate = calculateLapseRate;
 window.calculateAdditionalParameters = calculateAdditionalParameters;
+window.calculateAirPressure = calculateAirPressure;
