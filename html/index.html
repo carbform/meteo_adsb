@@ -27,7 +27,7 @@
             <h1>Meteo-ADSB</h1>
             <div class="dark-mode-toggle">
                 <i class="fas fa-sun"></i>
-                <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
+                <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode(); updateChartColors();">
                 <label for="darkModeToggle"></label>
                 <i class="fas fa-moon"></i>
                 <i class="fas fa-moon black-moon"></i> <!-- Ensure black moon icon is included -->
@@ -43,6 +43,10 @@
             </div>
             <div class="chart">
                 <canvas id="chart3"></canvas>
+            </div>
+            <!-- New chart for Altitude vs Pressure -->
+            <div class="chart">
+                <canvas id="altitudePressureChart" width="400" height="200"></canvas>
             </div>
         </div>
         
@@ -73,8 +77,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/1.0.0/chartjs-plugin-zoom.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="charts.js"></script>
-    <script src="script_helper.js"></script>
-    <script src="script.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/script_helper.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        // Example data for the new chart
+        const altitudePressureData = [
+            { altitude: 0, pressure: 1013 },
+            { altitude: 1, pressure: 900 },
+            { altitude: 2, pressure: 800 },
+            // Add more data points as needed
+        ];
+
+        // Initialize the new chart
+        plotAltitudePressureChart(altitudePressureData);
+    </script>
 </body>
 </html>
