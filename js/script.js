@@ -1,3 +1,5 @@
+let isDark = false; // Initialize the variable
+
 function generateJSONFilePaths(basePath, numberOfFiles) {
   const jsonFiles = [];
   for (let i = 0; i < numberOfFiles; i++) {

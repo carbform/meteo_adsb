@@ -332,7 +332,4 @@ window.createCharts = createCharts;
 window.setChartTheme = setChartTheme;
 window.updateChartColors = updateChartColors;
 window.calculateAdditionalParameters = calculateAdditionalParameters;
-window.calculateLinearRegression = calculateLinearRegression;
-window.calculateWindSpeedAndDirection = calculateWindSpeedAndDirection;
-window.toggleDarkMode = toggleDarkMode;
 window.updateChartScales = updateChartScales;
