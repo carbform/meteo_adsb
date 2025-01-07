@@ -105,20 +105,28 @@ function calculateAirPressure(df, lapseRate) {
   const g = 9.80665; // Standard gravity in m/s^2
   const R = 287.05; // Universal gas constant for air in J/(kg·K)
 
+  // Convert lapse rate from °C/km to °C/m
+  const lapseRatePerMeter = lapseRate / 1000;
+
   const pressureData = df.map(row => {
-    const altitude = row.alt_baro * 0.3048; // Convert feet to meters
+    const altitudeMeters = row.alt_baro * 0.3048; // Convert feet to meters
     let pressure;
 
-    if (altitude >= 0 && altitude <= 11000) {
-      pressure = p_b * Math.pow((1 + (lapseRate * altitude) / T_b), (-g / (lapseRate * R)));
-    } else if (altitude > 11000) {
-      pressure = p_b * Math.exp(-g * (altitude - 11000) / (R * T_b));
+    if (altitudeMeters >= 0 && altitudeMeters <= 11000) {
+      const lapseRateAltitude = lapseRatePerMeter * altitudeMeters;
+      const tempRatio = (1 + lapseRateAltitude / T_b);
+      const exponent = (-g / (lapseRatePerMeter * R));
+      pressure = p_b * Math.pow(tempRatio, exponent);
+    } else if (altitudeMeters > 11000) {
+      const T_11km = T_b + lapseRatePerMeter * 11000; // Temperature at 11,000 meters
+      const p_11km = p_b * Math.pow((1 + (lapseRatePerMeter * 11000) / T_b), (-g / (lapseRatePerMeter * R))); // Pressure at 11,000 meters
+      pressure = p_11km * Math.exp(-g * (altitudeMeters - 11000) / (R * T_11km));
     } else {
       return null;
     }
 
-    return { altitude, pressure };
-  }).filter(point => point !== null);
+    return { x: pressure, y: altitudeMeters * 0.001 }; // Convert altitude to km
+  }).filter(point => point !== null && !isNaN(point.x) && !isNaN(point.y));
 
   return pressureData;
 }

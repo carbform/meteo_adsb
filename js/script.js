@@ -46,7 +46,6 @@ let mapCenter = [13, 77.5];
 let mapZoom = 9;
 
 document.addEventListener('DOMContentLoaded', () => {
-  initialize();
   const darkModeToggle = document.getElementById('darkModeToggle');
   darkModeToggle.addEventListener('change', () => {
     const isDark = darkModeToggle.checked;
@@ -169,12 +168,6 @@ async function fetchData(url) {
   }
 }
 
-async function initialize() {
-  const historyData = await fetchData('json/history_0.json');
-  const aircraftData = await fetchData('json/aircraft.json');
-  // Process and plot data
-}
-
 function extractLatLonAndMap(aircraftData) {
   // Filter out data with missing or undefined latitude or longitude values
   const validLocations = aircraftData.filter((row) => {
@@ -274,8 +267,12 @@ async function main() {
     // Calculate additional meteorological parameters
     const { lapseRateData, approximatedLine, slope } = window.calculateAdditionalParameters(filteredTemperatureData);
 
+    // Calculate air pressure data for all concatenated JSON files
+    const pressureData = window.calculateAirPressure(filteredTemperatureData, slope);
+    console.log('Pressure Data:', pressureData); // Log the pressureData array
+
     // Create and update the charts based on the concatenated data
-    window.createCharts(windSpeedData, temperatureData, lapseRateData, approximatedLine, slope);
+    window.createCharts(windSpeedData, temperatureData, lapseRateData, approximatedLine, slope, pressureData);
   }
   extractLatLonAndMap(aircraftData);
 }
@@ -288,7 +285,6 @@ window.setMapTheme = setMapTheme;
 window.setFormTheme = setFormTheme;
 window.setChartTheme = setChartTheme;
 window.fetchData = fetchData;
-window.initialize = initialize;
 window.extractLatLonAndMap = extractLatLonAndMap;
 window.main = main;
 

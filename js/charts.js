@@ -38,6 +38,7 @@ function updateChartScales(chartId, xMinId, xMaxId, yMinId, yMaxId) {
 let chart1;
 let chart2;
 let chart3;
+let chart4;
 let chart1XMin = 0;
 let chart1XMax = 30;
 let chart1YMin = 0;
@@ -163,7 +164,7 @@ function setChartTheme(chartInstance, isDark) {
   chartInstance.update();
 }
 
-function createCharts(windSpeedData, temperatureData, lapseRateData, approximatedLine, slope) {
+function createCharts(windSpeedData, temperatureData, lapseRateData, approximatedLine, slope, pressureData) {
   // For chart1
   chart1 = createScatterChart(
     'chart1',
@@ -234,18 +235,24 @@ function createCharts(windSpeedData, temperatureData, lapseRateData, approximate
     },
   };
 
-  // For chart3 (Lapse Rate)
+  // Convert pressure data from Pa to hPa
+  const pressureDataHpa = pressureData.map(point => ({
+    x: point.x / 100, // Convert Pa to hPa
+    y: point.y,
+  }));
+
+  // For chart3 (Altitude vs Pressure)
   chart3 = createScatterChart(
     'chart3',
-    lapseRateData,
-    'Lapse Rate vs Altitude',
-    'Lapse Rate (°C/km)',
+    pressureDataHpa,
+    'Altitude vs Pressure',
+    'Pressure (hPa)',
     'Altitude (km)',
-    -10,
-    10,
+    0,
+    1100, // Adjusted max value for hPa
     0,
     14,
-    'green',
+    'purple',
     1
   );
 

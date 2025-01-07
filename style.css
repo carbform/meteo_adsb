@@ -62,19 +62,21 @@ h2 {
 }
 
 .chart-section {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns */
-    gap: 1rem; /* Reduce gap for tighter layout */
-    margin-bottom: 1rem; /* Reduce bottom margin */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .chart {
-    background-color: #ffffff;
-    border-radius: 12px;
-    padding: 1rem; /* Adjust padding */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-    min-height: 300px; /* Reduce height */
-    width: 100%; /* Ensure full width */
+  flex: 1 1 30%;
+  max-width: 30%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.chart canvas {
+  width: 100% !important;
+  height: auto !important;
 }
 
 #map {
