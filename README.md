@@ -76,8 +76,8 @@ $$
 $$
 
 where:
-- \( \Delta T \) is the change in temperature (°C)
-- \( \Delta Z \) is the change in altitude (km)
+- \$$( \Delta T )$$ is the change in temperature (°C)
+- \$$( \Delta Z )$$ is the change in altitude (km)
 
 ### Pressure Calculation
 
