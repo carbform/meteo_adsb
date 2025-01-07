@@ -1,10 +1,14 @@
 # Meteo-ADSB
 
-## Vertical Atmospheric Structure Analysis 
+Meteo-ADSB is a web application that visualizes meteorological data collected from aircraft. The application displays various charts and a map to provide insights into wind speed, temperature, and pressure at different altitudes.
 
 ![Bengaluru](light.png)
 ![Bengaluru](dark.png)
 
+- **Wind Speed vs Altitude**: Displays wind speed data against altitude.
+- **Temperature vs Altitude**: Displays temperature data against altitude with an approximated lapse rate line.
+- **Altitude vs Pressure**: Displays pressure data against altitude in hPa (hectopascals).
+- **Map Visualization**: Displays aircraft positions on a map with unique colors for each aircraft.
 
 ## Installation
 
@@ -60,35 +64,30 @@
 
 ## Usage
 
-### Access the Web Interface
+- **Dark Mode Toggle**: Use the toggle switch in the header to switch between light and dark modes.
+- **Snapshot**: Click the snapshot button to capture a screenshot of the current view.
+- **Map Controls**: Use the input fields to adjust the latitude, longitude, and zoom level of the map.
 
-1. Open your browser and navigate to `http://DEVICE_LOCAL_IP:5050` to access the application.
+## File Structure
 
-### Visualizations
+- `index.html`: The main HTML file for the application.
+- `style.css`: The CSS file for styling the application.
+- `dark-mode.css`: Additional CSS for dark mode styling.
+- `js/charts.js`: JavaScript file for creating and updating charts.
+- `js/helper.js`: JavaScript file containing helper functions for data processing.
+- `js/script.js`: Main JavaScript file for initializing the application and handling events.
 
-The webpage will generate:
-- **Altitude vs. Temperature plot**: Shows the relationship between altitude and temperature.
-- **Altitude vs. Wind Speed plot**: Displays how wind speed changes with altitude.
-- **Map of Aircraft data sampling locations**: Visualizes the locations where aircraft data was sampled.
+## Contributing
 
-You can use these plots to analyze the vertical atmospheric structure in the area where the data was collected.
-
-### How to Interpret the Plots
-
-- **Altitude vs. Temperature**: The temperature generally decreases with height. However, there can be inversions, where the temperature increases with altitude. Inversions can trap pollutants and cause decreased air quality. The lapse rate can also be used to study the local moisture convection.
-- **Altitude vs. Wind Speed**: The wind speed generally increases with altitude. However, there can be low-level winds, which are caused by surface friction which can be used to understand the planetary boundary layer.
-- **Lapse Rate**: The lapse rate is the rate at which temperature changes with altitude. It is calculated as the change in temperature divided by the change in altitude. The lapse rate can help identify atmospheric stability and potential weather patterns.
-
-## Recent Additions
-
-- **Dark Mode**: The application supports dark mode, which can be toggled using the switch in the top-right corner of the webpage.
-- **Data Refresh**: The data is refreshed every 5 minutes to ensure the visualizations are up-to-date.
-- **Snapshot Feature**: You can capture and save snapshots of the charts as PNG images.
-
-## Disclaimer
-
-The calculated data may not be accurate. The results must be analyzed qualitatively.
+Contributions are welcome! Please fork the repository and submit a pull request with your changes.
 
 ## License
 
-This project is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Acknowledgements
+
+- [OpenStreetMap](https://www.openstreetmap.org/) for map tiles.
+- [Chart.js](https://www.chartjs.org/) for charting library.
+- [Leaflet](https://leafletjs.com/) for interactive maps.
+- [SweetAlert2](https://sweetalert2.github.io/) for alert messages.
