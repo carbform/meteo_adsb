@@ -5,6 +5,8 @@ Meteo-ADSB is a web application that visualizes meteorological data collected fr
 ![Bengaluru](light.png)
 ![Bengaluru](dark.png)
 
+## Features
+
 - **Wind Speed vs Altitude**: Displays wind speed data against altitude.
 - **Temperature vs Altitude**: Displays temperature data against altitude with an approximated lapse rate line.
 - **Altitude vs Pressure**: Displays pressure data against altitude in hPa (hectopascals).
@@ -62,20 +64,45 @@ Meteo-ADSB is a web application that visualizes meteorological data collected fr
     ```
     This will start a local server on port 5050, which is accessible at `http://DEVICE_LOCAL_IP:5050`.
 
-## Usage
 
-- **Dark Mode Toggle**: Use the toggle switch in the header to switch between light and dark modes.
-- **Snapshot**: Click the snapshot button to capture a screenshot of the current view.
-- **Map Controls**: Use the input fields to adjust the latitude, longitude, and zoom level of the map.
+## Methodology
 
-## File Structure
+### Lapse Rate Calculation
 
-- `index.html`: The main HTML file for the application.
-- `style.css`: The CSS file for styling the application.
-- `dark-mode.css`: Additional CSS for dark mode styling.
-- `js/charts.js`: JavaScript file for creating and updating charts.
-- `js/helper.js`: JavaScript file containing helper functions for data processing.
-- `js/script.js`: Main JavaScript file for initializing the application and handling events.
+The lapse rate is calculated as the rate of change of temperature with respect to altitude. It is computed using the following formula:
+
+$$
+\text{Lapse Rate} = \frac{\Delta T}{\Delta Z}
+$$
+
+where:
+- \( \Delta T \) is the change in temperature (°C)
+- \( \Delta Z \) is the change in altitude (km)
+
+### Pressure Calculation
+
+The pressure at a given altitude is calculated using the barometric formula. For altitudes up to 11,000 meters, the formula is:
+
+$$
+P = P_b \left(1 + \frac{L \cdot h}{T_b}\right)^{\frac{-g}{L \cdot R}}
+$$
+
+For altitudes above 11,000 meters, the formula is:
+
+$$
+P = P_{11km} \cdot \exp\left(\frac{-g \cdot (h - 11000)}{R \cdot T_{11km}}\right)
+$$
+
+where:
+- \( P \) is the pressure at altitude \( h \) (Pa)
+- \( P_b \) is the sea level standard atmospheric pressure (101325 Pa)
+- \( L \) is the lapse rate (°C/m)
+- \( h \) is the altitude (m)
+- \( T_b \) is the sea level standard temperature (288.15 K)
+- \( g \) is the standard gravity (9.80665 m/s²)
+- \( R \) is the universal gas constant for air (287.05 J/(kg·K))
+- \( P_{11km} \) is the pressure at 11,000 meters
+- \( T_{11km} \) is the temperature at 11,000 meters
 
 ## Contributing
 
