@@ -84,7 +84,7 @@ where:
 The pressure at a given altitude is calculated using the barometric formula. For altitudes up to 11,000 meters, the formula is:
 
 $$
-P = P_b \left(1 + \frac{L \cdot h}{T_b}\right)^{\frac{-g}{L \cdot R}}
+P = P_{b} \left(1 + \frac{\lambda \cdot h}{T_b}\right)^{\frac{-g}{\lambda \cdot R}}
 $$
 
 For altitudes above 11,000 meters, the formula is:
@@ -94,15 +94,15 @@ P = P_{11km} \cdot \exp\left(\frac{-g \cdot (h - 11000)}{R \cdot T_{11km}}\right
 $$
 
 where:
-- \( P \) is the pressure at altitude \( h \) (Pa)
-- \( P_b \) is the sea level standard atmospheric pressure (101325 Pa)
-- \( L \) is the lapse rate (°C/m)
-- \( h \) is the altitude (m)
-- \( T_b \) is the sea level standard temperature (288.15 K)
-- \( g \) is the standard gravity (9.80665 m/s²)
-- \( R \) is the universal gas constant for air (287.05 J/(kg·K))
-- \( P_{11km} \) is the pressure at 11,000 meters
-- \( T_{11km} \) is the temperature at 11,000 meters
+- $$\( P )$$ is the pressure at altitude \( h \) (Pa)
+- $$\( P_{b} )$$ is the sea level standard atmospheric pressure (101325 Pa)
+- $$\( \lambda )$$ is the lapse rate (°C/m)
+- $$\( h )$$ is the altitude (m)
+- $$\( T_{b} )$$ is the sea level standard temperature (288.15 K)
+- $$\( g )$$ is the standard gravity (9.80665 m/s²)
+- $$\( R )$$ is the universal gas constant for air (287.05 J/(kg·K))
+- $$\( P_{11km} )$$ is the pressure at 11,000 meters
+- $$\( T_{11km} )$$ is the temperature at 11,000 meters
 
 ## Contributing
 
