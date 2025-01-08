@@ -2,8 +2,8 @@
 
 Meteo-ADSB is a web application that visualizes meteorological data collected from aircraft. The application displays various charts and a map to provide insights into wind speed, temperature, and pressure at different altitudes.
 
-![Bengaluru](light.png)
-![Bengaluru](dark.png)
+![Bengaluru](img/light.png)
+![Bengaluru](img/dark.png)
 
 ## Features
 
