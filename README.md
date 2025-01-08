@@ -71,7 +71,7 @@ Meteo-ADSB is a web application that visualizes meteorological data collected fr
 The lapse rate is calculated as the rate of change of temperature with respect to altitude:
 
 $$
-Lapse Rate (\Lambda) = \frac{\Delta T}{\Delta Z}
+Lapse Rate (\lambda) = \frac{\Delta T}{\Delta Z}
 $$
 
 where:
