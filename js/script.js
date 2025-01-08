@@ -58,16 +58,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Initialize the map
-  map = L.map('map').setView([13, 77.5], 9);
+  map = L.map('map').setView(mapCenter, mapZoom);
 
   lightLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
   darkLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    attribution: '&copy; OpenStreetMap contributors',
     className: 'dark-matter'
   });
 
@@ -90,24 +90,19 @@ function toggleDarkMode() {
 }
 
 function setMapTheme(isDark) {
-  console.log(`Setting map theme to ${isDark ? 'dark' : 'light'} mode`);
   if (isDark) {
     if (map.hasLayer(lightLayer)) {
       map.removeLayer(lightLayer);
-      console.log('Removed light layer');
     }
     if (!map.hasLayer(darkLayer)) {
       darkLayer.addTo(map);
-      console.log('Added dark layer');
     }
   } else {
     if (map.hasLayer(darkLayer)) {
       map.removeLayer(darkLayer);
-      console.log('Removed dark layer');
     }
     if (!map.hasLayer(lightLayer)) {
       lightLayer.addTo(map);
-      console.log('Added light layer');
     }
   }
 }
@@ -185,7 +180,7 @@ function extractLatLonAndMap(aircraftData) {
 
     // Add a tile layer (basemap)
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      attribution: '&copy; OpenStreetMap contributors',
     }).addTo(map);
 
     // Get the latitude, longitude, and zoom input elements
@@ -251,7 +246,6 @@ function extractLatLonAndMap(aircraftData) {
 // Load the data and perform calculations.
 async function main() {
   const aircraftData = await loadAndConcatenateAllData();
-  console.log('Aircraft Data:', aircraftData);
   if (aircraftData.length > 0) {
     const [filteredWindData, filteredTemperatureData] = window.calculateWindSpeedAndDirection(aircraftData);
 
@@ -269,7 +263,6 @@ async function main() {
 
     // Calculate air pressure data for all concatenated JSON files
     const pressureData = window.calculateAirPressure(filteredTemperatureData, slope);
-    console.log('Pressure Data:', pressureData); // Log the pressureData array
 
     // Create and update the charts based on the concatenated data
     window.createCharts(windSpeedData, temperatureData, lapseRateData, approximatedLine, slope, pressureData);
@@ -287,8 +280,6 @@ window.setChartTheme = setChartTheme;
 window.fetchData = fetchData;
 window.extractLatLonAndMap = extractLatLonAndMap;
 window.main = main;
-
-// Ensure the toggleDarkMode function is attached to the window object
 window.toggleDarkMode = toggleDarkMode;
 
 // Call the main function.
