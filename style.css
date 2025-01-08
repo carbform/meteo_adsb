@@ -188,13 +188,13 @@ h2 {
 }
 
 .footer a {
-    color: #007bff;
+    color: #ffffff;
     text-decoration: none;
     transition: color 0.2s;
 }
 
 .footer a:hover {
-    color: #0056b3;
+    color: #ffffff;
 }
 
 .form-container {
@@ -341,7 +341,7 @@ body {
   border-radius: 8px;
 }
 .footer a {
-  color: #78ec9f;
+  color: #00ff55;
   text-decoration: none;
 }
 .footer a:hover {

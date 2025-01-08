@@ -44,7 +44,7 @@ Meteo-ADSB is a web application that visualizes meteorological data collected fr
     ```sh
     python3 meteo_adsb.py -r
     ```
-    This will start a local server on port 5050, which is accessible at `http://DEVICE_LOCAL_IP:5050`.
+    This will start a local server on port 5050, accessible at `http://DEVICE_LOCAL_IP:5050`.
 
 #### Method 2: Using Shell Script (Linux/macOS)
 
@@ -62,17 +62,16 @@ Meteo-ADSB is a web application that visualizes meteorological data collected fr
     ```sh
     sudo ./meteo_adsb.sh -r
     ```
-    This will start a local server on port 5050, which is accessible at `http://DEVICE_LOCAL_IP:5050`.
-
+    This will start a local server on port 5050, accessible at `http://DEVICE_LOCAL_IP:5050`.
 
 ## Methodology
 
 ### Lapse Rate Calculation
 
-The lapse rate is calculated as the rate of change of temperature with respect to altitude. It is computed using the following formula:
+The lapse rate is calculated as the rate of change of temperature with respect to altitude:
 
 $$
-\text{Lapse Rate} = \frac{\Delta T}{\Delta Z}
+\text{Lapse Rate (\Lambda)} = \frac{\Delta T}{\Delta Z}
 $$
 
 where:
@@ -81,13 +80,13 @@ where:
 
 ### Pressure Calculation
 
-The pressure at a given altitude is calculated using the barometric formula. For altitudes up to 11,000 meters, the formula is:
+The pressure at a given altitude is calculated using the barometric formula. For altitudes up to 11,000 meters:
 
 $$
 P = P_{b} \left(1 + \frac{\lambda \cdot h}{T_b}\right)^{\frac{-g}{\lambda \cdot R}}
 $$
 
-For altitudes above 11,000 meters, the formula is:
+For altitudes above 11,000 meters:
 
 $$
 P = P_{11km} \cdot \exp\left(\frac{-g \cdot (h - 11000)}{R \cdot T_{11km}}\right)
