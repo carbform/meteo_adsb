@@ -72,15 +72,16 @@ copy_files() {
 
 # Function to start the server
 start_server() {
-    cd "$DEST_DIR" || exit
+    cd "$(dirname "$0")" || exit
     local_ip=$(hostname -I | awk '{print $1}')
     echo "Starting server at http://$local_ip:8000"
-    python3 -m http.server 8000
+    python3 -m http.server 8000 --directory . --bind 127.0.0.1 > /dev/null 2>&1 &
 }
 
 # Main script execution
 main() {
     mkdir -p "$DEST_DIR"
+    echo "Created destination directory: $DEST_DIR"
     prompt_local_or_remote
     prompt_remote_details
 
@@ -104,9 +105,11 @@ main() {
     if [ "$DEMO_MODE" = true ]; then
       echo "Running in demo mode. JSON files will not be copied."
     else
+      echo "Copying JSON files..."
       copy_files
     fi
 
+    echo "Starting the server..."
     start_server
 }
 

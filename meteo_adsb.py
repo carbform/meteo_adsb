@@ -5,9 +5,10 @@ import time
 import json
 import threading
 import argparse
+from http.server import SimpleHTTPRequestHandler, HTTPServer
 
 CONFIG_FILE = "meteo_adsb_config.json"
-DEST_DIR = os.path.join("html", "json")
+DEST_DIR = os.path.join("json")
 SRC_DIR = "/var/run/dump1090-fa"
 
 def read_config():
@@ -46,17 +47,26 @@ def copy_files(config):
                 shutil.copy(os.path.join(config["src_dir"], file_name), DEST_DIR)
         print(f"Copied .json files from {config['src_dir']} to {DEST_DIR}")
 
+class CustomHTTPRequestHandler(SimpleHTTPRequestHandler):
+    def do_GET(self):
+        if self.path == '/':
+            self.path = '/index.html'
+        return super().do_GET()
+
+    def log_message(self, format, *args):
+        pass  # Suppress logging
+
 def start_server():
-    os.chdir(DEST_DIR)
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
     local_ip = subprocess.check_output(["hostname", "-I"]).decode().split()[0]
-    server_process = subprocess.Popen(["python3", "-m", "http.server", "8000"])
-    time.sleep(1)
-    if server_process.poll() is None:
+    handler = CustomHTTPRequestHandler
+    handler.extensions_map.update({
+        '.html': 'text/html',
+    })
+    with HTTPServer(("", 8000), handler) as httpd:
         print(f"Do not close this terminal")
         print(f"Meteo-ADSB is running. Access it at http://{local_ip}:8000 on any browser")
-    else:
-        print("Failed to start the server. Check if Python 3 is installed on this machine.")
-    return server_process
+        httpd.serve_forever()
 
 def stop_server(server_process):
     if server_process:
@@ -82,16 +92,18 @@ def main(demo_mode):
     if demo_mode:
         print("Running in demo mode. JSON files will not be copied.")
     else:
+        print("Copying JSON files...")
         copy_files(config)
         update_data_periodically(config)
-        server_process = start_server()
 
-        try:
-            while True:
-                time.sleep(1)
-        except (KeyboardInterrupt, SystemExit):
-            stop_server(server_process)
-            print("Exiting the script.")
+    print("Starting the server...")
+    start_server()
+
+    try:
+        while True:
+            time.sleep(1)
+    except (KeyboardInterrupt, SystemExit):
+        print("Exiting the script.")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Meteo-ADSB script')
