@@ -2,6 +2,20 @@
 
 CONFIG_FILE="config.json"
 DEST_DIR="json_files"
+DEMO_MODE=false
+
+# Function to display help message
+show_help() {
+    echo "Usage: $0 [-d]"
+    echo ""
+    echo "Options:"
+    echo "  -d    Run in demo mode. JSON files will not be copied."
+    echo ""
+    echo "Description:"
+    echo "  This script sets up the Meteo-ADSB environment. It can be run in demo mode"
+    echo "  where JSON files are not copied, or in normal mode where JSON files are"
+    echo "  copied from a specified source directory."
+}
 
 # Function to read the configuration file
 read_config() {
@@ -69,8 +83,31 @@ main() {
     mkdir -p "$DEST_DIR"
     prompt_local_or_remote
     prompt_remote_details
-    copy_files
+
+    while getopts "dh" opt; do
+      case $opt in
+        d)
+          DEMO_MODE=true
+          ;;
+        h)
+          show_help
+          exit 0
+          ;;
+        \?)
+          echo "Invalid option: -$OPTARG" >&2
+          show_help
+          exit 1
+          ;;
+      esac
+    done
+
+    if [ "$DEMO_MODE" = true ]; then
+      echo "Running in demo mode. JSON files will not be copied."
+    else
+      copy_files
+    fi
+
     start_server
 }
 
-main
+main "$@"

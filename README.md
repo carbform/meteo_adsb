@@ -14,55 +14,60 @@ Meteo-ADSB is a web application that visualizes meteorological data collected fr
 
 ## Installation
 
-### Clone the Repository
-
-1. Open your terminal or command prompt.
-2. Clone the repository using the following command:
-    ```sh
+1. Clone the repository:
+    ```bash
     git clone https://github.com/carbform/meteo_adsb.git
-    ```
-3. Navigate to the project directory:
-    ```sh
     cd meteo_adsb
     ```
 
-### Choose Your Installation Method
+## Usage
 
-#### Method 1: Using Python (Cross-Platform)
+### Bash Script
 
-1. Ensure Python 3 is installed:
-    - For Windows, download and install Python from [python.org](https://www.python.org/downloads/).
-    - For macOS, Python 3 is pre-installed. You can also use Homebrew to install it: `brew install python3`.
-    - For Linux, use your package manager to install Python 3.
+To run the bash script, use the following command:
 
-2. Run the Python script to configure the source directory for JSON data:
-    ```sh
-    python3 meteo_adsb.py -i
-    ```
+```bash
+./meteo_adsb.sh [-d] [-h]
+```
 
-3. Start the local server:
-    ```sh
-    python3 meteo_adsb.py -r
-    ```
-    This will start a local server on port 5050, accessible at `http://DEVICE_LOCAL_IP:5050`.
+Options:
+- `-d` : Run in demo mode. JSON files will not be copied.
+- `-h` : Show help message and exit.
 
-#### Method 2: Using Shell Script (Linux/macOS)
+### Python Script
 
-1. Make the `meteo_adsb.sh` script executable:
-    ```sh
-    chmod +x meteo_adsb.sh
-    ```
+To run the Python script, use the following command:
 
-2. Run the installation script to configure the source directory for JSON data:
-    ```sh
-    sudo ./meteo_adsb.sh -i
-    ```
+```bash
+python3 meteo_adsb.py [-d] [-r] [-i]
+```
 
-3. Start the local server:
-    ```sh
-    sudo ./meteo_adsb.sh -r
-    ```
-    This will start a local server on port 5050, accessible at `http://DEVICE_LOCAL_IP:5050`.
+Options:
+- `-d` : Run in demo mode. JSON files will not be copied.
+- `-r` : Prompt for remote setup details.
+- `-i` : Interactive mode to prompt for setup details.
+
+### Example
+
+To run the script in demo mode:
+
+```bash
+./meteo_adsb.sh -d
+```
+
+or
+
+```bash
+python3 meteo_adsb.py -d
+```
+
+## Configuration
+
+The configuration is stored in a JSON file (`config.json` for the bash script and `meteo_adsb_config.json` for the Python script). The script will prompt for necessary details if they are not already configured.
+
+## Accessing the Visualization
+
+Once the server is started, you can access the visualization in your web browser at `http://<your_local_ip>:8000`.
 
 ## Methodology
 

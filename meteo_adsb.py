@@ -4,6 +4,7 @@ import subprocess
 import time
 import json
 import threading
+import argparse
 
 CONFIG_FILE = "meteo_adsb_config.json"
 DEST_DIR = os.path.join("html", "json")
@@ -71,23 +72,31 @@ def update_data_periodically(config, interval=300):
             time.sleep(interval)
     threading.Thread(target=update, daemon=True).start()
 
-def main():
+def main(demo_mode):
     config = read_config()
     if len(os.sys.argv) == 2 and os.sys.argv[1] in ["-r", "-i"]:
         prompt_local_or_remote(config)
     else:
         read_config()
 
-    copy_files(config)
-    update_data_periodically(config)
-    server_process = start_server()
+    if demo_mode:
+        print("Running in demo mode. JSON files will not be copied.")
+    else:
+        copy_files(config)
+        update_data_periodically(config)
+        server_process = start_server()
 
-    try:
-        while True:
-            time.sleep(1)
-    except (KeyboardInterrupt, SystemExit):
-        stop_server(server_process)
-        print("Exiting the script.")
+        try:
+            while True:
+                time.sleep(1)
+        except (KeyboardInterrupt, SystemExit):
+            stop_server(server_process)
+            print("Exiting the script.")
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description='Meteo-ADSB script')
+    parser.add_argument('-d', '--demo', action='store_true', help='Run in demo mode. JSON files will not be copied.')
+    parser.add_argument('-r', '--remote', action='store_true', help='Prompt for remote setup details.')
+    parser.add_argument('-i', '--interactive', action='store_true', help='Interactive mode to prompt for setup details.')
+    args = parser.parse_args()
+    main(args.demo)

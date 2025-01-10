@@ -1,6 +1,6 @@
 {
-    "local_machine": "y",
+    "local_machine": "n",
     "src_dir": "/var/run/dump1090-fa",
-    "remote_ip": "",
-    "remote_user": ""
+    "remote_ip": "10.197.12.30",
+    "remote_user": "pi"
 }
